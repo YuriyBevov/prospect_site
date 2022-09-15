@@ -1,0 +1,71 @@
+.map {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 2400px;
+  height: 500px;
+  margin: 0 auto;
+  background-color: var(--dark);
+  background-image: url('../assets/img/map-static@1x.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  @include m-b-tablet-lg-down {
+    height: 400px;
+  }
+
+  @include m-b-mobile-lg-down {
+    height: 300px;
+  }
+}
+
+#yandex_map {
+  width: 100%;
+  max-width: 2400px;
+  height: 100%;
+  margin: 0 auto;
+
+  .zoom-btns {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    top: -440px;
+    left: -75px;
+
+    @include m-b-tablet-lg-down {
+      top: -340px;
+    }
+
+    @include m-b-mobile-lg-down {
+      top: -240px;
+    }
+
+    .zoom-btn {
+      @extend .button-default;
+      @extend .flex-centered-content;
+
+      width: 40px;
+      height: 40px;
+      margin: 0 5px;
+      background-color: var(--primary);
+
+      cursor: pointer;
+      transition: background-color var(--main-transition);
+
+      svg {
+        fill: var(--white);
+      }
+
+      &:hover {
+        opacity: 0.8;
+        //background-color: var(--warning);
+      }
+
+      &:active {
+        background-color: var(--primary);
+      }
+    }
+  }
+}

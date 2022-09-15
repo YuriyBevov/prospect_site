@@ -1,0 +1,121 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-radius: 0;
+
+  @extend .main-scroll;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100vh;
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family, sans-serif);
+  font-weight: 400;
+  line-height: 1.2;
+  font-size: 16px;
+  color: var(--main-color);
+  background-color: var(--main-bg-color);
+  //overflow-x: hidden !important;
+
+  &.body-locked {
+    overflow: hidden;
+  }
+}
+
+footer {
+  margin-top: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*.section {
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--main-bg-color);
+  z-index: 1;
+
+  @include m-b-desktop-lg-down {
+    padding: 80px 0;
+  }
+
+  @include m-b-desktop-down {
+    padding: 60px 0;
+  }
+
+  @include m-b-laptop-down {
+    padding: 50px 0;
+  }
+
+  @include m-b-tablet-lg-down {
+    padding: 40px 0;
+  }
+
+  @include m-b-tablet-down {
+    padding: 30px 0;
+  }
+
+  @include m-b-mobile-lg-down {
+    padding: 20px 0;
+  }
+}*/
+
+/*.main-title {
+  font-weight: 600;
+  font-size: 64px;
+
+  @include m-b-desktop-down {
+    font-size: 54px;
+  }
+
+  @include m-b-laptop-down {
+    font-size: 48px;
+  }
+
+  @include m-b-tablet-down {
+    font-size: 36px;
+    text-align: center;
+  }
+
+  color: var(--primary-color);
+}*/
+
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+}
+
+/*input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+    -webkit-box-shadow: 0 0 0 0 transparent inset !important;
+    box-shadow: 0 0 0 0 transparent inset !important;
+}*/

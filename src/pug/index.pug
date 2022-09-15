@@ -1,0 +1,20 @@
+extends layouts/main-layout.pug
+
+block variables
+  -
+    const title = "ООО ПРОСПЕКТ"
+    const desc = "Производство и монтаж наружной рекламы"
+    const keywords = ""
+
+block content
+  include ./views/hero
+  include ./views/portfolio
+  include ./views/features
+  include ./views/outdoor
+  include ./views/callback
+  include ./views/map
+
+block modals
+  //include ./modals/_main-modal
+  //include ./modals/_error-modal
+  //include ./modals/_thanks-modal

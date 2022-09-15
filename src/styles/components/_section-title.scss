@@ -1,0 +1,27 @@
+.section-title {
+  @extend .flex-wrap;
+
+  h2 {
+    font-weight: 700;
+    font-size: 54px;
+    margin: 0 auto;
+    margin-bottom: 80px;
+  }
+
+  &--dublicated {
+    position: relative;
+    padding-top: 100px;
+
+    span {
+      position: absolute;
+      bottom: 30px;
+      right: 0;
+
+      font-weight: 700;
+      font-size: 214px;
+
+      color: var(--secondary);
+      z-index: -1;
+    }
+  }
+}

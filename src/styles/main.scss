@@ -1,0 +1,17 @@
+/*base*/
+@import "vendor";
+@import "vars";
+@import "mixins";
+@import "fonts";
+@import "global";
+@import "extends";
+@import "keyframes";
+
+/*components*/
+@import "./components/section-title";
+@import "./components/accordeon";
+@import "./components/yandex-map";
+
+/*views*/
+@import "./views/outdoor";
+@import "./views/map";

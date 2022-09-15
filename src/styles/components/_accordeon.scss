@@ -1,0 +1,239 @@
+.accordeon-height {
+  height: 600px;
+
+  @include m-b-desktop-down {
+    height: 500px;
+  }
+
+  @include m-b-tablet-lg-down {
+    height: 100%;
+  }
+}
+
+.accordeon-header-width {
+  min-width: 100px;
+  max-width: 100px;
+
+  @include m-b-desktop-down {
+    min-width: 70px;
+    max-width: 70px;
+  }
+
+  @include m-b-tablet-lg-down {
+    min-width: 100%;
+    max-width: 100%;
+    height: 50px;
+  }
+}
+
+.accordeon-field-width {
+  width: calc(100% - 499px);
+
+  @include m-b-desktop-down {
+    width: calc(100% - 349px);
+  }
+
+  @include m-b-tablet-lg-down {
+    width: 100%;
+  }
+}
+
+.accordeon {
+  position: relative;
+  overflow: hidden;
+  @extend .accordeon-height;
+
+  &__field {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    @extend .accordeon-field-width;
+    background-color: var(--main-bg-color);
+
+    @include m-b-tablet-lg-down {
+      position: relative;
+      flex-direction: column;
+    }
+
+    &:not(:last-child) {
+      .accordeon__header {
+        border-right: 1px solid var(--white);
+
+        @include m-b-tablet-lg-down {
+          border-right: 0;
+          border-bottom: 1px solid var(--white);
+        }
+      }
+    }
+
+    &.active {
+      .accordeon__header {
+        background-color: var(--accordeon-active-color);
+
+        border-color: var(--accordeon-active-color);
+
+        span {
+          color: var(--main-color);
+        }
+      }
+    }
+
+    @include m-b-tablet-lg-down {
+      &:not(.active) {
+        .accordeon__body {
+          height: 0;
+          padding: 0;
+        }
+      }
+
+      &.active {
+        .accordeon__body {
+          animation: showaccordeonBody 0.7s ease-in forwards;
+        }
+
+        .accordeon__header::after {
+          transform: translateY(-50%) rotate(180deg);
+        }
+      }
+    }
+  }
+
+  &__header {
+    position: relative;
+    width: 100%;
+    @extend .accordeon-header-width;
+    @extend .accordeon-height;
+    padding: 20px;
+
+    @include m-b-tablet-lg-down {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      padding-right: 40px;
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%) rotate(0);
+        transform-origin: center;
+        content: '';
+        width: 20px;
+        height: 20px;
+        background-image: url('../assets/img/arrow-icon.svg');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        transition: transform 0.4s linear;
+      }
+    }
+
+    @include m-b-tablet-down {
+      justify-content: flex-start;
+    }
+
+    background-color: var(--primary);
+    z-index: 3;
+
+    cursor: pointer;
+    transition: background-color 0.5s ease-in, border .5s ease-in;
+
+    span {
+      font-weight: 500;
+      font-size: 24px;
+      text-align: center;
+
+      white-space: nowrap;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%) rotate(-90deg);
+      color: var(--white);
+      transition: color 0.5s ease-in;
+
+      @include m-b-tablet-lg-down {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+
+        font-size: 22px;
+      }
+
+      @include m-b-tablet-down {
+        font-size: 20px;
+      }
+
+      @include m-b-mobile-lg-down {
+        font-size: 16px;
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 400;
+    font-size: 28px;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  &__body {
+    display: flex;
+    align-items: center;
+
+    @extend .accordeon-height;
+    overflow: auto;
+
+    @include m-b-laptop-down {
+      flex-direction: column;
+
+      img {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+
+      &-content {
+        width: 100%;
+      }
+    }
+
+    &-img-box {
+      width: 50%;
+      height: 100%;
+      max-height: 600px;
+      margin-right: 20px;
+      //padding: 20px;
+      //background: radial-gradient(50% 50% at 50% 50%, rgba(171, 171, 171, 0) 0%, #B4B4B4 100%);
+
+      @include m-b-laptop-down {
+        width: 100%;
+        max-height: 450px;
+        margin-right: 0;
+      }
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      //height: 100%;
+      //max-height: 600px;
+      object-fit: cover;
+      object-position: left;
+
+      @include m-b-laptop-down {
+        max-height: 400px;
+      }
+    }
+
+    &-content {
+      width: 50%;
+      padding: 20px;
+
+      @include m-b-laptop-down {
+        width: 100%;
+      }
+    }
+  }
+}
