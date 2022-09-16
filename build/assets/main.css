@@ -2374,7 +2374,7 @@ input:-webkit-autofill:active  {
   margin-bottom: 60px;
 }
 
-.flex-wrap, .main-footer__info, .main-footer__container, .section-title {
+.flex-wrap, .main-footer__info, .main-footer__container, .portfolio__sort-field, .portfolio__sort, .section-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2438,7 +2438,7 @@ input:-webkit-autofill:active  {
   justify-content: center;
 }
 
-.flex-wrap, .main-footer__info, .main-footer__container, .section-title {
+.flex-wrap, .main-footer__info, .main-footer__container, .portfolio__sort-field, .portfolio__sort, .section-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2762,6 +2762,122 @@ input:-webkit-autofill:active  {
 }
 .main-btn svg {
   fill: var(--main-btn-color);
+}
+
+.custom-select-container {
+  position: relative;
+}
+
+.custom-select-container.is-disabled {
+  opacity: 0.333;
+}
+
+.custom-select-opener {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 75px;
+  padding: 8px;
+  padding-right: 30px;
+  cursor: pointer;
+  color: #303030;
+  background-color: transparent;
+}
+.custom-select-opener::before {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  content: "";
+  width: 12px;
+  height: 7px;
+  background-image: url("../assets/img/icon-arrow-down.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  -webkit-transition: -webkit-transform var(--main-transition);
+  transition: -webkit-transform var(--main-transition);
+  -o-transition: transform var(--main-transition);
+  transition: transform var(--main-transition);
+  transition: transform var(--main-transition), -webkit-transform var(--main-transition);
+}
+
+.custom-select-container select {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.custom-select-panel {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+  background-color: white;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 1;
+  width: 100px;
+  -webkit-box-shadow: 0px 10px 20px rgba(42, 52, 79, 0.1);
+  box-shadow: 0px 10px 20px rgba(42, 52, 79, 0.1);
+}
+.custom-select-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-select-container.is-open .custom-select-panel {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  min-width: 100px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 101;
+}
+
+.custom-select-option {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  width: 100%;
+  height: 40px;
+  padding: 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: #303030;
+  background-color: white;
+  -webkit-transition: all var(--main-transition);
+  -o-transition: all var(--main-transition);
+  transition: all var(--main-transition);
+}
+.custom-select-option::before {
+  display: none;
+}
+.custom-select-option:not(:last-child) {
+  margin-bottom: 3px;
+}
+
+.custom-select-option.has-focus {
+  color: var(--white);
+  background-color: #303030;
+}
+
+.custom-select-optgroup > .custom-select-option {
+  padding-left: 20px;
 }
 
 .accordeon-height, .accordeon__body, .accordeon__header, .accordeon {
@@ -3181,6 +3297,24 @@ input:-webkit-autofill:active  {
   transform: translateY(-5px);
 }
 
+.portfolio__sort {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.portfolio__sort-field {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 80px;
+}
+.portfolio__sort-field > span {
+  font-size: 20px;
+  line-height: 24px;
+  opacity: 0.7;
+  margin-right: 10px;
+}
 .portfolio__list {
   display: -ms-grid;
   display: grid;

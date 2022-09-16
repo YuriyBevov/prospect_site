@@ -46,10 +46,17 @@ section.portfolio
     .portfolio__sort
       .portfolio__sort-field
         span Формат:
-        select(id="portfolio-type").custom-select
+        select(id="source-type").custom-select
           option(value="all" selected) Все
           option(value="image") Фото
           option(value="video") Видео
+
+      .portfolio__sort-field
+        span Сортировать:
+        select(id="product-type").custom-select
+          option(value="out" selected) Внешняя подсветка
+          option(value="in") Внутренняя подсветка
+          option(value="some") Еще что то
 
     ul.portfolio__list
       each item in portfolio
