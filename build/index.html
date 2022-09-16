@@ -12,7 +12,172 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=56c6be8d-b5f9-45d5-8ffa-7fdb884fcf53&amp;lang=ru_RU"></script>
   </head>
   <body>
+    <header class="main-header">
+      <div class="container-fluid">
+        <div class="main-header__navbar"><a href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="125" height="77"></a>
+          <!--include ./../views/nav--><a class="burger" href="#">
+            <div class="burger__line burger__line--top"></div>
+            <div class="burger__line burger__line--middle"></div>
+            <div class="burger__line burger__line--bottom"></div></a>
+        </div>
+      </div>
+    </header>
     <main>
+      <section class="hero">
+        <div class="container-fluid">
+          <!--video(src="../assets/video/hero-video.mp4" muted)--><video muted loop>
+          <!--<source src="../assets/video/hero-video.ogv" type='video/ogg; codecs="theora, vorbis"'>--><source src="../assets/video/hero-video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+<source src="../assets/video/hero-video.webm" type='video/webm; codecs="vp8, vorbis"'>
+</video>
+        </div>
+      </section>
+      <section class="portfolio">
+        <div class="container portfolio__container">
+                <div class="section-title section-title--dublicated"><span>Портфолио</span>
+                  <h2>Портфолио</h2>
+                </div>
+          <div class="portfolio__sort">
+            <p>sorting</p>
+          </div>
+          <ul class="portfolio__list">
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <picture>
+                  <source srcset="./assets/img/portfolio-item-1@1x.webp 1x, ./assets/img/portfolio-item-1@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-1@1x.jpg" srcset="./assets/img/portfolio-item-1.jpg 2x" alt="Описание" width="789" height="589">
+                </picture></a></li>
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <picture>
+                  <source srcset="./assets/img/portfolio-item-2@1x.webp 1x, ./assets/img/portfolio-item-2@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-2@1x.jpg" srcset="./assets/img/portfolio-item-2.jpg 2x" alt="Описание" width="789" height="589">
+                </picture></a></li>
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <picture>
+                  <source srcset="./assets/img/portfolio-item-3@1x.webp 1x, ./assets/img/portfolio-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-3@1x.jpg" srcset="./assets/img/portfolio-item-3.jpg 2x" alt="Описание" width="789" height="589">
+                </picture></a></li>
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <video autoplay muted loop>
+                  <source src="../assets/video/ML01.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+                  <source src="../assets/video/ML01.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                  <source src="../assets/video/ML01.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
+                </video></a></li>
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <picture>
+                  <source srcset="./assets/img/portfolio-item-4@1x.webp 1x, ./assets/img/portfolio-item-4@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-4@1x.jpg" srcset="./assets/img/portfolio-item-4.jpg 2x" alt="Описание" width="789" height="589">
+                </picture></a></li>
+            <li class="portfolio__list-item"><a href="#" aria-label="Посмотреть">
+                <video autoplay muted loop>
+                  <source src="../assets/video/ML02.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+                  <source src="../assets/video/ML02.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                  <source src="../assets/video/ML02.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
+                </video></a></li>
+          </ul>
+                <button class="portfolio__more main-btn" type="button"><span>Больше работ</span>
+                  <svg width="24" height="24">
+                    <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
+                  </svg>
+                </button>
+        </div>
+      </section>
+      <section class="features">
+        <div class="container features__container">
+                <div class="section-title section-title--dublicated"><span>Услуги</span>
+                  <h2>Наши услуги</h2>
+                </div>
+          <ul class="features__list">
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-1@1x.webp 1x, ./assets/img/feature-item-bg-1@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-1@1x.jpg" srcset="./assets/img/feature-item-bg-1.jpg 2x" alt="Наружная реклама" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-1"></use>
+                </svg><span>Наружная реклама</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-2@1x.webp 1x, ./assets/img/feature-item-bg-2@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-2@1x.jpg" srcset="./assets/img/feature-item-bg-2.jpg 2x" alt="Широкоформатная печать" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-2"></use>
+                </svg><span>Широкоформатная печать</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-3@1x.webp 1x, ./assets/img/feature-item-bg-3@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-3@1x.jpg" srcset="./assets/img/feature-item-bg-3.jpg 2x" alt="Интерьерная печать" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-3"></use>
+                </svg><span>Интерьерная печать</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-4@1x.webp 1x, ./assets/img/feature-item-bg-4@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-4@1x.jpg" srcset="./assets/img/feature-item-bg-4.jpg 2x" alt="Рекламные конструкции" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-4"></use>
+                </svg><span>Рекламные конструкции</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-5@1x.webp 1x, ./assets/img/feature-item-bg-5@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-5@1x.jpg" srcset="./assets/img/feature-item-bg-5.jpg 2x" alt="Торговое оборудование" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-5"></use>
+                </svg><span>Торговое оборудование</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-6@1x.webp 1x, ./assets/img/feature-item-bg-6@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-6@1x.jpg" srcset="./assets/img/feature-item-bg-6.jpg 2x" alt="Световые панели" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-6"></use>
+                </svg><span>Световые панели</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-7@1x.webp 1x, ./assets/img/feature-item-bg-7@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-7@1x.jpg" srcset="./assets/img/feature-item-bg-7.jpg 2x" alt="Плоттерная резка" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-7"></use>
+                </svg><span>Плоттерная резка</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-8@1x.webp 1x, ./assets/img/feature-item-bg-8@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-8@1x.jpg" srcset="./assets/img/feature-item-bg-8.jpg 2x" alt="Фрезеровка" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-8"></use>
+                </svg><span>Фрезеровка</span>
+              </div>
+            </li>
+            <li class="features__list-item">
+              <picture>
+                <source srcset="./assets/img/feature-item-bg-9@1x.webp 1x, ./assets/img/feature-item-bg-9@2x.webp 2x" type="image/webp"><img src="./assets/img/feature-item-bg-9@1x.jpg" srcset="./assets/img/feature-item-bg-9.jpg 2x" alt="Согласование рекламы" width="450" height="335">
+              </picture>
+              <div class="features__list-item-content">
+                <svg width="220" height="180">
+                  <use xlink:href="./assets/sprite.svg#icon-feature-9"></use>
+                </svg><span>Согласование рекламы</span>
+              </div>
+            </li>
+          </ul><a class="features__btn main-btn" href="#callback"><span>Оставить заявку</span>
+                  <svg width="24" height="24">
+                    <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
+                  </svg></a>
+        </div>
+      </section>
       <section class="outdoor">
         <div class="container-fluid">
                 <div class="section-title">
@@ -112,11 +277,28 @@
           </div>
         </div>
       </section>
+      <section class="callback">
+        <div class="container">
+          <p>callback</p>
+        </div>
+      </section>
       <section class="map" id="map">
         <h2 class="visually-hidden">Как нас найти</h2>
         <div id="yandex_map"></div>
       </section>
     </main>
+    <footer class="main-footer">
+      <div class="container main-footer__container"><a href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="125" height="77"></a>
+        <div class="main-footer__info"><a href="tel:+78126426449" aria-label="Позвонить">
+            <svg width="24" height="24">
+              <use xlink:href="./assets/sprite.svg#icon-phone"></use>
+            </svg><span>+7 (812) 642-64-49</span></a><a href="mailto:pro-rek@info.ru" aria-label="Отправить письмо на почту">
+            <svg width="24" height="24">
+              <use xlink:href="./assets/sprite.svg#icon-mail"></use>
+            </svg><span>pro-rek@info.ru</span></a></div>
+        <div class="developer"><a href="https://littleweb.ru" rel="noopener nofollow noreferrer" aria-label="Создано в Littleweb.ru"><img src="./assets/img/icon-dev.svg" width="160" height="31" alt="LittleWeb.ru"></a></div>
+      </div>
+    </footer>
     <!--include ./modals/_main-modal-->
     <!--include ./modals/_error-modal-->
     <!--include ./modals/_thanks-modal-->

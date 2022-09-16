@@ -132,30 +132,26 @@
   clip: rect(0 0 0 0);
 }
 
-.hover-opacity {
+.hover-opacity-transition {
   transition: opacity var(--main-transition);
 
-  &:hover,
-  &:focus {
-    opacity: 0.7;
+  @include m-b-tablet-lg-up {
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
   }
 }
 
-.main-btn {
-  @extend .flex-centered-content;
-  @extend .hover-opacity;
-  font-family: 'Open-Sans';
-  width: 100%;
-  max-width: fit-content;
-  min-height: 55px;
-  padding: 15px;
-  color: var(--white-color);
-  background-color: var(--gray-color);
-  border: 1px solid transparent;
-
-  @include m-b-down('600px') {
-    min-height: 40px;
-    padding: 10px;
+.image-scale-transition {
+  transition: transform var(--slow-transition);
+  @include m-b-tablet-lg-up {
+    &:hover,
+    &:focus {
+      img {
+        transform: scale(1.1);
+      }
+    }
   }
 }
 

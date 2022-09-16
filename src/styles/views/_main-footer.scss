@@ -1,0 +1,34 @@
+.main-footer {
+  padding: 20px 0;
+  background-color: var(--main-footer-bg);
+
+  &__container {
+    @extend .flex-wrap;
+    align-items: center;
+  }
+
+  &__info {
+    @extend .flex-wrap;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 0 25px;
+
+    a {
+      @extend .flex-centered-content;
+
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+
+      margin: 0 30px;
+      color: var(--white);
+
+      svg {
+        margin-right: 12px;
+        fill: var(--white);
+      }
+    }
+
+  }
+}

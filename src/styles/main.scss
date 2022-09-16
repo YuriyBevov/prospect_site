@@ -4,14 +4,26 @@
 @import "mixins";
 @import "fonts";
 @import "global";
+@import "z-index";
 @import "extends";
 @import "keyframes";
 
 /*components*/
+@import "./components/burger";
 @import "./components/section-title";
+@import "./components/main-btn";
+
 @import "./components/accordeon";
 @import "./components/yandex-map";
-
 /*views*/
+@import "./views/main-header";
+
+@import "./views/hero";
+@import "./views/nav";
+@import "./views/portfolio";
+@import "./views/features";
 @import "./views/outdoor";
+@import "./views/callback";
 @import "./views/map";
+
+@import "./views/main-footer";

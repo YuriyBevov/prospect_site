@@ -23,12 +23,15 @@
 
     --main-color: var(--dark);
     --main-bg-color: var(--white);
-    --footer-bg: #020a1b;
-    --main-transition: 0.25s ease;
+    --main-footer-bg: #020a1b;
 
+    //transition
+    --main-transition: 0.25s ease;
+    --slow-transition: 0.7s linear;
     //accordeon
     --accordeon-active-color: var(--light);
-
+    //main-btn
+    --main-btn-color: var(--primary);
     // scrollbar
     --main-scrollbar-width: 6px;
     --main-scrollbar-color: var(--main-bg-color);

@@ -1,0 +1,32 @@
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+
+  background-color: transparent;
+
+  &.active {
+    background-color: var(--primary);
+    background-image: url("../assets/img/main-header-bg@1x.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  &__navbar {
+    display: flex;
+    align-items: center;
+
+    padding: 10px 0;
+    padding-bottom: 5px;
+    overflow-x: hidden;
+
+    .nav {
+      flex-grow: 1;
+    }
+
+    @include m-b-tablet-lg-down {
+      justify-content: space-between;
+    }
+  }
+}

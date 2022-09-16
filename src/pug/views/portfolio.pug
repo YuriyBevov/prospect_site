@@ -1,0 +1,68 @@
+include ../mixins/section-title
+include ../mixins/main-btn
+
+-
+  const portfolio = [
+    {
+      type: 'image',
+      source: 'portfolio-item-1',
+      desc: 'Описание'
+    },
+    {
+      type: 'image',
+      source: 'portfolio-item-2',
+      desc: 'Описание'
+    },
+    {
+      type: 'image',
+      source: 'portfolio-item-3',
+      desc: 'Описание'
+    },
+    {
+      type: 'video',
+      source: 'ML01',
+      desc: 'Афоня.рф'
+    },
+    {
+      type: 'image',
+      source: 'portfolio-item-4',
+      desc: 'Описание'
+    },
+    {
+      type: 'video',
+      source: 'ML02',
+      desc: 'Описание'
+    },
+  ]
+
+section.portfolio
+  .container.portfolio__container
+    +section-title({
+      type: 'dublicated',
+      title: 'Портфолио',
+      dublicate: 'Портфолио'
+    })
+
+    .portfolio__sort
+      p sorting
+
+    ul.portfolio__list
+      each item in portfolio
+        li.portfolio__list-item
+          a(href="#" aria-label="Посмотреть")
+            if item.type === 'image'
+              picture
+                source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
+                img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
+
+            if item.type === 'video'
+              video(autoplay muted loop)
+                source(src=`../assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
+                source(src=`../assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+                source(src=`../assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
+
+    +main-btn({
+      type: 'button',
+      title: 'Больше работ',
+      cls: 'portfolio__more'
+    })

@@ -1,0 +1,14 @@
+-
+  const navList = [
+    { link: 'portfolio', title: 'Портфолио' },
+    { link: 'features', title: 'Услуги' },
+    { link: 'outdoor ', title: 'Наружная реклама' },
+    { link: 'feedback', title: 'Обратная связь' },
+    { link: 'map', title: 'Как нас найти' },
+  ]
+
+nav.nav
+  ul.nav__list
+    each item in navList
+      li.nav__list-item
+        a(href='#'+item.link data-scroll-to=item.link).anchor-link= item.title

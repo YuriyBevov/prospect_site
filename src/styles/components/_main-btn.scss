@@ -1,0 +1,27 @@
+.main-btn {
+  @extend .flex-centered-content;
+  padding: 15px 20px;
+  border: 2px solid var(--main-btn-color);
+  border-radius: 68px;
+
+  width: fit-content;
+  min-width: 300px;
+
+  cursor: pointer;
+  @extend .hover-opacity-transition;
+
+  span {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    margin-right: 20px;
+    color: var(--main-btn-color);
+  }
+
+  svg {
+    fill: var(--main-btn-color);
+  }
+}

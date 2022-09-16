@@ -9049,6 +9049,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_1__);
 
 
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('LOADED');
+  document.querySelector('.hero video').play();
+});
 })();
 
 /******/ })()

@@ -1,0 +1,79 @@
+include ../mixins/section-title
+include ../mixins/main-btn
+
+-
+  const features = [
+    {
+      img: 'feature-item-bg-1',
+      title: 'Наружная реклама',
+      icon: 'feature-1'
+    },
+    {
+      img: 'feature-item-bg-2',
+      title: 'Широкоформатная печать',
+      icon: 'feature-2'
+    },
+    {
+      img: 'feature-item-bg-3',
+      title: 'Интерьерная печать',
+      icon: 'feature-3'
+    },
+    {
+      img: 'feature-item-bg-4',
+      title: 'Рекламные конструкции',
+      icon: 'feature-4'
+    },
+    {
+      img: 'feature-item-bg-5',
+      title: 'Торговое оборудование',
+      icon: 'feature-5'
+    },
+    {
+      img: 'feature-item-bg-6',
+      title: 'Световые панели',
+      icon: 'feature-6'
+    },
+    {
+      img: 'feature-item-bg-7',
+      title: 'Плоттерная резка',
+      icon: 'feature-7'
+    },
+    {
+      img: 'feature-item-bg-8',
+      title: 'Фрезеровка',
+      icon: 'feature-8'
+    },
+    {
+      img: 'feature-item-bg-9',
+      title: 'Согласование рекламы',
+      icon: 'feature-9'
+    },
+  ]
+
+section.features
+  .container.features__container
+    +section-title({
+      type: 'dublicated',
+      title: 'Наши услуги',
+      dublicate: 'Услуги'
+    })
+
+    ul.features__list
+      each item in features
+        li.features__list-item
+          picture
+            source(srcset=`./assets/img/${item.img}@1x.webp 1x, ./assets/img/${item.img}@2x.webp 2x` type="image/webp")
+            img(src=`./assets/img/${item.img}@1x.jpg` srcset=`./assets/img/${item.img}.jpg 2x` alt= item.title width="450" height="335")
+
+          .features__list-item-content
+            svg(width="220" height="180")
+              use(xlink:href=`./assets/sprite.svg#icon-${item.icon}`)
+
+            span!= item.title
+
+    +main-btn({
+      type: 'anchor',
+      title: 'Оставить заявку',
+      anchor: '#callback',
+      cls: 'features__btn'
+    })
