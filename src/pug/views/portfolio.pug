@@ -6,32 +6,38 @@ include ../mixins/main-btn
     {
       type: 'image',
       source: 'portfolio-item-1',
-      desc: 'Описание'
+      desc: 'Описание',
+      overlay: 'light'
     },
     {
       type: 'image',
       source: 'portfolio-item-2',
-      desc: 'Описание'
+      desc: 'Описание',
+      overlay: 'light'
     },
     {
       type: 'image',
       source: 'portfolio-item-3',
-      desc: 'Описание'
+      desc: 'Описание',
+      overlay: 'light'
     },
     {
       type: 'video',
       source: 'ML01',
-      desc: 'Афоня.рф'
+      desc: 'Афоня.рф',
+      overlay: 'black'
     },
     {
       type: 'image',
       source: 'portfolio-item-4',
-      desc: 'Описание'
+      desc: 'Описание',
+      overlay: 'light'
     },
     {
       type: 'video',
       source: 'ML02',
-      desc: 'Описание'
+      desc: 'Описание',
+      overlay: 'dark'
     },
   ]
 
@@ -60,7 +66,7 @@ section.portfolio
 
     ul.portfolio__list
       each item in portfolio
-        li.portfolio__list-item
+        li.portfolio__list-item(class= item.overlay === "light" ? 'portfolio__list-item--light' : 'portfolio__list-item--dark')
           a(href="#" aria-label="Посмотреть")
             if item.type === 'image'
               picture

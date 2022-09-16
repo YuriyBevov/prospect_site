@@ -1,10 +1,10 @@
 import {gsap} from 'gsap';
-
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const accordeon = document.querySelector('.accordeon');
-console.log('accordeon');
+
 if(accordeon) {
   const headers = accordeon.querySelectorAll('.accordeon__header');
   const fields = accordeon.querySelectorAll('.accordeon__field');
@@ -28,7 +28,7 @@ if(accordeon) {
             fields.forEach(field => {
               field.classList.contains('active') ?
               field.classList.remove('active') : null;
-            })
+            });
 
             target.classList.add('active');
           }
@@ -42,20 +42,19 @@ if(accordeon) {
                   delay: 0.2,
                   left: 'calc(100% - ' + OFFSET_WIDTH * (fields.length - j) + 'px)',
                   ease: 'ease-in'
-                })
+                });
 
                 !field.classList.contains('transitioned') ?
                 field.classList.add('transitioned') : null;
               }
             }
-          })
-
+          });
         } else if(fields[i] === target && field.classList.contains('transitioned')) {
           if(!target.classList.contains('active')) {
             fields.forEach(field => {
               field.classList.contains('active') ?
               field.classList.remove('active') : null;
-            })
+            });
 
             target.classList.add('active');
           }
@@ -81,7 +80,7 @@ if(accordeon) {
     } else {
       fields.forEach(field => {
         field.classList.remove('transitioned');
-      })
+      });
 
       fields.forEach((field,i) => {
         if(field.classList.contains('active') && field !== target) {
@@ -93,7 +92,7 @@ if(accordeon) {
             fields[index].classList.add('transitioned');
           }
         }
-      })
+      });
     }
   }
 
@@ -121,45 +120,8 @@ if(accordeon) {
 
   window.addEventListener('resize', onWindowResizeHandler);
 
-  function setaccordeonAnimationDirection(field,i) {
-    let body = field.querySelector('.accordeon__body');
-
-    const trigger = {
-      trigger: accordeon,
-      start: 'top bottom'
-    };
-
-    if(OFFSET_WIDTH !== null) {
-      gsap.from(field, {
-        scrollTrigger: trigger,
-        duration: 1,
-        delay: 0.15 * (i+1),
-        y: '100vh',
-        ease: 'back'
-      })
-    } else {
-      gsap.from(field, {
-        scrollTrigger: trigger,
-        duration: 1,
-        delay: 0.15 * (i+1),
-        x: '100vw',
-        ease: 'back'
-      })
-    }
-
-    gsap.from(body, {
-      scrollTrigger: trigger,
-      duration: 1,
-      delay: 1.85,
-      opacity: 0,
-      ease: 'ease-in'
-    });
-  };
-
   fields.forEach((field,i) => {
     field.style.left = OFFSET_WIDTH * i + 'px';
-    // анимация аккордеона
-    //setaccordeonAnimationDirection(field, i);
   })
 
   const onClickOpenaccordeonField = (evt) => {

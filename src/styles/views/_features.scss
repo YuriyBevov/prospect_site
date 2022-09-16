@@ -31,7 +31,7 @@
         height: 100%;
         object-fit: cover;
 
-        @extend .image-scale-transition;
+        transition: transform var(--slow-transition);
       }
     }
 
@@ -70,6 +70,10 @@
     @include m-b-tablet-lg-up {
       &:hover,
       &:focus {
+        img {
+          transform: scale(1.1);
+        }
+
         .features__list-item-content {
           svg {
             fill: var(--primary);

@@ -84,6 +84,8 @@ section.outdoor
         .accordeon__field(class= field.class ? field.class : null)
           .accordeon__header
             span= field.title
+            svg(width="14" height="8")
+              use(xlink:href="./assets/sprite.svg#icon-arrow-down")
           .accordeon__body
             .accordeon__body-img-box
               picture

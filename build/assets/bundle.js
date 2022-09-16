@@ -15,7 +15,6 @@ __webpack_require__.r(__webpack_exports__);
 
 gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger);
 var accordeon = document.querySelector('.accordeon');
-console.log('accordeon');
 
 if (accordeon) {
   var headers = accordeon.querySelectorAll('.accordeon__header');
@@ -120,45 +119,8 @@ if (accordeon) {
   };
 
   window.addEventListener('resize', onWindowResizeHandler);
-
-  function setaccordeonAnimationDirection(field, i) {
-    var body = field.querySelector('.accordeon__body');
-    var trigger = {
-      trigger: accordeon,
-      start: 'top bottom'
-    };
-
-    if (OFFSET_WIDTH !== null) {
-      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(field, {
-        scrollTrigger: trigger,
-        duration: 1,
-        delay: 0.15 * (i + 1),
-        y: '100vh',
-        ease: 'back'
-      });
-    } else {
-      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(field, {
-        scrollTrigger: trigger,
-        duration: 1,
-        delay: 0.15 * (i + 1),
-        x: '100vw',
-        ease: 'back'
-      });
-    }
-
-    gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.from(body, {
-      scrollTrigger: trigger,
-      duration: 1,
-      delay: 1.85,
-      opacity: 0,
-      ease: 'ease-in'
-    });
-  }
-
-  ;
   fields.forEach(function (field, i) {
-    field.style.left = OFFSET_WIDTH * i + 'px'; // анимация аккордеона
-    //setaccordeonAnimationDirection(field, i);
+    field.style.left = OFFSET_WIDTH * i + 'px';
   });
 
   var onClickOpenaccordeonField = function onClickOpenaccordeonField(evt) {
