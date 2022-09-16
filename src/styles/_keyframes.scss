@@ -1,3 +1,16 @@
+
+@keyframes heroArrowDown {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+//
+
 @keyframes shake {
   0% {
     transform: translateX(0);

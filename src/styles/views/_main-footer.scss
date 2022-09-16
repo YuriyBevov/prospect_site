@@ -28,6 +28,8 @@
         margin-right: 12px;
         fill: var(--white);
       }
+
+      @extend .hover-opacity-transition;
     }
 
   }

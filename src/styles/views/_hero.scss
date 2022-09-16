@@ -4,8 +4,12 @@
   min-height: 534px;
   max-height: 960px;
   background-color: var(--primary);
-  //background-image: url("../assets/img/hero-bg@1x.jpg");
   margin-bottom: 60px;
+
+  &__container {
+    position: relative;
+    height: 100%;
+  }
 
   video {
     position: absolute;
@@ -15,4 +19,76 @@
     height: 100%;
     object-fit: cover;
   }
+
+  &__logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 3;
+
+    svg {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 800px;
+    }
+  }
+
+  &__action {
+    position: absolute;
+    top: 50%;
+    left: 30px;
+    transform: translateY(-50%);
+    z-index: 4;
+
+    a {
+      @extend .flex-centered-content;
+      width: 50px;
+      height: 50px;
+      border: 2px solid var(--white);
+
+      margin-bottom: 10px;
+
+      @extend .hover-opacity-transition;
+
+      svg {
+        fill: var(--white);
+      }
+    }
+  }
+
+  &__arrow-down {
+    position: absolute;
+    bottom: 50px;
+    z-index: 4;
+    left: 50%;
+    transform: translateX(-50%);
+
+    @extend .flex-column;
+
+    svg {
+      fill: var(--white);
+      margin-bottom: -5px;
+
+      &:nth-child(1) {
+        animation: heroArrowDown 1.5s .5s linear infinite;
+      }
+
+      &:nth-child(2) {
+        animation: heroArrowDown 1.5s 1s linear infinite;
+      }
+
+      &:nth-child(3) {
+        animation: heroArrowDown 1.5s linear infinite;
+      }
+    }
+  }
 }
+
