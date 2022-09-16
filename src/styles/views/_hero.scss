@@ -1,13 +1,15 @@
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 534px;
-  max-height: 960px;
+  //min-height: 534px; /// подобрать значения в зав-ти от элементов !!!
+  //max-height: 960px;
   background-color: var(--primary);
   margin-bottom: 60px;
 
   &__container {
     position: relative;
+
+    @extend .flex-column;
     height: 100%;
   }
 
@@ -21,14 +23,8 @@
   }
 
   &__logo {
-    position: absolute;
-    left: 0;
-    top: 0;
-
     width: 100%;
     height: 100%;
-
-    z-index: 3;
 
     svg {
       width: 100%;
@@ -46,7 +42,6 @@
     top: 50%;
     left: 30px;
     transform: translateY(-50%);
-    z-index: 4;
 
     a {
       @extend .flex-centered-content;
@@ -65,13 +60,11 @@
   }
 
   &__arrow-down {
-    position: absolute;
-    bottom: 50px;
-    z-index: 4;
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    bottom: 100px;
 
     @extend .flex-column;
+    margin: 0 auto;
 
     svg {
       fill: var(--white);

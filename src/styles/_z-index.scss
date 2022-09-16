@@ -1,3 +1,17 @@
 .main-header {
   z-index: 99;
 }
+
+.hero {
+  &__logo {
+    z-index: 3;
+  }
+
+  &__arrow-down {
+    z-index: 4;
+  }
+
+  &__action {
+    z-index: 4;
+  }
+}
