@@ -44,7 +44,12 @@ section.portfolio
     })
 
     .portfolio__sort
-      p sorting
+      .portfolio__sort-field
+        span Формат:
+        select(id="portfolio-type").custom-select
+          option(value="all" selected) Все
+          option(value="image") Фото
+          option(value="video") Видео
 
     ul.portfolio__list
       each item in portfolio
@@ -57,9 +62,9 @@ section.portfolio
 
             if item.type === 'video'
               video(autoplay muted loop)
-                source(src=`../assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
-                source(src=`../assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
-                source(src=`../assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
+                source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
+                source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+                source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
 
     +main-btn({
       type: 'button',
