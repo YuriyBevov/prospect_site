@@ -1,11 +1,10 @@
 .main-btn {
   @extend .flex-centered-content;
-  padding: 15px 20px;
+  padding: 15px 35px;
   border: 2px solid var(--main-btn-color);
   border-radius: 68px;
 
   width: fit-content;
-  min-width: 300px;
 
   cursor: pointer;
   @extend .hover-opacity-transition;

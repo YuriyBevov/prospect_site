@@ -37,7 +37,7 @@
   }
 
   &__list-item {
-    &--light {
+    /*&--light {
       background-image: url("../assets/img/source-overlay-light.png");
       background-repeat: no-repeat;
       background-size: cover;
@@ -47,7 +47,9 @@
       background-image: url("../assets/img/source-overlay-dark.png");
       background-repeat: no-repeat;
       background-size: cover;
-    }
+    }*/
+
+    background-color: var(--dark);
 
     a {
       display: flex;

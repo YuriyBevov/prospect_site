@@ -1,0 +1,53 @@
+.callback {
+  padding: 70px 0;
+  background-color: var(--primary);
+
+  &__container {
+    display: grid;
+    grid-template-columns: minmax(500px, 575px) auto;
+    grid-column-gap: 25px;
+  }
+
+  &__form {
+    @extend .flex-column;
+
+    p {
+      font-size: clamp(28px, 2vw, 44px);
+      line-height: 1.1;
+
+      margin-bottom: 60px;
+      color: var(--white);
+    }
+  }
+
+  &__side {
+    @extend .flex-centered-content;
+    position: relative;
+
+    &-overlay-text {
+      @extend .flex-column;
+      justify-content: center;
+
+      span {
+        font-weight: 700;
+        font-size: clamp(50px, 12vw, 214px);
+        line-height: 80%;
+        text-align: center;
+
+        color: #40BDC5;
+      }
+    }
+
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60%;
+      height: 60%;
+      fill: var(--white);
+      z-index: 2;
+    }
+  }
+}

@@ -137,7 +137,7 @@
                   <source srcset="./assets/img/portfolio-item-3@1x.webp 1x, ./assets/img/portfolio-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-3@1x.jpg" srcset="./assets/img/portfolio-item-3.jpg 2x" alt="Описание" width="789" height="589">
                 </picture></a></li>
             <li class="portfolio__list-item portfolio__list-item--dark"><a href="#" aria-label="Посмотреть">
-                <video autoplay muted loop>
+                <video muted loop>
                   <source src="./assets/video/ML01.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
                   <source src="./assets/video/ML01.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
                   <source src="./assets/video/ML01.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
@@ -147,10 +147,22 @@
                   <source srcset="./assets/img/portfolio-item-4@1x.webp 1x, ./assets/img/portfolio-item-4@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-4@1x.jpg" srcset="./assets/img/portfolio-item-4.jpg 2x" alt="Описание" width="789" height="589">
                 </picture></a></li>
             <li class="portfolio__list-item portfolio__list-item--dark"><a href="#" aria-label="Посмотреть">
-                <video autoplay muted loop>
+                <video muted loop>
                   <source src="./assets/video/ML02.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
                   <source src="./assets/video/ML02.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
                   <source src="./assets/video/ML02.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
+                </video></a></li>
+            <li class="portfolio__list-item portfolio__list-item--dark"><a href="#" aria-label="Посмотреть">
+                <video muted loop>
+                  <source src="./assets/video/ML03.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+                  <source src="./assets/video/ML03.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                  <source src="./assets/video/ML03.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
+                </video></a></li>
+            <li class="portfolio__list-item portfolio__list-item--dark"><a href="#" aria-label="Посмотреть">
+                <video muted loop>
+                  <source src="./assets/video/ML04.mp4" type="video/ogg; codecs=&quot;theora, vorbis&quot;">
+                  <source src="./assets/video/ML04.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;">
+                  <source src="./assets/video/ML04.webm" type="video/webm; codecs=&quot;vp8, vorbis&quot;">
                 </video></a></li>
           </ul>
                 <button class="portfolio__more main-btn" type="button"><span>Больше работ</span>
@@ -385,9 +397,35 @@
           </div>
         </div>
       </section>
-      <section class="callback">
-        <div class="container">
-          <p>callback</p>
+      <section class="callback" id="callback">
+        <div class="container callback__container">
+          <h2 class="visually-hidden">Оставить заявку</h2>
+          <div class="callback__form">
+            <p class="callback__text">Заполните форму <br/> и&nbsp;мы&nbsp;обязательно Вам перезвоним&nbsp;!</p>
+            <form class="form" action="#">
+              <div class="form__content">
+                <fieldset class="form__data">
+                  <input type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off">
+                  <input type="tel" placeholder="Номер телефона" id="user_phone" name="user_phone" autocomplete="off">
+                </fieldset>
+                <fieldset>
+                  <input type="checkbox" id="user_accept">
+                  <label for="user_accept" tabindex="0"> Согласен на обработку персональных данных</label>
+                </fieldset>
+              </div>
+                          <button class="form__submit main-btn" type="submit"><span>Отправить</span>
+                            <svg width="24" height="24">
+                              <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
+                            </svg>
+                          </button>
+            </form>
+          </div>
+          <div class="callback__side">
+            <div class="callback__side-overlay-text"><span>Оставить</span><span>заявку</span></div>
+            <svg width="244" height="150">
+              <use xlink:href="./assets/sprite.svg#icon-callback-logo"></use>
+            </svg>
+          </div>
         </div>
       </section>
       <section class="map" id="map">

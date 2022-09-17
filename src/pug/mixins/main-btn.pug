@@ -6,7 +6,7 @@ mixin main-btn(data)
         use(xlink:href="./assets/sprite.svg#icon-btn-arrow")
 
   if data.type === 'button'
-    button(type="button" class= data.cls ? data.cls : null).main-btn
+    button(type= data.btnType class= data.cls ? data.cls : null).main-btn
       span= data.title
       svg(width="24" height="24")
         use(xlink:href="./assets/sprite.svg#icon-btn-arrow")

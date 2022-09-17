@@ -1,3 +1,14 @@
-section.callback
-  .container
-    p callback
+section.callback#callback
+  .container.callback__container
+    h2.visually-hidden Оставить заявку
+    .callback__form
+      p.callback__text Заполните форму <br/> и&nbsp;мы&nbsp;обязательно Вам перезвоним&nbsp;!
+
+      include ../components/form
+
+    .callback__side
+      .callback__side-overlay-text
+        span Оставить
+        span заявку
+      svg(width="244" height="150")
+        use(xlink:href="./assets/sprite.svg#icon-callback-logo")

@@ -1,0 +1,18 @@
+include ../mixins/main-btn
+
+form(action="#").form
+  .form__content
+    fieldset.form__data
+      input(type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off")
+      input(type="tel" placeholder="Номер телефона" id="user_phone" name="user_phone" autocomplete="off")
+
+    fieldset
+      input(type="checkbox" id="user_accept" )
+      label(for="user_accept" tabindex="0")  Согласен на обработку персональных данных
+
+  +main-btn({
+    type: 'button',
+    btnType: 'submit',
+    title: 'Отправить',
+    cls: 'form__submit'
+  })

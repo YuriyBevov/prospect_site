@@ -39,6 +39,18 @@ include ../mixins/main-btn
       desc: 'Описание',
       overlay: 'dark'
     },
+    {
+      type: 'video',
+      source: 'ML03',
+      desc: 'Описание',
+      overlay: 'dark'
+    },
+    {
+      type: 'video',
+      source: 'ML04',
+      desc: 'Описание',
+      overlay: 'dark'
+    },
   ]
 
 section.portfolio
@@ -74,13 +86,14 @@ section.portfolio
                 img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
 
             if item.type === 'video'
-              video(autoplay muted loop)
+              video(muted loop)
                 source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
                 source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
                 source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
 
     +main-btn({
       type: 'button',
+      btnType: 'button',
       title: 'Больше работ',
       cls: 'portfolio__more'
     })
