@@ -2,7 +2,21 @@
   @extend .section-offset;
 
   &__container {
+    position: relative;
     @extend .flex-column;
+
+    &::before {
+      position: absolute;
+      bottom: -350px;
+      left: -300px;
+      width: 2418px;
+      height: 1598px;
+      content: "";
+      background-image: url(../assets/img/page-bg-big@1x.png);
+      background-size: 2418px 1598px;
+      z-index: -1;
+      background-repeat: no-repeat;
+    }
   }
 
   &__sort {
@@ -37,19 +51,11 @@
   }
 
   &__list-item {
-    /*&--light {
-      background-image: url("../assets/img/source-overlay-light.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
-
-    &--dark {
-      background-image: url("../assets/img/source-overlay-dark.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-    }*/
-
     background-color: var(--dark);
+
+    &.hidden {
+      display: none;
+    }
 
     a {
       display: flex;
@@ -79,5 +85,9 @@
 
   &__more {
     margin: 0 auto;
+
+    &.hidden {
+      display: none;
+    }
   }
 }

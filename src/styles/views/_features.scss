@@ -1,8 +1,24 @@
+
+
 .features {
   @extend .section-offset;
 
   &__container {
+    position: relative;
     @extend .flex-column;
+
+    &::before {
+      position: absolute;
+      bottom: -150px;
+      left: -50px;
+      width: 1383px;
+      height: 984px;
+      content: "";
+      background-image: url(../assets/img/page-bg-small@1x.png);
+      background-size: 1383px 984px;
+      z-index: -1;
+      background-repeat: no-repeat;
+    }
   }
 
   &__list {

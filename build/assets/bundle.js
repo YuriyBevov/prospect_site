@@ -1,6 +1,203 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./src/scripts/classes/Portfolio.js":
+/*!******************************************!*\
+  !*** ./src/scripts/classes/Portfolio.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Portfolio": () => (/* binding */ Portfolio)
+/* harmony export */ });
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _classPrivateMethodInitSpec(obj, privateSet) { _checkPrivateRedeclaration(obj, privateSet); privateSet.add(obj); }
+
+function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
+
+function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
+
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
+
+var SourceType = {
+  DEFAULT: 'default-source',
+  IMAGE: 'image',
+  VIDEO: 'video'
+};
+var ProductType = {
+  DEFAULT: 'default-type',
+  OUT: 'out',
+  IN: 'in'
+};
+
+var _items = /*#__PURE__*/new WeakMap();
+
+var _moreBtn = /*#__PURE__*/new WeakMap();
+
+var _sortItems = /*#__PURE__*/new WeakMap();
+
+var _sourceType = /*#__PURE__*/new WeakMap();
+
+var _productType = /*#__PURE__*/new WeakMap();
+
+var _step = /*#__PURE__*/new WeakMap();
+
+var _current = /*#__PURE__*/new WeakMap();
+
+var _init = /*#__PURE__*/new WeakSet();
+
+var _fillGallery = /*#__PURE__*/new WeakMap();
+
+var _sort = /*#__PURE__*/new WeakMap();
+
+var _showMore = /*#__PURE__*/new WeakMap();
+
+var Portfolio = /*#__PURE__*/_createClass(function Portfolio(data) {
+  var _this = this;
+
+  _classCallCheck(this, Portfolio);
+
+  _classPrivateMethodInitSpec(this, _init);
+
+  _classPrivateFieldInitSpec(this, _items, {
+    writable: true,
+    value: null
+  });
+
+  _classPrivateFieldInitSpec(this, _moreBtn, {
+    writable: true,
+    value: null
+  });
+
+  _classPrivateFieldInitSpec(this, _sortItems, {
+    writable: true,
+    value: null
+  });
+
+  _classPrivateFieldInitSpec(this, _sourceType, {
+    writable: true,
+    value: SourceType.DEFAULT
+  });
+
+  _classPrivateFieldInitSpec(this, _productType, {
+    writable: true,
+    value: ProductType.DEFAULT
+  });
+
+  _classPrivateFieldInitSpec(this, _step, {
+    writable: true,
+    value: 4
+  });
+
+  _classPrivateFieldInitSpec(this, _current, {
+    writable: true,
+    value: 0
+  });
+
+  _classPrivateFieldInitSpec(this, _fillGallery, {
+    writable: true,
+    value: function value() {
+      console.log(_classPrivateFieldGet(_this, _sourceType), _classPrivateFieldGet(_this, _productType));
+      var count = null;
+
+      if (_classPrivateFieldGet(_this, _sourceType) !== SourceType.DEFAULT || _classPrivateFieldGet(_this, _productType) !== ProductType.DEFAULT) {
+        console.log('!==');
+      }
+
+      if (_classPrivateFieldGet(_this, _current) + _classPrivateFieldGet(_this, _step) <= _classPrivateFieldGet(_this, _items).length) {
+        count = _classPrivateFieldGet(_this, _current) + _classPrivateFieldGet(_this, _step);
+      } else {
+        count = _classPrivateFieldGet(_this, _items).length;
+      }
+
+      for (var i = _classPrivateFieldGet(_this, _current); i < count; i++) {
+        _classPrivateFieldGet(_this, _items)[i].classList.remove('hidden');
+      }
+
+      _classPrivateFieldSet(_this, _current, count);
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _sort, {
+    writable: true,
+    value: function value(evt) {
+      if (evt.target.dataset.value === 'image') {
+        _classPrivateFieldSet(_this, _sourceType, SourceType.IMAGE);
+      }
+
+      if (evt.target.dataset.value === 'video') {
+        _classPrivateFieldSet(_this, _sourceType, SourceType.VIDEO);
+      }
+
+      if (evt.target.dataset.value === 'default-source') {
+        _classPrivateFieldSet(_this, _sourceType, SourceType.DEFAULT);
+      }
+
+      if (evt.target.dataset.value === 'out') {
+        _classPrivateFieldSet(_this, _productType, ProductType.OUT);
+      }
+
+      if (evt.target.dataset.value === 'in') {
+        _classPrivateFieldSet(_this, _productType, ProductType.IN);
+      }
+
+      if (evt.target.dataset.value === 'default-type') {
+        _classPrivateFieldSet(_this, _productType, ProductType.DEFAULT);
+      }
+
+      _classPrivateFieldGet(_this, _fillGallery).call(_this);
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _showMore, {
+    writable: true,
+    value: function value() {
+      console.log('more');
+    }
+  });
+
+  _classPrivateFieldSet(this, _items, data.items);
+
+  _classPrivateFieldSet(this, _moreBtn, data.moreBtn);
+
+  _classPrivateFieldSet(this, _sortItems, data.sortItems);
+
+  _classPrivateMethodGet(this, _init, _init2).call(this);
+});
+
+function _init2() {
+  var _this2 = this;
+
+  _classPrivateFieldGet(this, _moreBtn).addEventListener('click', _classPrivateFieldGet(this, _showMore));
+
+  _classPrivateFieldGet(this, _sortItems).forEach(function (item) {
+    return item.addEventListener('click', _classPrivateFieldGet(_this2, _sort));
+  });
+
+  _classPrivateFieldGet(this, _fillGallery).call(this);
+
+  console.log(_classPrivateFieldGet(this, _sourceType), _classPrivateFieldGet(this, _productType));
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/accordeon.js":
 /*!******************************************!*\
   !*** ./src/scripts/modules/accordeon.js ***!
@@ -163,6 +360,39 @@ var maskOptions = {
 phoneFields.forEach(function (field) {
   (0,imask__WEBPACK_IMPORTED_MODULE_0__["default"])(field, maskOptions);
 });
+
+/***/ }),
+
+/***/ "./src/scripts/modules/portfolio-init.js":
+/*!***********************************************!*\
+  !*** ./src/scripts/modules/portfolio-init.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_Portfolio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/Portfolio */ "./src/scripts/classes/Portfolio.js");
+/*import { Pagination } from "../classes/Pagination";
+
+const portfolio = document.querySelector('.portfolio');
+
+if(portfolio) {
+  new Pagination({
+    items: portfolio.querySelectorAll('.portfolio__list-item'),
+    moreBtn: portfolio.querySelector('.portfolio__more'),
+    sortItems: portfolio.querySelectorAll('.custom-select-option')
+  });
+}*/
+
+var container = document.querySelector('.portfolio');
+
+if (container) {
+  new _classes_Portfolio__WEBPACK_IMPORTED_MODULE_0__.Portfolio({
+    items: container.querySelectorAll('.portfolio__list-item'),
+    moreBtn: container.querySelector('.portfolio__more'),
+    sortItems: container.querySelectorAll('.custom-select-option')
+  });
+}
 
 /***/ }),
 
@@ -15021,15 +15251,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
 /* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
+/* harmony import */ var _modules_portfolio_init__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/portfolio-init */ "./src/scripts/modules/portfolio-init.js");
 
 
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
+
+/*document.addEventListener('DOMContentLoaded', () => {
   console.log('LOADED');
   document.querySelector('.hero video').play();
-});
+});*/
 })();
 
 /******/ })()

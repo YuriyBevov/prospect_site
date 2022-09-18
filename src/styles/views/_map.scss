@@ -11,6 +11,8 @@
   background-position: center;
   background-repeat: no-repeat;
 
+  //margin-bottom: 80px;
+
   @include m-b-tablet-lg-down {
     height: 400px;
   }
