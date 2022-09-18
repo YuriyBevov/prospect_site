@@ -5,6 +5,14 @@
   &__container {
     @extend .flex-wrap;
     align-items: center;
+
+    @include m-b-tablet-down {
+      flex-direction: column;
+
+      & > a {
+        margin-bottom: 40px;
+      }
+    }
   }
 
   &__info {
@@ -24,13 +32,27 @@
       margin: 0 30px;
       color: var(--white);
 
-      svg {
+      /*svg {
         margin-right: 12px;
         fill: var(--white);
-      }
+      }*/
 
       @extend .hover-opacity-transition;
     }
 
+    @include m-b-tablet-lg-down {
+      flex-direction: column;
+
+      a:first-child {
+        margin-bottom: 15px;
+      }
+    }
+
+    @include m-b-tablet-down {
+      width: 100%;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--white);
+    }
   }
 }

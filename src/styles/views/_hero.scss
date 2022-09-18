@@ -4,9 +4,8 @@
   min-height: 618px;
   max-height: 1080px;
   background-color: var(--primary);
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 5vw, 60px);
 
-  /* up/down desktop-lg(1920),desktop(1440),laptop(1140),tablet-lg(960),tablet(768),mobile-lg(534)*/
   @include m-b-mobile-lg-down {
     min-height: 423px;
   }
@@ -33,7 +32,7 @@
     margin-bottom: 50px;
 
     svg {
-      width: 75%;
+      width: 60%;
       height: auto;
       position: absolute;
       top: 50%;
@@ -62,6 +61,10 @@
       svg {
         fill: var(--white);
       }
+    }
+
+    @include m-b-tablet-lg-down {
+      display: none;
     }
   }
 

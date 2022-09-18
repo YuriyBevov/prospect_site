@@ -1,6 +1,11 @@
 .section-offset {
   padding: 20px 0;
-  margin-bottom: 60px;
+  margin-bottom: clamp(30px, 5vw, 60px);
+}
+
+.list-offset {
+  margin: 0 auto;
+  margin-bottom: clamp(40px, 6vw, 70px);
 }
 
 .flex-wrap {
@@ -98,7 +103,7 @@
   appearance: none;
   border: none;
   border-radius: 0;
-  background-color: #ffffff;
+  background-color: var(--white);
 
   &::-webkit-search-decoration,
   &::-webkit-search-cancel-button,
@@ -112,6 +117,22 @@
   margin: 0 auto;
   padding: 0 var(--container-offset);
   max-width: var(--container-width);
+
+  @include m-b-desktop-down {
+    padding: 0 60px;
+  }
+
+  @include m-b-tablet-lg-down {
+    padding: 0 40px;
+  }
+
+  @include m-b-tablet-down {
+    padding: 0 30px;
+  }
+
+  @include m-b-mobile-lg-down {
+    padding: 0 20px;
+  }
 }
 
 .container-fluid {
@@ -119,6 +140,10 @@
   margin: 0 auto;
   padding: 0 var(--container-fluid-offset);
   max-width: var(--container-fluid-width);
+
+  @include m-b-mobile-lg-down {
+    padding: 0 20px;
+  }
 }
 
 .visually-hidden {

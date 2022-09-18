@@ -7,8 +7,8 @@
 
     &::before {
       position: absolute;
-      bottom: -350px;
-      left: -300px;
+      top: 25%;
+      left: -350px;
       width: 2418px;
       height: 1598px;
       content: "";
@@ -23,7 +23,7 @@
     @extend .flex-wrap;
     align-items: center;
 
-    margin-bottom: 50px;
+    margin-bottom: clamp(20px, 5vw, 50px);
 
     &-field {
       @extend .flex-wrap;
@@ -47,7 +47,17 @@
     grid-column-gap: 40px;
     grid-row-gap: 40px;
 
-    margin-bottom: 70px;
+    @extend .list-offset;
+
+    /* up/down desktop-lg(1920),desktop(1440),laptop(1140),tablet-lg(960),tablet(768),mobile-lg(534)*/
+    @include m-b-laptop-down {
+      grid-column-gap: 25px;
+      grid-row-gap: 25px;
+    }
+
+    @include m-b-down(635px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__list-item {
