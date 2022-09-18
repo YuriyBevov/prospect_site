@@ -1,6 +1,9 @@
 .portfolio {
   @extend .section-offset;
 
+  will-change: auto;
+  transform: translate3d(0,0,0);
+
   &__container {
     position: relative;
     @extend .flex-column;

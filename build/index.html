@@ -14,7 +14,7 @@
   <body>
     <header class="main-header">
       <div class="container-fluid">
-        <div class="main-header__navbar"><a class="main-header-logo" href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="125" height="77"></a>
+        <div class="main-header__navbar"><a class="main-header-logo" href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50"></a>
           <!--include ./../views/nav--><a class="burger" href="#">
             <div class="burger__line burger__line--top"></div>
             <div class="burger__line burger__line--middle"></div>
@@ -22,8 +22,10 @@
         </div>
       </div>
     </header>
+    <!--#smooth-wrapper#smooth-content
+    -->
     <main>
-      <section class="hero"><video muted loop aria-hidden="true">
+      <section class="hero" id="hero"><video muted loop aria-hidden="true">
         <!--<source src="./assets/video/hero-video.ogv" type='video/ogg; codecs="theora, vorbis"'>--><source src="./assets/video/hero-video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
 <source src="./assets/video/hero-video.webm" type='video/webm; codecs="vp8, vorbis"'>
 </video>
@@ -75,7 +77,7 @@
 </filter>
 </defs>
 </svg>
-          </div><a class="hero__arrow-down" href="#">
+          </div><a class="anchor-link hero__arrow-down" href="#" data-scroll-to="portfolio">
             <svg width="40" height="16">
               <use xlink:href="./assets/sprite.svg#icon-hero-arrow"></use>
             </svg>
@@ -87,7 +89,7 @@
             </svg></a>
         </div>
       </section>
-      <section class="portfolio">
+      <section class="portfolio" id="portfolio">
         <div class="container portfolio__container">
                 <div class="section-title section-title--dublicated"><span>Портфолио</span>
                   <h2>Портфолио</h2>
@@ -258,7 +260,7 @@
                 </svg><span>Согласование рекламы</span>
               </div>
             </li>
-          </ul><a class="features__btn main-btn" href="#callback"><span>Оставить заявку</span>
+          </ul><a class="features__btn anchor-link main-btn" href="callback" data-scroll-to="callback"><span>Оставить заявку</span>
                   <svg width="24" height="24">
                     <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
                   </svg></a>
@@ -387,14 +389,44 @@
           </div>
         </div>
       </section>
-      <!--include ./views/callback-->
+      <section class="callback" id="callback">
+        <div class="container callback__container">
+          <h2 class="visually-hidden">Оставить заявку</h2>
+          <div class="callback__form">
+            <p class="callback__text">Заполните форму <br/> и&nbsp;мы&nbsp;обязательно Вам перезвоним&nbsp;!</p>
+            <form class="form" action="#">
+              <div class="form__content">
+                <fieldset class="form__data">
+                  <input type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off">
+                  <input type="tel" placeholder="Номер телефона" id="user_phone" name="user_phone" autocomplete="off">
+                </fieldset>
+                <fieldset>
+                  <input type="checkbox" id="user_accept">
+                  <label for="user_accept" tabindex="0"> Согласен на обработку персональных данных</label>
+                </fieldset>
+              </div>
+                          <button class="form__submit main-btn" type="submit"><span>Отправить</span>
+                            <svg width="24" height="24">
+                              <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
+                            </svg>
+                          </button>
+            </form>
+          </div>
+          <div class="callback__side">
+            <div class="callback__side-overlay-text"><span>Оставить</span><span>заявку</span></div>
+            <svg width="244" height="150">
+              <use xlink:href="./assets/sprite.svg#icon-callback-logo"></use>
+            </svg>
+          </div>
+        </div>
+      </section>
       <section class="map" id="map">
         <h2 class="visually-hidden">Как нас найти</h2>
         <div id="yandex_map"></div>
       </section>
     </main>
     <footer class="main-footer">
-      <div class="container main-footer__container"><a href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="125" height="77"></a>
+      <div class="container main-footer__container"><a class="anchor-link" href="#hero" aria-label="В начало страницы" data-scroll-to="hero"><img src="./assets/img/main-logo.svg" alt="Логотип" width="125" height="77"></a>
         <div class="main-footer__info"><a href="tel:+78126426449" aria-label="Позвонить">+7 (812) 642-64-49
             <!--svg(width="24" height="24")
              use(xlink:href="./assets/sprite.svg#icon-phone")

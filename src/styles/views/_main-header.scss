@@ -6,6 +6,9 @@
 
   background-color: transparent;
   padding: 15px 0;
+
+  will-change: auto;
+
   &-logo {
     display: none;
   }
@@ -20,8 +23,7 @@
   &__navbar {
     display: flex;
     align-items: center;
-    padding: 10px 0;
-    padding-bottom: 5px;
+
     overflow-x: hidden;
 
     .nav {

@@ -2,15 +2,16 @@
   @extend .flex-wrap;
 
   h2 {
+    position: relative;
     font-weight: 700;
     font-size: clamp(36px, 7vw, 54px);
     margin: 0 auto;
     margin-bottom: clamp(30px, 5vw, 80px);
+    z-index: 2;
   }
 
   &--dublicated {
     position: relative;
-    //padding-top: 100px;
     margin-top: clamp(40px, 6vw, 100px);
 
     span {
@@ -22,7 +23,8 @@
       font-size: clamp(70px, 12vw, 214px);
 
       color: var(--secondary);
-      z-index: -1;
+      z-index: 1;
+      //will-change: auto;
     }
   }
 }

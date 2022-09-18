@@ -5,6 +5,10 @@
   max-height: 1080px;
   background-color: var(--primary);
   margin-bottom: clamp(30px, 5vw, 60px);
+  overflow: hidden;
+
+  will-change: auto;
+  transform: translate3d(0,0,0);
 
   @include m-b-mobile-lg-down {
     min-height: 423px;

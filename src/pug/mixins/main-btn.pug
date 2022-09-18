@@ -1,6 +1,6 @@
 mixin main-btn(data)
   if data.type === 'anchor'
-    a(href= data.anchor class= data.cls ? data.cls : null ).main-btn
+    a(href= data.anchor data-scroll-to= data.anchor class= data.cls ? data.cls : null ).main-btn
       span= data.title
       svg(width="24" height="24")
         use(xlink:href="./assets/sprite.svg#icon-btn-arrow")

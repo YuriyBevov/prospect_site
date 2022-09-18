@@ -11,4 +11,4 @@ nav.nav
   ul.nav__list
     each item in navList
       li.nav__list-item
-        a(href='#'+item.link)= item.title
+        a(href='#'+item.link data-scroll-to= item.link).anchor-link= item.title

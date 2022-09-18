@@ -2719,10 +2719,12 @@ main {
 }
 
 .section-title h2 {
+  position: relative;
   font-weight: 700;
   font-size: clamp(36px, 7vw, 54px);
   margin: 0 auto;
   margin-bottom: clamp(30px, 5vw, 80px);
+  z-index: 2;
 }
 .section-title--dublicated {
   position: relative;
@@ -2738,7 +2740,7 @@ main {
   font-weight: 700;
   font-size: clamp(70px, 12vw, 214px);
   color: var(--secondary);
-  z-index: -1;
+  z-index: 1;
 }
 
 .main-btn {
@@ -3289,6 +3291,7 @@ main {
   width: 100%;
   background-color: transparent;
   padding: 15px 0;
+  will-change: auto;
 }
 .main-header-logo {
   display: none;
@@ -3306,8 +3309,6 @@ main {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  padding: 10px 0;
-  padding-bottom: 5px;
   overflow-x: hidden;
 }
 .main-header__navbar .nav {
@@ -3330,6 +3331,10 @@ main {
   max-height: 1080px;
   background-color: var(--primary);
   margin-bottom: clamp(30px, 5vw, 60px);
+  overflow: hidden;
+  will-change: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 @media (max-width: 534px) {
   .hero {
@@ -3507,6 +3512,11 @@ main {
   transform: translateY(-5px);
 }
 
+.portfolio {
+  will-change: auto;
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
 .portfolio__container {
   position: relative;
 }
