@@ -1,84 +1,72 @@
 .nav {
-  position: relative;
+  display: none;
 
-  @include m-b-tablet-lg-down {
-    display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
 
-    height: 100vh;
-    width: 100vw;
-    max-height: 100vh;
-    position: absolute;
-    top: 0;
-    background-color: var(--main-bg-color);
-    padding-top: 70px;
-    margin-left: -15px;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,.6);
 
-    &.mobile-opened {
-      display: block;
-    }
-  }
-
-  &__underline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    content: '';
-    background-color: var(--white);
-    //for gsap
-    transform: translateX(100%);
-
-    @include m-b-tablet-lg-down {
-      display: none;
-    }
-  }
+  overflow-y: auto;
 
   &__list {
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-top: -38px;
-    z-index: -1;
-
-    @include m-b-tablet-lg-down {
-      margin-top: 0;
-
-      flex-direction: column;
-      height: 100%;
-      justify-content: center;
-    }
-
-    &.opened {
-      z-index: 1;
-    }
-  }
-
-  &__item {
-    flex-grow: 1;
-    // for gsap
+    position: absolute;
+    top: 0;
+    right: 0;
     opacity: 0;
-    transform: translateY(-250px);
+    width: 100%;
+    max-width: fit-content;
+    height: fit-content;
+    min-height: 100vh;
+    padding: calc(5vh + 70px) 40px;
+    padding-right: 80px;
+    margin-left: 50px;
+    border-left: 3px solid var(--white);
+    background-color: rgba(51, 181, 188, 0.9);
 
-    @include m-b-tablet-lg-down {
-      flex-grow: initial;
+    @include m-b-down(435px) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(5vh + 70px) 55px;
+      max-width: 100%;
+      border-left: none;
     }
   }
 
-  &__link {
-    @extend .flex-centered-content;
-    padding: 8px;
-    font-size: 18px;
-    font-weight: 500;
-    height: 40px;
+  &__list-item {
+    overflow: hidden;
+    margin-bottom: clamp(15px, 3vw, 30px);
 
-    color: var(--white);
-    transition: color var(--main-transition), transform var(--main-transition);
+    a {
+      font-size: 54px;
+      font-weight: 500;
+      color: var(--white);
 
-    &:hover,
-    &:focus {
-      color: var(--dark);
-      transform: translateY(-5px);
+      @include m-b-desktop-down {
+        font-size: 44px;
+      }
+
+      @include m-b-laptop-down {
+        font-size: 36px;
+      }
+
+      @include m-b-tablet-lg-down {
+        font-size: 32px;
+      }
+
+      @include m-b-mobile-lg-down {
+        font-size: 28px;
+      }
+
+      @include m-b-down(435px) {
+        font-size: 22px;
+      }
+
+      @extend .hover-opacity-transition;
     }
   }
 }

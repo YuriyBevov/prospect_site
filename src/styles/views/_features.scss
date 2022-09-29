@@ -7,7 +7,7 @@
     position: relative;
     @extend .flex-column;
 
-    &::before {
+    /*&::before {
       position: absolute;
       bottom: -150px;
       left: -50px;
@@ -18,7 +18,7 @@
       background-size: 1383px 984px;
       z-index: -1;
       background-repeat: no-repeat;
-    }
+    }*/
   }
 
   &__list {

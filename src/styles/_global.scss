@@ -28,7 +28,7 @@ body {
   font-size: 16px;
   color: var(--main-color);
   background-color: var(--main-bg-color);
-  //overflow-x: hidden !important;
+  overflow-x: hidden !important;
 
   &.body-locked {
     overflow: hidden;

@@ -24,6 +24,27 @@ function limitStr( str, n ) {
   }
 }
 
+//variables
+const root = document.querySelector(':root');
+
+function getCssPropertyValue(name) {
+  return getComputedStyle(root).getPropertyValue(name);
+}
+
+function setCssProperty(name, value) {
+  root.style.setProperty(name, value);
+}
+
+function setVieportHeight() {
+  let vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', `${vh}px`);
+
+  window.addEventListener('resize', () => {
+    let vh = window.innerHeight * 0.01;
+    setCssProperty('--vh', `${vh}px`);
+  });
+}
+
 // запрет скролла у body
 function bodyLocker(bool) {
   let body = document.querySelector('body');
@@ -123,4 +144,4 @@ function focusTrap(el, initialFocusedEl = null) {
   initialFocusedEl.focus() : firstFocusableElement.focus();
 }
 
-export  { focusTrap, windowInnerWidth, limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }
+export  { setCssProperty, getCssPropertyValue, setVieportHeight, focusTrap, windowInnerWidth, limitStr, addClass, removeClass, checkClass, toggleClass, bodyLocker, getBoundingClientRect }

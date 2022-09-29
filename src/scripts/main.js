@@ -1,17 +1,16 @@
-
-import "./modules/scroll";
+import "./modules/loader";
+import "./modules/hero-arrow-down";
+import "./modules/anchor-link";
 //import "./modules/smooth-scroll";
-
 import "./modules/header";
+//import "./modules/nav";
+import "./modules/navbar";
+import "./modules/viewport";
 import "./modules/video";
 import "./modules/accordeon";
 import "./modules/yandexMap";
 import "./modules/select";
 import "./modules/form-mask";
-import "./modules/portfolio-init";
+//import "./modules/portfolio-init";
+import "./modules/parallax-title";
 
-
-/*document.addEventListener('DOMContentLoaded', () => {
-  console.log('LOADED');
-  document.querySelector('.hero video').play();
-});*/

@@ -9,7 +9,6 @@ if(header) {
     scrollTrigger: {
       trigger: ".portfolio__list",
       start: "top top",
-      //pin: true, ? что это ?
       onLeaveBack: () => headerInTimeline.reverse() }
   });
 
@@ -19,6 +18,7 @@ if(header) {
       position: 'fixed',
       opacity: 0,
       duration: 0,
+      padding: '15px 0',
       backgroundColor: 'transparent',
     })
     .to('.main-header-logo', {
@@ -29,7 +29,7 @@ if(header) {
       ease: 'linear',
       y: '0',
       opacity: 1,
-      backgroundColor: 'var(--primary)',
+      backgroundColor: 'rgba(56,181,188,.7)',
     });
 }
 

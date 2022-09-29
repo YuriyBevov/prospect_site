@@ -1,31 +1,17 @@
-import {gsap} from "gsap";
+/*import {gsap} from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {ScrollSmoother} from 'gsap/ScrollSmoother';
-import {ScrollToPlugin} from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 ScrollTrigger.config({ ignoreMobileResize: true });
 
+ScrollSmoother.create({
+  smooth: 1.2,
+  ease: 'ease'
+});
 
-
-const anchors = document.querySelectorAll('.anchor-link');
-
-if(anchors) {
-  const onClickScrollToAnchor = (evt) => {
-    evt.preventDefault();
-    const anchor = evt.currentTarget.dataset.scrollTo;
-    const target = document.querySelector('#' + anchor);
-
-    gsap.to(window, {duration: 1.5, scrollTo: {y: target, /*offset: 60,*/ autoKill: true}, ease: "power2"});
-  }
-
-  anchors.forEach(anchor => {
-    anchor.addEventListener('click', onClickScrollToAnchor);
-  });
-}
-
-/*const header = document.querySelector('.main-header');
+const header = document.querySelector('.main-header');
 
 if(header) {
   const headerInTimeline = gsap.timeline({
@@ -56,8 +42,4 @@ if(header) {
     /*.to('.portfolio', {
       paddingTop: '100px'
     }, "-=0.5")*/
-//}*/
-
-ScrollSmoother.create({
-  smooth: 2.4
-});
+//}

@@ -21,6 +21,19 @@
         border-bottom: 1px solid var(--white);
 
         background-color: var(--primary);
+
+        @include m-b-down(635px) {
+          width: 90%;
+
+          &:first-child {
+            margin: 0;
+            margin-bottom: 20px;
+          }
+        }
+
+        @include m-b-mobile-lg-down {
+          width: 100%;
+        }
       }
 
       input,

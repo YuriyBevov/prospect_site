@@ -3,12 +3,25 @@
   height: 100vh;
   min-height: 618px;
   max-height: 1080px;
+  height: calc(var(--vh, 1vh) * 100);
+  transition: height 0.4s ease-in;
   background-color: var(--primary);
   margin-bottom: clamp(30px, 5vw, 60px);
   overflow: hidden;
 
   will-change: auto;
   transform: translate3d(0,0,0);
+
+  iframe {
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
   @include m-b-mobile-lg-down {
     min-height: 423px;
@@ -43,13 +56,14 @@
       left: 50%;
       transform: translate(-50%, -50%);
       max-width: 800px;
+      will-change: auto;
     }
   }
 
   &__action {
     position: absolute;
     top: 50%;
-    left: 30px;
+    left: 5vw;
     transform: translateY(-50%);
 
     a {
@@ -73,7 +87,6 @@
   }
 
   &__arrow-down {
-    //position: relative;
     bottom: 100px;
 
     @extend .flex-column;
@@ -85,15 +98,15 @@
       margin-bottom: -5px;
 
       &:nth-child(1) {
-        animation: heroArrowDown 1.5s .5s linear infinite;
+        animation: heroArrowDown 2.1s .7s linear infinite;
       }
 
       &:nth-child(2) {
-        animation: heroArrowDown 1.5s 1s linear infinite;
+        animation: heroArrowDown 2.1s 1.4s linear infinite;
       }
 
       &:nth-child(3) {
-        animation: heroArrowDown 1.5s linear infinite;
+        animation: heroArrowDown 2.1s linear infinite;
       }
     }
   }

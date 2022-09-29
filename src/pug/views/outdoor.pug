@@ -71,12 +71,13 @@ include ../mixins/section-title
     }
   ]
 
-section.outdoor
+section.outdoor#outdoor
   .container-fluid
 
     +section-title({
-      type: 'regular',
+      type: 'dublicated',
       title: 'Наружная реклама',
+      dublicate: 'Наружная реклама'
     })
 
     .outdoor__accordeon.accordeon

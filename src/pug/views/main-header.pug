@@ -1,8 +1,7 @@
 header.main-header
-  .container-fluid
-    .main-header__navbar
-      a(href="index.html" aria-label="Обновить").main-header-logo
-        img(src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50")
+  .container-fluid.main-header__container
+    a(href="index.html" aria-label="Обновить").main-header-logo
+      img(src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50")
 
-      //include ./../views/nav
-      include ./../components/burger
+    include ./../views/nav
+    include ./../components/burger

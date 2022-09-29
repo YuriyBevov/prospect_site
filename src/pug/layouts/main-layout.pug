@@ -12,6 +12,7 @@ html(lang="ru")
   +head(title, desc, keywords)
 
   body
+    include ../components/page-overlay
     include ../views/main-header
 
     //#smooth-wrapper
@@ -19,7 +20,7 @@ html(lang="ru")
     main
       block content
 
-    include ../views/main-footer
+      include ../views/main-footer
 
     block modals
-    //include ../components/_loader
+

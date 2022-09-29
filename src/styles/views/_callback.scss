@@ -1,11 +1,15 @@
 .callback {
-  padding: 70px 0;
+  padding: clamp(30px, 5vw,70px) 0;
   background-color: var(--primary);
 
   &__container {
     display: grid;
     grid-template-columns: minmax(500px, 575px) auto;
-    grid-column-gap: 25px;
+    grid-column-gap: 40px;
+
+    @include m-b-down(910px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   &__form {
@@ -17,6 +21,10 @@
 
       margin-bottom: 60px;
       color: var(--white);
+
+      @include m-b-down(635px) {
+        margin-bottom: 30px;
+      }
     }
   }
 
@@ -24,20 +32,35 @@
     @extend .flex-centered-content;
     position: relative;
 
+    @include m-b-laptop-down {
+      flex-direction: column;
+    }
+
+    @include m-b-down(910px) {
+      display: none;
+    }
+
     &-overlay-text {
       @extend .flex-column;
       justify-content: center;
 
+      @include m-b-laptop-down {
+        order: 2;
+      }
+
       span {
         font-weight: 700;
-        font-size: clamp(50px, 12vw, 214px);
+        font-size: clamp(50px, 9vw, 214px);
         line-height: 80%;
         text-align: center;
 
         color: #40BDC5;
+
+        @include m-b-laptop-down {
+          font-size: 60px;
+        }
       }
     }
-
 
     svg {
       position: absolute;
@@ -48,6 +71,14 @@
       height: 60%;
       fill: var(--white);
       z-index: 2;
+
+      @include m-b-laptop-down {
+          position: static;
+          width: 165px;
+          height: auto;
+          transform: initial;
+          order: 1;
+      }
     }
   }
 }

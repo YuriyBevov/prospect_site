@@ -1,9 +1,5 @@
 section.hero#hero
-  <video muted loop aria-hidden="true">
-    //<source src="./assets/video/hero-video.ogv" type='video/ogg; codecs="theora, vorbis"'>
-    <source src="./assets/video/hero-video.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
-    <source src="./assets/video/hero-video.webm" type='video/webm; codecs="vp8, vorbis"'>
-  </video>
+  include ../components/hero-video-bg
 
   .container-fluid.hero__container
     h1.visually-hidden ООО "Проспект". Производство наружной рекламы, Санкт-Петербург.
@@ -17,14 +13,14 @@ section.hero#hero
         svg(width="24" height="24")
           use(xlink:href="./assets/sprite.svg#icon-phone")
 
-      a(href="#" aria-label="Оставить заявку")
+      a(href="#" aria-label="Оставить заявку" data-scroll-to="callback").anchor-link
         svg(width="24" height="24")
           use(xlink:href="./assets/sprite.svg#icon-hand")
 
     .hero__logo
       include ../components/hero-logo
 
-    a(href="#" data-scroll-to="portfolio").anchor-link.hero__arrow-down
+    a(href="#" data-scroll-to="portfolio").anchor-link.hero__arrow-down.hidden
       svg(width="40" height="16")
         use(xlink:href="./assets/sprite.svg#icon-hero-arrow")
       svg(width="40" height="16")

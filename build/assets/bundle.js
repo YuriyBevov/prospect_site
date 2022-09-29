@@ -1,17 +1,21 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/scripts/classes/Portfolio.js":
-/*!******************************************!*\
-  !*** ./src/scripts/classes/Portfolio.js ***!
-  \******************************************/
+/***/ "./src/scripts/classes/NavMenu.js":
+/*!****************************************!*\
+  !*** ./src/scripts/classes/NavMenu.js ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "Portfolio": () => (/* binding */ Portfolio)
+/* harmony export */   "NavMenu": () => (/* binding */ NavMenu)
 /* harmony export */ });
+/* harmony import */ var _modules_burgerAnimation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../modules/burgerAnimation */ "./src/scripts/modules/burgerAnimation.js");
+/* harmony import */ var _utils_functions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/functions */ "./src/scripts/utils/functions.js");
+/* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/debounce */ "./src/scripts/utils/debounce.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -24,11 +28,11 @@ function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedec
 
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
 
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+
 function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
 
 function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
-
-function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 
 function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
 
@@ -36,164 +40,212 @@ function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!priva
 
 function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
 
-var SourceType = {
-  DEFAULT: 'default-source',
-  IMAGE: 'image',
-  VIDEO: 'video'
-};
-var ProductType = {
-  DEFAULT: 'default-type',
-  OUT: 'out',
-  IN: 'in'
-};
 
-var _items = /*#__PURE__*/new WeakMap();
 
-var _moreBtn = /*#__PURE__*/new WeakMap();
 
-var _sortItems = /*#__PURE__*/new WeakMap();
 
-var _sourceType = /*#__PURE__*/new WeakMap();
 
-var _productType = /*#__PURE__*/new WeakMap();
+var _container = /*#__PURE__*/new WeakMap();
 
-var _step = /*#__PURE__*/new WeakMap();
+var _opener = /*#__PURE__*/new WeakMap();
 
-var _current = /*#__PURE__*/new WeakMap();
+var _links = /*#__PURE__*/new WeakMap();
+
+var _openNavTl = /*#__PURE__*/new WeakMap();
+
+var _closeNavTl = /*#__PURE__*/new WeakMap();
+
+var _isNavOpened = /*#__PURE__*/new WeakMap();
+
+var _openNav = /*#__PURE__*/new WeakMap();
+
+var _closeNav = /*#__PURE__*/new WeakMap();
+
+var _removeListeners = /*#__PURE__*/new WeakMap();
+
+var _addListeners = /*#__PURE__*/new WeakMap();
+
+var _onClickHandler = /*#__PURE__*/new WeakMap();
+
+var _onOverlayClickHandler = /*#__PURE__*/new WeakMap();
+
+var _onKeyPressHandler = /*#__PURE__*/new WeakMap();
 
 var _init = /*#__PURE__*/new WeakSet();
 
-var _fillGallery = /*#__PURE__*/new WeakMap();
-
-var _sort = /*#__PURE__*/new WeakMap();
-
-var _showMore = /*#__PURE__*/new WeakMap();
-
-var Portfolio = /*#__PURE__*/_createClass(function Portfolio(data) {
+var NavMenu = /*#__PURE__*/_createClass(function NavMenu(container, opener) {
   var _this = this;
 
-  _classCallCheck(this, Portfolio);
+  _classCallCheck(this, NavMenu);
 
   _classPrivateMethodInitSpec(this, _init);
 
-  _classPrivateFieldInitSpec(this, _items, {
+  _classPrivateFieldInitSpec(this, _container, {
     writable: true,
     value: null
   });
 
-  _classPrivateFieldInitSpec(this, _moreBtn, {
+  _classPrivateFieldInitSpec(this, _opener, {
     writable: true,
     value: null
   });
 
-  _classPrivateFieldInitSpec(this, _sortItems, {
+  _classPrivateFieldInitSpec(this, _links, {
     writable: true,
     value: null
   });
 
-  _classPrivateFieldInitSpec(this, _sourceType, {
+  _classPrivateFieldInitSpec(this, _openNavTl, {
     writable: true,
-    value: SourceType.DEFAULT
+    value: gsap__WEBPACK_IMPORTED_MODULE_3__.gsap.timeline({
+      onComplete: function onComplete() {
+        (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.setDebounce)(false);
+      }
+    })
   });
 
-  _classPrivateFieldInitSpec(this, _productType, {
+  _classPrivateFieldInitSpec(this, _closeNavTl, {
     writable: true,
-    value: ProductType.DEFAULT
+    value: gsap__WEBPACK_IMPORTED_MODULE_3__.gsap.timeline({
+      onComplete: function onComplete() {
+        (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.setDebounce)(false);
+
+        _classPrivateFieldSet(_this, _isNavOpened, false);
+      }
+    })
   });
 
-  _classPrivateFieldInitSpec(this, _step, {
+  _classPrivateFieldInitSpec(this, _isNavOpened, {
     writable: true,
-    value: 4
+    value: false
   });
 
-  _classPrivateFieldInitSpec(this, _current, {
-    writable: true,
-    value: 0
-  });
-
-  _classPrivateFieldInitSpec(this, _fillGallery, {
+  _classPrivateFieldInitSpec(this, _openNav, {
     writable: true,
     value: function value() {
-      console.log(_classPrivateFieldGet(_this, _sourceType), _classPrivateFieldGet(_this, _productType));
-      var count = null;
+      if (!_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.debounce) {
+        (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.setDebounce)(true);
 
-      if (_classPrivateFieldGet(_this, _sourceType) !== SourceType.DEFAULT || _classPrivateFieldGet(_this, _productType) !== ProductType.DEFAULT) {
-        console.log('!==');
+        _classPrivateFieldSet(_this, _isNavOpened, true);
+
+        gsap__WEBPACK_IMPORTED_MODULE_3__.gsap.set(_classPrivateFieldGet(_this, _container), {
+          opacity: 0,
+          display: 'block'
+        });
+        (0,_modules_burgerAnimation__WEBPACK_IMPORTED_MODULE_0__.burgerLinesAnimationIn)();
+        (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.bodyLocker)(true);
+        (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.focusTrap)(_classPrivateFieldGet(_this, _container));
+
+        _classPrivateFieldGet(_this, _addListeners).call(_this);
+
+        _classPrivateFieldGet(_this, _openNavTl).to(_classPrivateFieldGet(_this, _container), {
+          opacity: 1,
+          duration: 0.7
+        }).fromTo('.nav__list', {
+          opacity: 0
+        }, {
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power2'
+        }, "-=0.7").fromTo('.nav__list-item', {
+          y: 50,
+          opacity: 0
+        }, {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+          ease: 'ease-in'
+        }, "-=0.3");
       }
-
-      if (_classPrivateFieldGet(_this, _current) + _classPrivateFieldGet(_this, _step) <= _classPrivateFieldGet(_this, _items).length) {
-        count = _classPrivateFieldGet(_this, _current) + _classPrivateFieldGet(_this, _step);
-      } else {
-        count = _classPrivateFieldGet(_this, _items).length;
-      }
-
-      for (var i = _classPrivateFieldGet(_this, _current); i < count; i++) {
-        _classPrivateFieldGet(_this, _items)[i].classList.remove('hidden');
-      }
-
-      _classPrivateFieldSet(_this, _current, count);
     }
   });
 
-  _classPrivateFieldInitSpec(this, _sort, {
+  _classPrivateFieldInitSpec(this, _closeNav, {
+    writable: true,
+    value: function value() {
+      if (!_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.debounce) {
+        (0,_utils_debounce__WEBPACK_IMPORTED_MODULE_2__.setDebounce)(true);
+        (0,_modules_burgerAnimation__WEBPACK_IMPORTED_MODULE_0__.burgerLinesAnimationOut)();
+        (0,_utils_functions__WEBPACK_IMPORTED_MODULE_1__.bodyLocker)(false);
+
+        _classPrivateFieldGet(_this, _removeListeners).call(_this);
+
+        _classPrivateFieldGet(_this, _closeNavTl).to(_classPrivateFieldGet(_this, _container), {
+          opacity: 0,
+          duration: 0.7
+        }).to(_classPrivateFieldGet(_this, _container), {
+          display: 'none',
+          delay: .1
+        });
+      }
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _removeListeners, {
+    writable: true,
+    value: function value() {
+      _classPrivateFieldGet(_this, _links).forEach(function (link) {
+        link.removeEventListener('click', _classPrivateFieldGet(_this, _closeNav));
+      });
+
+      document.removeEventListener('keydown', _classPrivateFieldGet(_this, _onKeyPressHandler));
+      document.removeEventListener('click', _classPrivateFieldGet(_this, _onOverlayClickHandler));
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _addListeners, {
+    writable: true,
+    value: function value() {
+      _classPrivateFieldGet(_this, _links).forEach(function (link) {
+        link.addEventListener('click', _classPrivateFieldGet(_this, _closeNav));
+      });
+
+      document.addEventListener('keydown', _classPrivateFieldGet(_this, _onKeyPressHandler));
+      document.addEventListener('click', _classPrivateFieldGet(_this, _onOverlayClickHandler));
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _onClickHandler, {
+    writable: true,
+    value: function value() {
+      if (!_classPrivateFieldGet(_this, _isNavOpened)) {
+        _classPrivateFieldGet(_this, _openNav).call(_this);
+      } else if (_classPrivateFieldGet(_this, _isNavOpened)) {
+        _classPrivateFieldGet(_this, _closeNav).call(_this);
+      }
+    }
+  });
+
+  _classPrivateFieldInitSpec(this, _onOverlayClickHandler, {
     writable: true,
     value: function value(evt) {
-      if (evt.target.dataset.value === 'image') {
-        _classPrivateFieldSet(_this, _sourceType, SourceType.IMAGE);
+      if (evt.target === _classPrivateFieldGet(_this, _container)) {
+        _classPrivateFieldGet(_this, _closeNav).call(_this);
       }
-
-      if (evt.target.dataset.value === 'video') {
-        _classPrivateFieldSet(_this, _sourceType, SourceType.VIDEO);
-      }
-
-      if (evt.target.dataset.value === 'default-source') {
-        _classPrivateFieldSet(_this, _sourceType, SourceType.DEFAULT);
-      }
-
-      if (evt.target.dataset.value === 'out') {
-        _classPrivateFieldSet(_this, _productType, ProductType.OUT);
-      }
-
-      if (evt.target.dataset.value === 'in') {
-        _classPrivateFieldSet(_this, _productType, ProductType.IN);
-      }
-
-      if (evt.target.dataset.value === 'default-type') {
-        _classPrivateFieldSet(_this, _productType, ProductType.DEFAULT);
-      }
-
-      _classPrivateFieldGet(_this, _fillGallery).call(_this);
     }
   });
 
-  _classPrivateFieldInitSpec(this, _showMore, {
+  _classPrivateFieldInitSpec(this, _onKeyPressHandler, {
     writable: true,
-    value: function value() {
-      console.log('more');
+    value: function value(evt) {
+      if (evt.key === 'Esc' || evt.key === 'Escape') {
+        _classPrivateFieldGet(_this, _closeNav).call(_this);
+      }
     }
   });
 
-  _classPrivateFieldSet(this, _items, data.items);
+  _classPrivateFieldSet(this, _container, container);
 
-  _classPrivateFieldSet(this, _moreBtn, data.moreBtn);
+  _classPrivateFieldSet(this, _opener, opener);
 
-  _classPrivateFieldSet(this, _sortItems, data.sortItems);
+  _classPrivateFieldSet(this, _links, _classPrivateFieldGet(this, _container).querySelectorAll('.anchor-link'));
 
   _classPrivateMethodGet(this, _init, _init2).call(this);
 });
 
 function _init2() {
-  var _this2 = this;
-
-  _classPrivateFieldGet(this, _moreBtn).addEventListener('click', _classPrivateFieldGet(this, _showMore));
-
-  _classPrivateFieldGet(this, _sortItems).forEach(function (item) {
-    return item.addEventListener('click', _classPrivateFieldGet(_this2, _sort));
-  });
-
-  _classPrivateFieldGet(this, _fillGallery).call(this);
-
-  console.log(_classPrivateFieldGet(this, _sourceType), _classPrivateFieldGet(this, _productType));
+  _classPrivateFieldGet(this, _opener).addEventListener('click', _classPrivateFieldGet(this, _onClickHandler));
 }
 
 /***/ }),
@@ -343,6 +395,104 @@ if (accordeon) {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/anchor-link.js":
+/*!********************************************!*\
+  !*** ./src/scripts/modules/anchor-link.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollToPlugin */ "./node_modules/gsap/ScrollToPlugin.js");
+/* harmony import */ var _utils_debounce__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/debounce */ "./src/scripts/utils/debounce.js");
+
+
+
+gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_2__.ScrollToPlugin);
+var anchors = document.querySelectorAll('.anchor-link');
+
+if (anchors) {
+  var onClickScrollToAnchor = function onClickScrollToAnchor(evt) {
+    evt.preventDefault();
+
+    if (!_utils_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
+      var anchor = evt.currentTarget.dataset.scrollTo;
+      var target = document.querySelector('#' + anchor);
+      gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.to(window, {
+        duration: 1.5,
+        scrollTo: {
+          y: target,
+          offsetY: 40,
+          autoKill: true
+        },
+        ease: "power0.easeNone"
+      });
+    }
+  };
+
+  anchors.forEach(function (anchor) {
+    anchor.addEventListener('click', onClickScrollToAnchor);
+  });
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/burgerAnimation.js":
+/*!************************************************!*\
+  !*** ./src/scripts/modules/burgerAnimation.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "burgerLinesAnimationIn": () => (/* binding */ burgerLinesAnimationIn),
+/* harmony export */   "burgerLinesAnimationOut": () => (/* binding */ burgerLinesAnimationOut)
+/* harmony export */ });
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
+
+
+var burgerLineTop = _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.burger.querySelector('.burger__line--top');
+var burgerLineMiddle = _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.burger.querySelector('.burger__line--middle');
+var burgerLineBottom = _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.burger.querySelector('.burger__line--bottom');
+var burgerLinesTimeline = gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.timeline().pause();
+burgerLinesTimeline.to(burgerLineTop, {
+  y: 8,
+  duration: 0.3,
+  delay: 0.05,
+  ease: 'ease-in'
+}).to(burgerLineMiddle, {
+  opacity: 0,
+  duration: 0.3,
+  delay: 0.05,
+  ease: 'ease-in'
+}, "-=0.35").to(burgerLineBottom, {
+  y: -8,
+  duration: 0.3,
+  delay: 0.05,
+  ease: 'ease-in'
+}, "-=0.35").to(burgerLineTop, {
+  rotate: '45deg',
+  duration: 0.3,
+  delay: 0.05,
+  ease: 'ease-in'
+}).to(burgerLineBottom, {
+  rotate: '-45deg',
+  duration: 0.3,
+  delay: 0.05,
+  ease: 'ease-in'
+}, "-=0.35");
+function burgerLinesAnimationIn() {
+  burgerLinesTimeline.play();
+}
+function burgerLinesAnimationOut() {
+  burgerLinesTimeline.reverse();
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/form-mask.js":
 /*!******************************************!*\
   !*** ./src/scripts/modules/form-mask.js ***!
@@ -383,7 +533,6 @@ if (header) {
     scrollTrigger: {
       trigger: ".portfolio__list",
       start: "top top",
-      //pin: true, ? что это ?
       onLeaveBack: function onLeaveBack() {
         return headerInTimeline.reverse();
       }
@@ -394,6 +543,7 @@ if (header) {
     position: 'fixed',
     opacity: 0,
     duration: 0,
+    padding: '15px 0',
     backgroundColor: 'transparent'
   }).to('.main-header-logo', {
     display: 'block'
@@ -402,66 +552,128 @@ if (header) {
     ease: 'linear',
     y: '0',
     opacity: 1,
-    backgroundColor: 'var(--primary)'
+    backgroundColor: 'rgba(56,181,188,.7)'
   });
 }
 
 /***/ }),
 
-/***/ "./src/scripts/modules/portfolio-init.js":
-/*!***********************************************!*\
-  !*** ./src/scripts/modules/portfolio-init.js ***!
-  \***********************************************/
+/***/ "./src/scripts/modules/hero-arrow-down.js":
+/*!************************************************!*\
+  !*** ./src/scripts/modules/hero-arrow-down.js ***!
+  \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _classes_Portfolio__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/Portfolio */ "./src/scripts/classes/Portfolio.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
 
-var container = document.querySelector('.portfolio');
-
-if (container) {
-  new _classes_Portfolio__WEBPACK_IMPORTED_MODULE_0__.Portfolio({
-    items: container.querySelectorAll('.portfolio__list-item'),
-    moreBtn: container.querySelector('.portfolio__more'),
-    sortItems: container.querySelectorAll('.custom-select-option')
-  });
-}
+gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.fromTo('.hero__arrow-down', {
+  opacity: 0
+}, {
+  opacity: 1,
+  delay: 1,
+  duration: 1,
+  ease: 'linear'
+});
 
 /***/ }),
 
-/***/ "./src/scripts/modules/scroll.js":
+/***/ "./src/scripts/modules/loader.js":
 /*!***************************************!*\
-  !*** ./src/scripts/modules/scroll.js ***!
+  !*** ./src/scripts/modules/loader.js ***!
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap/ScrollToPlugin */ "./node_modules/gsap/ScrollToPlugin.js");
+
+var tl = gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline();
+window.addEventListener('load', function () {
+  tl.to('.loader', {
+    display: 'none'
+  }).to('.page-overlay', {
+    opacity: 0,
+    ease: 'linear',
+    duration: .8,
+    delay: .2
+  }).fromTo('body', {
+    opacity: 0
+  }, {
+    opacity: 1,
+    ease: 'linear',
+    duration: .8,
+    delay: .2
+  }, "-=800").to('.page-overlay', {
+    display: 'none'
+  });
+});
+
+/***/ }),
+
+/***/ "./src/scripts/modules/navbar.js":
+/*!***************************************!*\
+  !*** ./src/scripts/modules/navbar.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _classes_NavMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../classes/NavMenu */ "./src/scripts/classes/NavMenu.js");
+
+var nav = document.querySelector('.nav');
+var burger = document.querySelector('.burger');
+
+if (nav && burger) {
+  new _classes_NavMenu__WEBPACK_IMPORTED_MODULE_0__.NavMenu(nav, burger);
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/parallax-title.js":
+/*!***********************************************!*\
+  !*** ./src/scripts/modules/parallax-title.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+/* harmony import */ var gsap_ScrollSmoother__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollSmoother */ "./node_modules/gsap/ScrollSmoother.js");
 
 
-gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_1__.ScrollToPlugin);
-var anchors = document.querySelectorAll('.anchor-link');
 
-if (anchors) {
-  var onClickScrollToAnchor = function onClickScrollToAnchor(evt) {
-    evt.preventDefault();
-    var anchor = evt.currentTarget.dataset.scrollTo;
-    var target = document.querySelector('#' + anchor);
-    gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(window, {
-      duration: 1.2,
-      scrollTo: {
-        y: target,
-        autoKill: true
-      },
-      ease: "ease"
+gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger, gsap_ScrollSmoother__WEBPACK_IMPORTED_MODULE_2__.ScrollSmoother);
+var textElems = document.querySelectorAll('.section-title span');
+
+if (textElems) {
+  function timeline(el) {
+    var tl = gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true //markers: true,
+        //onLeaveBack: () => tl.reverse()
+
+      }
     });
-  };
+    tl.fromTo(el, {
+      x: '100vw',
+      opacity: 0
+    }, {
+      x: '-100vw',
+      opacity: 1,
+      duration: 3,
+      delay: 0.3,
+      ease: 'linear'
+    });
+  }
 
-  anchors.forEach(function (anchor) {
-    anchor.addEventListener('click', onClickScrollToAnchor);
+  textElems.forEach(function (el) {
+    timeline(el);
   });
 }
 
@@ -477,7 +689,6 @@ if (anchors) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var custom_select__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! custom-select */ "./node_modules/custom-select/build/index.js");
 
-console.log('select');
 (0,custom_select__WEBPACK_IMPORTED_MODULE_0__["default"])('.custom-select');
 
 /***/ }),
@@ -509,6 +720,20 @@ if (videos) {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/viewport.js":
+/*!*****************************************!*\
+  !*** ./src/scripts/modules/viewport.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _utils_functions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/functions.js */ "./src/scripts/utils/functions.js");
+
+(0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_0__.setVieportHeight)();
+
+/***/ }),
+
 /***/ "./src/scripts/modules/yandexMap.js":
 /*!******************************************!*\
   !*** ./src/scripts/modules/yandexMap.js ***!
@@ -516,10 +741,11 @@ if (videos) {
 /***/ (() => {
 
 var map = document.querySelector('#yandex_map');
-console.log(map);
 
 if (map) {
-  ymaps.ready(init);
+  window.addEventListener('load', function () {
+    ymaps.ready(init);
+  });
 
   function init() {
     // Создание карты.
@@ -597,6 +823,209 @@ if (map) {
 
   ;
 }
+
+/***/ }),
+
+/***/ "./src/scripts/utils/debounce.js":
+/*!***************************************!*\
+  !*** ./src/scripts/utils/debounce.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "debounce": () => (/* binding */ debounce),
+/* harmony export */   "setDebounce": () => (/* binding */ setDebounce)
+/* harmony export */ });
+var debounce = false;
+function setDebounce(bool) {
+  if (bool) {
+    debounce = true;
+  } else {
+    debounce = false;
+  }
+}
+
+/***/ }),
+
+/***/ "./src/scripts/utils/functions.js":
+/*!****************************************!*\
+  !*** ./src/scripts/utils/functions.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "addClass": () => (/* binding */ addClass),
+/* harmony export */   "bodyLocker": () => (/* binding */ bodyLocker),
+/* harmony export */   "checkClass": () => (/* binding */ checkClass),
+/* harmony export */   "focusTrap": () => (/* binding */ focusTrap),
+/* harmony export */   "getBoundingClientRect": () => (/* binding */ getBoundingClientRect),
+/* harmony export */   "getCssPropertyValue": () => (/* binding */ getCssPropertyValue),
+/* harmony export */   "limitStr": () => (/* binding */ limitStr),
+/* harmony export */   "removeClass": () => (/* binding */ removeClass),
+/* harmony export */   "setCssProperty": () => (/* binding */ setCssProperty),
+/* harmony export */   "setVieportHeight": () => (/* binding */ setVieportHeight),
+/* harmony export */   "toggleClass": () => (/* binding */ toggleClass),
+/* harmony export */   "windowInnerWidth": () => (/* binding */ windowInnerWidth)
+/* harmony export */ });
+// работа с классами эл-та
+function addClass(el, cl) {
+  el.classList.add(cl);
+}
+
+function removeClass(el, cl) {
+  el.classList.remove(cl);
+}
+
+function checkClass(el, cl) {
+  return el.classList.contains(cl);
+}
+
+function toggleClass(el, cl) {
+  el.classList.toggle(cl);
+} // Ограничение длины текста по кол-ву символов
+
+
+function limitStr(str, n) {
+  if (str.length > n) {
+    return str.slice(0, n) + '...';
+  } else {
+    return str;
+  }
+} //variables
+
+
+var root = document.querySelector(':root');
+
+function getCssPropertyValue(name) {
+  return getComputedStyle(root).getPropertyValue(name);
+}
+
+function setCssProperty(name, value) {
+  root.style.setProperty(name, value);
+}
+
+function setVieportHeight() {
+  var vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', "".concat(vh, "px"));
+  window.addEventListener('resize', function () {
+    var vh = window.innerHeight * 0.01;
+    setCssProperty('--vh', "".concat(vh, "px"));
+  });
+} // запрет скролла у body
+
+
+function bodyLocker(bool) {
+  var body = document.querySelector('body');
+  var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+
+  if (bool) {
+    body.style.overflow = 'hidden';
+    body.style.paddingRight = paddingOffset;
+  } else {
+    body.style.overflow = 'auto';
+    body.style.paddingRight = '0px';
+  }
+} // вычисление поз-и/размеров эл-та
+
+
+function getBoundingClientRect(elem, side) {
+  if (side === 'height') {
+    return elem.getBoundingClientRect().height;
+  }
+
+  if (side === 'width') {
+    return elem.getBoundingClientRect().width;
+  }
+
+  if (side === 'top') {
+    return elem.getBoundingClientRect().top;
+  }
+
+  if (side === 'bottom') {
+    return elem.getBoundingClientRect().bottom;
+  }
+
+  if (side === 'left') {
+    return elem.getBoundingClientRect().left;
+  }
+
+  if (side === 'right') {
+    return elem.getBoundingClientRect().right;
+  }
+
+  if (side === 'x') {
+    return elem.getBoundingClientRect().x;
+  }
+
+  if (side === 'y') {
+    return elem.getBoundingClientRect().y;
+  }
+}
+
+function windowInnerWidth() {
+  return window.innerWidth;
+}
+
+function focusTrap(el) {
+  var initialFocusedEl = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var focusableElements = ['a[href]', 'input', 'select', 'textarea', 'button', 'iframe', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
+  var firstFocusableElement = el.querySelectorAll(focusableElements)[0];
+  var focusableContent = el.querySelectorAll(focusableElements);
+  var lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+  var onBtnClickHandler = function onBtnClickHandler(evt) {
+    var isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+    if (evt.key === 'Escape') {
+      document.removeEventListener('keydown', onBtnClickHandler);
+      console.log('ESC');
+    }
+
+    if (!isTabPressed) {
+      return;
+    }
+
+    if (evt.shiftKey) {
+      if (document.activeElement === firstFocusableElement) {
+        lastFocusableElement.focus();
+        evt.preventDefault();
+      }
+    } else {
+      if (document.activeElement === lastFocusableElement) {
+        firstFocusableElement.focus();
+        evt.preventDefault();
+      }
+    }
+  };
+
+  document.addEventListener('keydown', onBtnClickHandler);
+  initialFocusedEl !== null ? initialFocusedEl.focus() : firstFocusableElement.focus();
+}
+
+
+
+/***/ }),
+
+/***/ "./src/scripts/utils/nodesHelper.js":
+/*!******************************************!*\
+  !*** ./src/scripts/utils/nodesHelper.js ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "body": () => (/* binding */ body),
+/* harmony export */   "burger": () => (/* binding */ burger),
+/* harmony export */   "header": () => (/* binding */ header)
+/* harmony export */ });
+var body = document.querySelector('body');
+var header = document.querySelector('header');
+var burger = document.querySelector('.burger');
 
 /***/ }),
 
@@ -3402,6 +3831,815 @@ Observer.getById = function (id) {
 };
 
 _getGSAP() && gsap.registerPlugin(Observer);
+
+
+/***/ }),
+
+/***/ "./node_modules/gsap/ScrollSmoother.js":
+/*!*********************************************!*\
+  !*** ./node_modules/gsap/ScrollSmoother.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ScrollSmoother": () => (/* binding */ ScrollSmoother),
+/* harmony export */   "default": () => (/* binding */ ScrollSmoother)
+/* harmony export */ });
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/*!
+ * ScrollSmoother 3.10.4
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2022, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
+/* eslint-disable */
+var gsap,
+    _coreInitted,
+    _win,
+    _doc,
+    _docEl,
+    _body,
+    _root,
+    _toArray,
+    _clamp,
+    ScrollTrigger,
+    _mainInstance,
+    _expo,
+    _getVelocityProp,
+    _inputObserver,
+    _windowExists = function _windowExists() {
+  return typeof window !== "undefined";
+},
+    _getGSAP = function _getGSAP() {
+  return gsap || _windowExists() && (gsap = window.gsap) && gsap.registerPlugin && gsap;
+},
+    _bonusValidated = 1,
+    //<name>ScrollSmoother</name>
+_isViewport = function _isViewport(e) {
+  return !!~_root.indexOf(e);
+},
+    _getTime = Date.now,
+    _round = function _round(value) {
+  return Math.round(value * 100000) / 100000 || 0;
+},
+    _autoDistance = function _autoDistance(el, progress) {
+  // for calculating the distance (and offset) for elements with speed: "auto". Progress is for if it's "above the fold" (negative start position), so we can crop as little as possible.
+  var parent = el.parentNode || _docEl,
+      b1 = el.getBoundingClientRect(),
+      b2 = parent.getBoundingClientRect(),
+      gapTop = b2.top - b1.top,
+      gapBottom = b2.bottom - b1.bottom,
+      change = (Math.abs(gapTop) > Math.abs(gapBottom) ? gapTop : gapBottom) / (1 - progress),
+      offset = -change * progress,
+      ratio,
+      extraChange;
+
+  if (change > 0) {
+    // if the image starts at the BOTTOM of the container, adjust things so that it shows as much of the image as possible while still covering.
+    ratio = b2.height / (_win.innerHeight + b2.height);
+    extraChange = ratio === 0.5 ? b2.height * 2 : Math.min(b2.height, -change * ratio / (2 * ratio - 1)) * 2;
+    offset += -extraChange / 2; // whatever the offset, we must double that in the opposite direction to compensate.
+
+    change += extraChange;
+  }
+
+  return {
+    change: change,
+    offset: offset
+  };
+},
+    _wrap = function _wrap(el) {
+  var wrapper = _doc.querySelector(".ScrollSmoother-wrapper"); // some frameworks load multiple times, so one already exists, just use that to avoid duplicates
+
+
+  if (!wrapper) {
+    wrapper = _doc.createElement("div");
+    wrapper.classList.add("ScrollSmoother-wrapper");
+    el.parentNode.insertBefore(wrapper, el);
+    wrapper.appendChild(el);
+  }
+
+  return wrapper;
+};
+
+var ScrollSmoother = /*#__PURE__*/function () {
+  function ScrollSmoother(vars) {
+    var _this = this;
+
+    _coreInitted || ScrollSmoother.register(gsap) || console.warn("Please gsap.registerPlugin(ScrollSmoother)");
+    vars = this.vars = vars || {};
+    _mainInstance && _mainInstance.kill();
+    _mainInstance = this;
+
+    var _vars = vars,
+        smoothTouch = _vars.smoothTouch,
+        _onUpdate = _vars.onUpdate,
+        onStop = _vars.onStop,
+        smooth = _vars.smooth,
+        onFocusIn = _vars.onFocusIn,
+        normalizeScroll = _vars.normalizeScroll,
+        content,
+        wrapper,
+        height,
+        mainST,
+        effects,
+        sections,
+        intervalID,
+        wrapperCSS,
+        contentCSS,
+        paused,
+        pausedNormalizer,
+        recordedRefreshScroll,
+        scrollFunc = ScrollTrigger.getScrollFunc(_win),
+        smoothDuration = ScrollTrigger.isTouch === 1 ? smoothTouch === true ? 0.8 : parseFloat(smoothTouch) || 0 : smooth === 0 || smooth === false ? 0 : parseFloat(smooth) || 0.8,
+        currentY = 0,
+        delta = 0,
+        startupPhase = 1,
+        tracker = _getVelocityProp(0),
+        updateVelocity = function updateVelocity() {
+      return tracker.update(-currentY);
+    },
+        scroll = {
+      y: 0
+    },
+        removeScroll = function removeScroll() {
+      return content.style.overflow = "visible";
+    },
+        isProxyScrolling,
+        killScrub = function killScrub(trigger) {
+      trigger.update(); // it's possible that it hasn't been synchronized with the actual scroll position yet, like if it's later in the _triggers Array. If it was already updated, it'll skip the processing anyway.
+
+      var scrub = trigger.getTween();
+
+      if (scrub) {
+        scrub.pause();
+        scrub._time = scrub._dur; // force the playhead to completion without rendering just so that when it resumes, it doesn't jump back in the .resetTo().
+
+        scrub._tTime = scrub._tDur;
+      }
+
+      isProxyScrolling = false;
+      trigger.animation.progress(trigger.progress, true);
+    },
+        render = function render(y, force) {
+      if (y !== currentY && !paused || force) {
+        smoothDuration && (content.style.transform = "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, " + y + ", 0, 1)"); //smoothDuration && (content.style.transform = "translateY(" + y + "px)"); // NOTE: when we used matrix3d() or set will-change: transform, it performed noticeably worse on iOS counter-intuitively!
+
+        delta = y - currentY;
+        currentY = y;
+        ScrollTrigger.isUpdating || ScrollTrigger.update();
+      }
+    },
+        scrollTop = function scrollTop(value) {
+      if (arguments.length) {
+        paused ? currentY = -value : render(-value);
+        scroll.y = -value; // don't use currentY because we must accurately track the delta variable (in render() method)
+
+        isProxyScrolling = true; // otherwise, if snapping was applied (or anything that attempted to SET the scroll proxy's scroll position), we'd set the scroll here which would then (on the next tick) update the content tween/ScrollTrigger which would try to smoothly animate to that new value, thus the scrub tween would impede the progress. So we use this flag to respond accordingly in the ScrollTrigger's onUpdate and effectively force the scrub to its end immediately.
+
+        scrollFunc(value);
+        return this;
+      }
+
+      return -currentY - scrollFunc.offset;
+    },
+        lastFocusElement,
+        _onFocusIn = function _onFocusIn(e) {
+      // when the focus changes, make sure that element is on-screen
+      wrapper.scrollTop = 0;
+
+      if (onFocusIn && onFocusIn(_this, e) === false) {
+        return;
+      }
+
+      ScrollTrigger.isInViewport(e.target) || e.target === lastFocusElement || _this.scrollTo(e.target, false, "center center");
+      lastFocusElement = e.target;
+    },
+        adjustParallaxPosition = function adjustParallaxPosition(triggers, createdAfterEffectWasApplied) {
+      var pins, start, dif, markers;
+      effects.forEach(function (st) {
+        pins = st.pins;
+        markers = st.markers;
+        triggers.forEach(function (trig) {
+          if ((trig.trigger === st.trigger || trig.pinnedContainer === st.trigger) && st !== trig) {
+            start = trig.start;
+            dif = (start - st.start - st.offset) / st.ratio - (start - st.start); // createdAfterEffectWasApplied && (dif -= (gsap.getProperty(st.trigger, "y") - st.startY) / st.ratio); // the effect applied a y offset, so if the ScrollTrigger was created after that, it'll be based on that position so we must compensate. Later we added code to ScrollTrigger to roll back in this situation anyway, so this isn't necessary. Saving it in case a situation arises where it comes in handy.
+
+            pins.forEach(function (p) {
+              return dif -= p.distance / st.ratio - p.distance;
+            });
+            trig.setPositions(start + dif, trig.end + dif);
+            trig.markerStart && markers.push(gsap.quickSetter([trig.markerStart, trig.markerEnd], "y", "px"));
+
+            if (trig.pin && trig.end > 0) {
+              dif = trig.end - trig.start;
+              pins.push({
+                start: trig.start,
+                end: trig.end,
+                distance: dif,
+                trig: trig
+              });
+              st.setPositions(st.start, st.end + dif);
+              st.vars.onRefresh(st);
+            }
+          }
+        });
+      });
+    },
+        onRefresh = function onRefresh() {
+      removeScroll();
+      requestAnimationFrame(removeScroll);
+
+      if (effects) {
+        // adjust all the effect start/end positions including any pins!
+        effects.forEach(function (st) {
+          var start = st.start,
+              end = st.auto ? Math.min(ScrollTrigger.maxScroll(st.scroller), st.end) : start + (st.end - start) / st.ratio,
+              offset = (end - st.end) / 2; // we split the difference so that it reaches its natural position in the MIDDLE of the viewport
+
+          start -= offset;
+          end -= offset;
+          st.offset = offset || 0.0001; // we assign at least a tiny value because we check in the onUpdate for .offset being set in order to apply values.
+
+          st.pins.length = 0;
+          st.setPositions(Math.min(start, end), Math.max(start, end));
+          st.vars.onRefresh(st);
+        });
+        adjustParallaxPosition(ScrollTrigger.sort());
+      }
+
+      tracker.reset();
+    },
+        restoreEffects = function restoreEffects() {
+      return effects && effects.forEach(function (st) {
+        return st.vars.onRefresh(st);
+      });
+    },
+        revertEffects = function revertEffects() {
+      effects && effects.forEach(function (st) {
+        return st.vars.onRefreshInit(st);
+      });
+      return restoreEffects;
+    },
+        effectValueGetter = function effectValueGetter(name, value, index, el) {
+      return function () {
+        var v = typeof value === "function" ? value(index, el) : value;
+        v || v === 0 || (v = el.getAttribute("data-" + name) || (name === "speed" ? 1 : 0));
+        el.setAttribute("data-" + name, v);
+        return v === "auto" ? v : parseFloat(v);
+      };
+    },
+        createEffect = function createEffect(el, speed, lag, index) {
+      var getSpeed = effectValueGetter("speed", speed, index, el),
+          getLag = effectValueGetter("lag", lag, index, el),
+          startY = gsap.getProperty(el, "y"),
+          cache = el._gsap,
+          ratio,
+          st,
+          autoSpeed,
+          scrub,
+          progressOffset,
+          yOffset,
+          initDynamicValues = function initDynamicValues() {
+        speed = getSpeed();
+        lag = getLag();
+        ratio = parseFloat(speed) || 1;
+        autoSpeed = speed === "auto";
+        progressOffset = autoSpeed ? 0 : 0.5;
+        scrub && scrub.kill();
+        scrub = lag && gsap.to(el, {
+          ease: _expo,
+          overwrite: false,
+          y: "+=0",
+          duration: lag
+        });
+
+        if (st) {
+          st.ratio = ratio;
+          st.autoSpeed = autoSpeed;
+        }
+      },
+          revert = function revert() {
+        cache.y = startY + "px";
+        cache.renderTransform(1);
+        initDynamicValues();
+      },
+          pins = [],
+          markers = [],
+          change = 0,
+          updateChange = function updateChange(self) {
+        if (autoSpeed) {
+          revert();
+
+          var auto = _autoDistance(el, _clamp(0, 1, -self.start / (self.end - self.start)));
+
+          change = auto.change;
+          yOffset = auto.offset;
+        } else {
+          change = (self.end - self.start) * (1 - ratio);
+          yOffset = 0;
+        }
+
+        pins.forEach(function (p) {
+          return change -= p.distance * (1 - ratio);
+        });
+        self.vars.onUpdate(self);
+        scrub && scrub.progress(1);
+      };
+
+      initDynamicValues();
+
+      if (ratio !== 1 || autoSpeed || scrub) {
+        st = ScrollTrigger.create({
+          trigger: autoSpeed ? el.parentNode : el,
+          scroller: wrapper,
+          scrub: true,
+          refreshPriority: -999,
+          // must update AFTER any other ScrollTrigger pins
+          onRefreshInit: revert,
+          onRefresh: updateChange,
+          onKill: function onKill(self) {
+            var i = effects.indexOf(self);
+            i >= 0 && effects.splice(i, 1);
+            revert();
+          },
+          onUpdate: function onUpdate(self) {
+            var y = startY + change * (self.progress - progressOffset),
+                i = pins.length,
+                extraY = 0,
+                pin,
+                scrollY,
+                end;
+
+            if (self.offset) {
+              // wait until the effects are adjusted.
+              if (i) {
+                // pinning must be handled in a special way because when pinned, slope changes to 1.
+                scrollY = -currentY; // -scroll.y;
+
+                end = self.end;
+
+                while (i--) {
+                  pin = pins[i];
+
+                  if (pin.trig.isActive || scrollY >= pin.start && scrollY <= pin.end) {
+                    // currently pinned so no need to set anything
+                    if (scrub) {
+                      pin.trig.progress += pin.trig.direction < 0 ? 0.001 : -0.001; // just to make absolutely sure that it renders (if the progress didn't change, it'll skip)
+
+                      pin.trig.update(0, 0, 1);
+                      scrub.resetTo("y", parseFloat(cache.y), -delta, true);
+                      startupPhase && scrub.progress(1);
+                    }
+
+                    return;
+                  }
+
+                  scrollY > pin.end && (extraY += pin.distance);
+                  end -= pin.distance;
+                }
+
+                y = startY + extraY + change * ((gsap.utils.clamp(self.start, self.end, scrollY) - self.start - extraY) / (end - self.start) - progressOffset);
+              }
+
+              y = _round(y + yOffset);
+              markers.length && !autoSpeed && markers.forEach(function (setter) {
+                return setter(y - extraY);
+              });
+
+              if (scrub) {
+                scrub.resetTo("y", y, -delta, true);
+                startupPhase && scrub.progress(1);
+              } else {
+                cache.y = y + "px";
+                cache.renderTransform(1);
+              }
+            }
+          }
+        });
+        updateChange(st);
+        gsap.core.getCache(st.trigger).stRevert = revertEffects; // if user calls ScrollSmoother.create() with effects and THEN creates a ScrollTrigger on the same trigger element, the effect would throw off the start/end positions thus we needed a way to revert things when creating a new ScrollTrigger in that scenario, so we use this stRevert property of the GSCache inside ScrollTrigger.
+
+        st.startY = startY;
+        st.pins = pins;
+        st.markers = markers;
+        st.ratio = ratio;
+        st.autoSpeed = autoSpeed;
+        el.style.willChange = "transform";
+      }
+
+      return st;
+    };
+
+    ScrollTrigger.addEventListener("refresh", onRefresh);
+    gsap.delayedCall(0.5, function () {
+      return startupPhase = 0;
+    });
+    this.scrollTop = scrollTop;
+
+    this.scrollTo = function (target, smooth, position) {
+      var p = gsap.utils.clamp(0, ScrollTrigger.maxScroll(_win), isNaN(target) ? _this.offset(target, position) : +target);
+      !smooth ? scrollTop(p) : paused ? gsap.to(_this, {
+        duration: smoothDuration,
+        scrollTop: p,
+        overwrite: "auto",
+        ease: _expo
+      }) : scrollFunc(p);
+    };
+
+    this.offset = function (target, position) {
+      target = _toArray(target)[0];
+      var cssText = target.style.cssText,
+          // because if there's an effect applied, we revert(). We need to restore.
+      st = ScrollTrigger.create({
+        trigger: target,
+        start: position || "top top"
+      }),
+          y;
+      effects && adjustParallaxPosition([st], true);
+      y = st.start;
+      st.kill(false);
+      target.style.cssText = cssText;
+      gsap.core.getCache(target).uncache = 1;
+      return y;
+    };
+
+    function refreshHeight() {
+      height = content.clientHeight;
+      content.style.overflow = "visible";
+      _body.style.height = height + "px";
+      return height - _win.innerHeight;
+    }
+
+    this.content = function (element) {
+      if (arguments.length) {
+        var newContent = _toArray(element || "#smooth-content")[0] || _body.children[0];
+
+        if (newContent !== content) {
+          content = newContent;
+          contentCSS = content.getAttribute("style") || "";
+          gsap.set(content, {
+            overflow: "visible",
+            width: "100%",
+            boxSizing: "border-box"
+          });
+        }
+
+        return this;
+      }
+
+      return content;
+    };
+
+    this.wrapper = function (element) {
+      if (arguments.length) {
+        wrapper = _toArray(element || "#smooth-wrapper")[0] || _wrap(content);
+        wrapperCSS = wrapper.getAttribute("style") || "";
+        refreshHeight();
+        gsap.set(wrapper, smoothDuration ? {
+          overflow: "hidden",
+          position: "fixed",
+          height: "100%",
+          width: "100%",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0
+        } : {
+          overflow: "visible",
+          position: "relative",
+          width: "100%",
+          height: "auto",
+          top: "auto",
+          bottom: "auto",
+          left: "auto",
+          right: "auto"
+        });
+        return this;
+      }
+
+      return wrapper;
+    };
+
+    this.effects = function (targets, config) {
+      var _effects;
+
+      effects || (effects = []);
+
+      if (!targets) {
+        return effects.slice(0);
+      }
+
+      targets = _toArray(targets);
+      targets.forEach(function (target) {
+        var i = effects.length;
+
+        while (i--) {
+          if (effects[i].trigger === target) {
+            effects[i].kill();
+            effects.splice(i, 1);
+          }
+        }
+      });
+      config = config || {};
+      var _config = config,
+          speed = _config.speed,
+          lag = _config.lag,
+          effectsToAdd = [],
+          i,
+          st;
+
+      for (i = 0; i < targets.length; i++) {
+        st = createEffect(targets[i], speed, lag, i);
+        st && effectsToAdd.push(st);
+      }
+
+      (_effects = effects).push.apply(_effects, effectsToAdd);
+
+      return effectsToAdd;
+    };
+
+    this.sections = function (targets, config) {
+      var _sections;
+
+      sections || (sections = []);
+
+      if (!targets) {
+        return sections.slice(0);
+      }
+
+      var newSections = _toArray(targets).map(function (el) {
+        return ScrollTrigger.create({
+          trigger: el,
+          start: "top 120%",
+          end: "bottom -20%",
+          onToggle: function onToggle(self) {
+            el.style.opacity = self.isActive ? "1" : "0";
+            el.style.pointerEvents = self.isActive ? "all" : "none";
+          }
+        });
+      });
+
+      config && config.add ? (_sections = sections).push.apply(_sections, newSections) : sections = newSections.slice(0);
+      return newSections;
+    };
+
+    this.content(vars.content);
+    this.wrapper(vars.wrapper);
+
+    this.render = function (y) {
+      return render(y || y === 0 ? y : currentY);
+    };
+
+    this.getVelocity = function () {
+      return tracker.getVelocity(-currentY);
+    };
+
+    ScrollTrigger.scrollerProxy(wrapper, {
+      scrollTop: scrollTop,
+      scrollHeight: function scrollHeight() {
+        return refreshHeight() && _body.scrollHeight;
+      },
+      fixedMarkers: vars.fixedMarkers !== false && !!smoothDuration,
+      content: content,
+      getBoundingClientRect: function getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: _win.innerWidth,
+          height: _win.innerHeight
+        };
+      }
+    });
+    ScrollTrigger.defaults({
+      scroller: wrapper
+    });
+    var existingScrollTriggers = ScrollTrigger.getAll().filter(function (st) {
+      return st.scroller === _win || st.scroller === wrapper;
+    });
+    existingScrollTriggers.forEach(function (st) {
+      return st.revert(true);
+    }); // in case it's in an environment like React where child components that have ScrollTriggers instantiate BEFORE the parent that does ScrollSmoother.create(...);
+
+    mainST = ScrollTrigger.create({
+      animation: gsap.to(scroll, {
+        y: function y() {
+          return -refreshHeight();
+        },
+        ease: "none",
+        data: "ScrollSmoother",
+        duration: 100,
+        // for added precision
+        onUpdate: function onUpdate() {
+          var force = isProxyScrolling;
+
+          if (force) {
+            scroll.y = currentY;
+            killScrub(mainST);
+          }
+
+          render(scroll.y, force);
+          updateVelocity();
+          _onUpdate && !paused && _onUpdate(_this);
+        }
+      }),
+      onRefreshInit: function onRefreshInit() {
+        recordedRefreshScroll = currentY;
+        scroll.y = wrapper.scrollTop = 0; // set wrapper.scrollTop to 0 because in some very rare situations, the browser will auto-set that, like if there's a hash in the link or changing focus to an off-screen input
+      },
+      id: "ScrollSmoother",
+      scroller: _win,
+      invalidateOnRefresh: true,
+      start: 0,
+      refreshPriority: -9999,
+      // because all other pins, etc. should be calculated first before this figures out the height of the body. BUT this should also update FIRST so that the scroll position on the proxy is up-to-date when all the ScrollTriggers calculate their progress! -9999 is a special number that ScrollTrigger looks for to handle in this way.
+      end: refreshHeight,
+      onScrubComplete: function onScrubComplete() {
+        tracker.reset();
+        onStop && onStop(_this);
+      },
+      scrub: smoothDuration || true,
+      onRefresh: function onRefresh(self) {
+        killScrub(self);
+        scroll.y = -scrollFunc();
+        render(scroll.y);
+        startupPhase || self.animation.progress(gsap.utils.clamp(0, 1, recordedRefreshScroll / -self.end));
+      }
+    });
+
+    this.smooth = function (value) {
+      smoothDuration = value;
+      return arguments.length ? mainST.scrubDuration(value) : mainST.getTween() ? mainST.getTween().duration() : 0;
+    };
+
+    mainST.getTween() && (mainST.getTween().vars.ease = vars.ease || _expo);
+    this.scrollTrigger = mainST;
+    vars.effects && this.effects(vars.effects === true ? "[data-speed], [data-lag]" : vars.effects, {});
+    vars.sections && this.sections(vars.sections === true ? "[data-section]" : vars.sections);
+    existingScrollTriggers.forEach(function (st) {
+      st.vars.scroller = wrapper;
+      st.init(st.vars, st.animation);
+    });
+
+    this.paused = function (value, allowNestedScroll) {
+      if (arguments.length) {
+        if (!!paused !== value) {
+          if (value) {
+            // pause
+            mainST.getTween() && mainST.getTween().pause();
+            scrollFunc(-currentY);
+            tracker.reset();
+            pausedNormalizer = ScrollTrigger.normalizeScroll();
+            pausedNormalizer && pausedNormalizer.disable(); // otherwise the normalizer would try to scroll the page on things like wheel events.
+
+            paused = ScrollTrigger.observe({
+              preventDefault: true,
+              type: "wheel,touch,scroll",
+              debounce: false,
+              allowClicks: true,
+              onChangeY: function onChangeY() {
+                return scrollTop(-currentY);
+              } // refuse to scroll
+
+            });
+            paused.nested = _inputObserver(_docEl, "wheel,touch,scroll", true, allowNestedScroll !== false); // allow nested scrolling, like modals
+          } else {
+            // resume
+            paused.nested.kill();
+            paused.kill();
+            paused = 0;
+            pausedNormalizer && pausedNormalizer.enable();
+            mainST.progress = (-currentY - mainST.start) / (mainST.end - mainST.start);
+            killScrub(mainST);
+          }
+        }
+
+        return this;
+      }
+
+      return !!paused;
+    };
+
+    this.kill = function () {
+      _this.paused(false);
+
+      killScrub(mainST);
+      mainST.kill();
+      var triggers = (effects || []).concat(sections || []),
+          i = triggers.length;
+
+      while (i--) {
+        // make sure we go backwards because the onKill() will effects.splice(index, 1) and we don't want to skip
+        triggers[i].kill();
+      }
+
+      ScrollTrigger.scrollerProxy(wrapper);
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
+
+      _body.style.removeProperty("height");
+
+      wrapper.style.cssText = wrapperCSS;
+      content.style.cssText = contentCSS;
+      var defaults = ScrollTrigger.defaults({});
+      defaults && defaults.scroller === wrapper && ScrollTrigger.defaults({
+        scroller: _win
+      });
+      _this.normalizer && ScrollTrigger.normalizeScroll(false);
+      clearInterval(intervalID);
+      _mainInstance = null;
+
+      _win.removeEventListener("focusin", _onFocusIn);
+    };
+
+    this.refresh = function (soft, force) {
+      return mainST.refresh(soft, force);
+    };
+
+    if (normalizeScroll) {
+      this.normalizer = ScrollTrigger.normalizeScroll(normalizeScroll === true ? {
+        debounce: true,
+        content: content
+      } : normalizeScroll);
+    }
+
+    ScrollTrigger.config(vars); // in case user passes in ignoreMobileResize for example
+
+    "overscrollBehavior" in _win.getComputedStyle(_body) && gsap.set([_body, _docEl], {
+      overscrollBehavior: "none"
+    });
+    "scrollBehavior" in _win.getComputedStyle(_body) && gsap.set([_body, _docEl], {
+      scrollBehavior: "auto"
+    }); // if the user hits the tab key (or whatever) to shift focus to an element that's off-screen, center that element.
+
+    _win.addEventListener("focusin", _onFocusIn);
+
+    intervalID = setInterval(updateVelocity, 250);
+    _doc.readyState === "loading" || requestAnimationFrame(function () {
+      return ScrollTrigger.refresh();
+    });
+  }
+
+  ScrollSmoother.register = function register(core) {
+    if (!_coreInitted) {
+      gsap = core || _getGSAP();
+
+      if (_windowExists() && window.document) {
+        _win = window;
+        _doc = document;
+        _docEl = _doc.documentElement;
+        _body = _doc.body;
+      }
+
+      if (gsap) {
+        _toArray = gsap.utils.toArray;
+        _clamp = gsap.utils.clamp;
+        _expo = gsap.parseEase("expo");
+        ScrollTrigger = gsap.core.globals().ScrollTrigger;
+        gsap.core.globals("ScrollSmoother", ScrollSmoother); // must register the global manually because in Internet Explorer, functions (classes) don't have a "name" property.
+        //	gsap.ticker.lagSmoothing(50, 100); // generally people don't want things to jump (honoring smoothness over time is better with smooth scrolling)
+
+        if (_body && ScrollTrigger) {
+          _root = [_win, _doc, _docEl, _body];
+          _getVelocityProp = ScrollTrigger.core._getVelocityProp;
+          _inputObserver = ScrollTrigger.core._inputObserver;
+          ScrollSmoother.refresh = ScrollTrigger.refresh;
+          _coreInitted = 1;
+        }
+      }
+    }
+
+    return _coreInitted;
+  };
+
+  _createClass(ScrollSmoother, [{
+    key: "progress",
+    get: function get() {
+      return this.scrollTrigger.animation._time / 100;
+    }
+  }]);
+
+  return ScrollSmoother;
+}();
+ScrollSmoother.version = "3.10.4";
+
+ScrollSmoother.create = function (vars) {
+  return _mainInstance && vars && _mainInstance.content() === _toArray(vars.content)[0] ? _mainInstance : new ScrollSmoother(vars);
+};
+
+ScrollSmoother.get = function () {
+  return _mainInstance;
+};
+
+_getGSAP() && gsap.registerPlugin(ScrollSmoother);
 
 
 /***/ }),
@@ -15593,18 +16831,25 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _modules_scroll__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/scroll */ "./src/scripts/modules/scroll.js");
-/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
-/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
-/* harmony import */ var _modules_portfolio_init__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/portfolio-init */ "./src/scripts/modules/portfolio-init.js");
+/* harmony import */ var _modules_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/loader */ "./src/scripts/modules/loader.js");
+/* harmony import */ var _modules_hero_arrow_down__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/hero-arrow-down */ "./src/scripts/modules/hero-arrow-down.js");
+/* harmony import */ var _modules_anchor_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/anchor-link */ "./src/scripts/modules/anchor-link.js");
+/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
+/* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
+/* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
+/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
+/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
+/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
+/* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
+
+
  //import "./modules/smooth-scroll";
 
+ //import "./modules/nav";
 
 
 
@@ -15612,10 +16857,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-/*document.addEventListener('DOMContentLoaded', () => {
-  console.log('LOADED');
-  document.querySelector('.hero video').play();
-});*/
+ //import "./modules/portfolio-init";
+
+
 })();
 
 /******/ })()

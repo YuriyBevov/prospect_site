@@ -5,5 +5,6 @@ mixin section-title(data)
 
   if data.type === 'dublicated'
     .section-title.section-title--dublicated
-      span= data.dublicate
+
       h2= data.title
+        span(aria-hidden="true")= data.dublicate

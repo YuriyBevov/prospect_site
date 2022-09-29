@@ -1,10 +1,10 @@
-
-
 const map = document.querySelector('#yandex_map');
-console.log(map);
 
 if(map) {
-  ymaps.ready(init);
+  window.addEventListener('load', () => {
+    ymaps.ready(init);
+  });
+
   function init(){
       // Создание карты.
       let myMap = new ymaps.Map("yandex_map", {

@@ -1,30 +1,30 @@
 .section-title {
   @extend .flex-wrap;
+  margin-bottom: clamp(30px, 5vw, 80px);
 
   h2 {
     position: relative;
     font-weight: 700;
     font-size: clamp(36px, 7vw, 54px);
     margin: 0 auto;
-    margin-bottom: clamp(30px, 5vw, 80px);
-    z-index: 2;
   }
 
   &--dublicated {
     position: relative;
     margin-top: clamp(40px, 6vw, 100px);
 
-    span {
+    & span {
       position: absolute;
       top: 0;
-      right: 0;
-      transform: translateY(-50%);
+      left: 50%;
+      transform: translate(50%, -50%);
       font-weight: 700;
       font-size: clamp(70px, 12vw, 214px);
 
       color: var(--secondary);
-      z-index: 1;
-      //will-change: auto;
+      z-index: -1;
+      will-change: auto;
+      width: 2500px;
     }
   }
 }
