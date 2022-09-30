@@ -1,9 +1,9 @@
-import "./modules/loader";
+//import "./modules/loader";
+import "./vue/main.js";
+//import "./modules/swiper.js";
 import "./modules/hero-arrow-down";
 import "./modules/anchor-link";
-//import "./modules/smooth-scroll";
 import "./modules/header";
-//import "./modules/nav";
 import "./modules/navbar";
 import "./modules/viewport";
 import "./modules/video";

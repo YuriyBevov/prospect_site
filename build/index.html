@@ -12,7 +12,7 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=56c6be8d-b5f9-45d5-8ffa-7fdb884fcf53&amp;lang=ru_RU"></script>
   </head>
   <body>
-    <div class="page-overlay" style="position:fixed;top:0;left:0;display:flex;align-items:center;justify-content:center;width: 100vw;height: 100vh;background-color:var(--white);z-index: 101;"><span class="loader"></span></div>
+    <!--include ../components/page-overlay-->
     <header class="main-header">
       <div class="container-fluid main-header__container"><a class="main-header-logo" href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50"></a>
         <nav class="nav">
@@ -98,46 +98,30 @@
                 <div class="section-title section-title--dublicated">
                   <h2>Портфолио<span aria-hidden="true">Портфолио</span></h2>
                 </div>
-          <div class="portfolio__sort">
-            <div class="portfolio__sort-field"><span>Формат:</span>
-              <select class="custom-select" id="source-type">
-                <option value="default-source" selected>Все</option>
-                <option value="image">Фото</option>
-                <option value="video">Видео</option>
-              </select>
-            </div>
-            <!--.portfolio__sort-field
-            span Тип:
-            select(id="product-type").custom-select
-              option(value="default-type" selected) Все
-              option(value="out") Внешняя подсветка
-              option(value="in") Внутренняя подсветка
-            
-            -->
-          </div>
-          <ul class="portfolio__list">
-            <li class="portfolio__list-item hidden portfolio__list-item--light" data-product-type="out" data-source-type="image"><a href="#" aria-label="Посмотреть">
-                <picture>
-                  <source srcset="./assets/img/portfolio-item-1@1x.webp 1x, ./assets/img/portfolio-item-1@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-1@1x.jpg" srcset="./assets/img/portfolio-item-1.jpg 2x" alt="Описание" width="789" height="589">
-                </picture></a></li>
-            <li class="portfolio__list-item hidden portfolio__list-item--light" data-product-type="in" data-source-type="image"><a href="#" aria-label="Посмотреть">
-                <picture>
-                  <source srcset="./assets/img/portfolio-item-2@1x.webp 1x, ./assets/img/portfolio-item-2@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-2@1x.jpg" srcset="./assets/img/portfolio-item-2.jpg 2x" alt="Описание" width="789" height="589">
-                </picture></a></li>
-            <li class="portfolio__list-item hidden portfolio__list-item--light" data-product-type="out" data-source-type="image"><a href="#" aria-label="Посмотреть">
-                <picture>
-                  <source srcset="./assets/img/portfolio-item-3@1x.webp 1x, ./assets/img/portfolio-item-3@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-3@1x.jpg" srcset="./assets/img/portfolio-item-3.jpg 2x" alt="Описание" width="789" height="589">
-                </picture></a></li>
-            <li class="portfolio__list-item hidden portfolio__list-item--light" data-product-type="in" data-source-type="image"><a href="#" aria-label="Посмотреть">
-                <picture>
-                  <source srcset="./assets/img/portfolio-item-4@1x.webp 1x, ./assets/img/portfolio-item-4@2x.webp 2x" type="image/webp"><img src="./assets/img/portfolio-item-4@1x.jpg" srcset="./assets/img/portfolio-item-4.jpg 2x" alt="Описание" width="789" height="589">
-                </picture></a></li>
-          </ul>
-                <button class="portfolio__more main-btn" type="button"><span>Больше работ</span>
-                  <svg width="24" height="24">
-                    <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
-                  </svg>
-                </button>
+          <div id="portfolio-app"></div>
+          <!--include ../components/portfolio-sort
+          ul.portfolio__list
+            each item in portfolio
+              li.portfolio__list-item(data-type= item.sourceType data-tags= item.tags)
+                a(href="#" aria-label="Посмотреть")
+                  if item.sourceType === 'image'
+                    picture
+                      source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
+                      img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
+          
+                  if item.sourceType === 'video'
+                    video(muted loop)
+                      source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
+                      source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+                      source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
+          
+          +main-btn({
+            type: 'button',
+            btnType: 'button',
+            title: 'Больше работ',
+            cls: 'portfolio__more load-more-btn'
+          })
+          -->
         </div>
       </section>
       <section class="features" id="features">

@@ -1,0 +1,52 @@
+.tag-list {
+  overflow: hidden;
+
+  .swiper-slide {
+    width: fit-content;
+    padding: 10px 0;
+  }
+
+  .tag-label {
+    position: relative;
+    @extend .button-default;
+    @extend .flex-centered-content;
+
+    position: relative;
+    font-size: 16px;
+    line-height: 1;
+    height: 32px;
+    padding: 2px 15px;
+    padding-right: 43px;
+    color: var(--main-color);
+    background: #F6F6F6;
+    border-radius: 65px;
+
+    &::after {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      content: '';
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--white);
+    }
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      transform: translateY(-50%);
+      content: '';
+      width: 24px;
+      height: 24px;
+
+      background-image: url("../assets/sprite.svg#icon-close");
+      background-repeat: no-repeat;
+      background-size: cover;
+      z-index: 3;
+    }
+
+    @extend .hover-opacity-transition;
+  }
+}

@@ -1,0 +1,4 @@
+mixin filter-control(data)
+  fieldset.filter-control
+    input(type="checkbox" class= data.cls ? data.cls : null id= data.id checked= data.checked ? data.checked : false disabled= data.disabled ? data.disabled : false data-sort-type= data.sortType ? data.sortType : null).filter-control
+    label(for= data.id tabindex="0").filter-control-label= data.label

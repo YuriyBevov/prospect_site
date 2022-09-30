@@ -188,3 +188,47 @@
     background-color: var(--white-color);
   }
 }
+
+.main-checkbox {
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label {
+    position: relative;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+
+    padding-left: 24px;
+
+    color: var(--white);
+
+    cursor: pointer;
+
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        content: '';
+
+        width: 16px;
+        height: 16px;
+
+        border: 1px solid var(--white);
+        border-radius: 0;
+        background-color: transparent;
+
+        transition: border-color var(--main-transition);
+    }
+  }
+
+  input[type="checkbox"]:checked + label::before {
+      background-image: url('../assets/img/icon-check.svg');
+      background-size: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+}

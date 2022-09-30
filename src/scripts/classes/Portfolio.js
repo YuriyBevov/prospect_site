@@ -1,92 +1,62 @@
-const SourceType = {
-  DEFAULT: 'default-source',
-  IMAGE: 'image',
-  VIDEO: 'video'
-}
+import {gsap} from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 
-const ProductType = {
-  DEFAULT: 'default-type',
-  OUT: 'out',
-  IN: 'in'
-}
+gsap.registerPlugin(ScrollTrigger);
 
 export class Portfolio {
+  #container = null;
   #items = null;
-  #moreBtn = null;
-  #sortItems = null;
-  #sourceType = SourceType.DEFAULT;
-  #productType = ProductType.DEFAULT;
-  #step = 4;
-  #current = 0;
+  #loadBtn = null;
+  #step = 2;
+  #current = this.#step;
 
+  constructor(container) {
+    this.#container = container;
+    this.#items = this.#container.querySelectorAll('li');
+    this.#loadBtn = document.querySelector('.load-more-btn');
 
-  constructor(data) {
-    this.#items = data.items;
-    this.#moreBtn = data.moreBtn;
-    this.#sortItems = data.sortItems;
     this.#init();
   }
 
   #init() {
-    this.#moreBtn.addEventListener('click', this.#showMore);
-    this.#sortItems.forEach(item => item.addEventListener('click', this.#sort) );
-    this.#fillGallery();
-    console.log(this.#sourceType, this.#productType)
-  }
-
-  #fillGallery = () => {
-    console.log(this.#sourceType, this.#productType)
-    let count = null;
-
-    if(this.#sourceType !== SourceType.DEFAULT || this.#productType !== ProductType.DEFAULT) {
-      console.log('!==');
-
-
-
-    }
-
-    if(this.#current + this.#step <= this.#items.length) {
-      count = this.#current + this.#step;
+    // отрисовка эл-в
+    this.#fillPortfolioList();
+    // вешаем обработчик на кнопку с проверкой нужна ли она
+    if(this.#items.length > this.#current + this.#step) {
+      this.#loadBtn.addEventListener('click', this.#onClickLoadMoreItems);
     } else {
-      count = this.#items.length;
+      this.#loadMoreBtnDisabling();
     }
+    // вешаем обработчик на фильтр
+    //this.#filterInit();
+    // вешаем обработчик на сортировку по тэгам
 
-    for(let i = this.#current; i < count; i++) {
-      this.#items[i].classList.remove('hidden');
-    }
-
-    this.#current = count;
   }
 
-  #sort = (evt) => {
-    if(evt.target.dataset.value === 'image') {
-      this.#sourceType = SourceType.IMAGE;
-    }
-
-    if(evt.target.dataset.value === 'video') {
-      this.#sourceType = SourceType.VIDEO;
-    }
-
-    if(evt.target.dataset.value === 'default-source') {
-      this.#sourceType = SourceType.DEFAULT
-    }
-
-    if(evt.target.dataset.value === 'out') {
-      this.#productType = ProductType.OUT;
-    }
-
-    if(evt.target.dataset.value === 'in') {
-      this.#productType = ProductType.IN;
-    }
-
-    if(evt.target.dataset.value === 'default-type') {
-      this.#productType = ProductType.DEFAULT;
-    }
-
-    this.#fillGallery();
+  #fillPortfolioList() {
+    this.#items.forEach((item,index) => {
+      if(index > this.#current - 1) {
+        item.classList.add('hidden');
+      } else {
+        item.classList.contains('hidden') ?
+        item.classList.remove('hidden') : null;
+      }
+    });
   }
 
-  #showMore = () => {
-    console.log('more');
+  #onClickLoadMoreItems = () => {
+    if(this.#items.length > this.#current + this.#step) {
+      this.#current += this.#step;
+    } else {
+      this.#current = this.#items.length;
+      this.#loadMoreBtnDisabling();
+    }
+
+    this.#fillPortfolioList();
+    ScrollTrigger.refresh();
+  }
+
+  #loadMoreBtnDisabling = () => {
+    this.#loadBtn.setAttribute('disabled', true);
   }
 }

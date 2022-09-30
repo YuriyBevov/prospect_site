@@ -1,0 +1,44 @@
+include ../mixins/filter-control
+
+.filter
+  span Сортировка:
+  .filter-container
+    .filter-select.filter-select--type
+      +filter-control({
+        id: 'portfolio-sort_' + 1,
+        label: 'Все',
+        checked: true,
+        disabled: true,
+        sortType: 'all',
+        cls: 'filter-control--all'
+      })
+
+      //+filter-control({
+        id: 'portfolio-sort_' + 2,
+        label: 'Фото',
+        })
+
+        +filter-control({
+          id: 'portfolio-sort_' + 3,
+          label: 'Видео',
+        })
+
+        +filter-control({
+          id: 'portfolio-sort_' + 4,
+          label: 'Наружная реклама',
+        })
+
+        +filter-control({
+          id: 'portfolio-sort_' + 5,
+          label: 'Контражур',
+        })
+
+        +filter-control({
+          id: 'portfolio-sort_' + 6,
+          label: 'Внешние диоды',
+        })
+
+  .filter-selected
+    button(type="button") Наружная реклама
+    button(type="button") Контражур
+    button(type="button") Внешние диоды

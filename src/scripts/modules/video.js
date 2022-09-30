@@ -2,7 +2,7 @@ const videos = document.querySelectorAll('video');
 
 if(videos) {
   videos.forEach(video => {
-
+    console.log(video)
     const observer = new IntersectionObserver(entries => {
       entries.forEach( entry => {
         if(entry.isIntersecting) {

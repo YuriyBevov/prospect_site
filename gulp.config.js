@@ -4,7 +4,7 @@ const BUILD_PATH = 'build/';
 let isProd = false; // dev by default
 let isHtmlMin = false; // html minify
 let isPugEnabled = true; // html by default
-let isVueEnabled = false; // vue.js
+let isVueEnabled = true; // vue.js
 
 const PATHS = {
   fonts: {

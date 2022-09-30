@@ -1,73 +1,6 @@
 include ../mixins/section-title
 include ../mixins/main-btn
-
--
-  const portfolio = [
-    {
-      sourceType: 'image',
-      productType: 'out',
-      source: 'portfolio-item-1',
-      desc: 'Описание',
-      overlay: 'light'
-    },
-    {
-      sourceType: 'image',
-      productType: 'in',
-      source: 'portfolio-item-2',
-      desc: 'Описание',
-      overlay: 'light'
-    },
-    {
-      sourceType: 'image',
-      productType: 'out',
-      source: 'portfolio-item-3',
-      desc: 'Описание',
-      overlay: 'light'
-    },
-    /*{
-      sourceType: 'video',
-      productType: 'in',
-      source: 'ML01',
-      desc: 'Афоня.рф',
-      overlay: 'black'
-    },*/
-    {
-      sourceType: 'image',
-      productType: 'in',
-      source: 'portfolio-item-4',
-      desc: 'Описание',
-      overlay: 'light'
-    },
-    /*{
-      sourceType: 'video',
-      productType: 'in',
-      source: 'ML02',
-      desc: 'Описание',
-      overlay: 'dark'
-    },*/
-    /*{
-      sourceType: 'video',
-      productType: 'out',
-      source: 'ML03',
-      desc: 'Описание',
-      overlay: 'dark'
-    },
-    {
-      sourceType: 'video',
-      productType: 'out',
-      source: 'ML04',
-      desc: 'Описание',
-      overlay: 'dark'
-    },
-
-    {
-      sourceType: 'image',
-      productType: 'in',
-      source: 'portfolio-item-3',
-      desc: 'Описание',
-      overlay: 'light'
-    },*/
-  ]
+include ../content/portfolio
 
 section.portfolio#portfolio
   .container.portfolio__container
@@ -77,39 +10,27 @@ section.portfolio#portfolio
       dublicate: 'Портфолио'
     })
 
-    .portfolio__sort
-      .portfolio__sort-field
-        span Формат:
-        select(id="source-type").custom-select
-          option(value="default-source" selected) Все
-          option(value="image") Фото
-          option(value="video") Видео
+    #portfolio-app
+    //include ../components/portfolio-sort
 
-      //.portfolio__sort-field
-        span Тип:
-        select(id="product-type").custom-select
-          option(value="default-type" selected) Все
-          option(value="out") Внешняя подсветка
-          option(value="in") Внутренняя подсветка
+      ul.portfolio__list
+        each item in portfolio
+          li.portfolio__list-item(data-type= item.sourceType data-tags= item.tags)
+            a(href="#" aria-label="Посмотреть")
+              if item.sourceType === 'image'
+                picture
+                  source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
+                  img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
 
-    ul.portfolio__list
-      each item in portfolio
-        li.portfolio__list-item.hidden(data-product-type= item.productType data-source-type= item.sourceType class= item.overlay === "light" ? 'portfolio__list-item--light' : 'portfolio__list-item--dark')
-          a(href="#" aria-label="Посмотреть")
-            if item.sourceType === 'image'
-              picture
-                source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
-                img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
+              if item.sourceType === 'video'
+                video(muted loop)
+                  source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
+                  source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
+                  source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
 
-            if item.sourceType === 'video'
-              video(muted loop)
-                source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
-                source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
-                source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
-
-    +main-btn({
-      type: 'button',
-      btnType: 'button',
-      title: 'Больше работ',
-      cls: 'portfolio__more'
-    })
+      +main-btn({
+        type: 'button',
+        btnType: 'button',
+        title: 'Больше работ',
+        cls: 'portfolio__more load-more-btn'
+      })
