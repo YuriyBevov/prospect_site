@@ -8,10 +8,9 @@
 
   .tag-label {
     position: relative;
-    @extend .button-default;
-    @extend .flex-centered-content;
+    @extend .flex-wrap;
+    align-items: center;
 
-    position: relative;
     font-size: 16px;
     line-height: 1;
     height: 32px;
@@ -21,7 +20,8 @@
     background: #F6F6F6;
     border-radius: 65px;
 
-    &::after {
+    button {
+      @extend .button-default;
       position: absolute;
       top: 2px;
       right: 2px;
@@ -30,23 +30,29 @@
       height: 28px;
       border-radius: 50%;
       background-color: var(--white);
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translate(-50%, -50%);
+        content: "";
+        width: 24px;
+        height: 24px;
+        background-image: url(../assets/sprite.svg#icon-close);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      @extend .hover-opacity-transition;
     }
-
-    &::before {
-      position: absolute;
-      top: 50%;
-      right: 8px;
-      transform: translateY(-50%);
-      content: '';
-      width: 24px;
-      height: 24px;
-
-      background-image: url("../assets/sprite.svg#icon-close");
-      background-repeat: no-repeat;
-      background-size: cover;
-      z-index: 3;
-    }
-
-    @extend .hover-opacity-transition;
   }
 }

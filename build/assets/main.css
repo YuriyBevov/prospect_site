@@ -3156,7 +3156,7 @@ main {
   margin-bottom: clamp(40px, 6vw, 70px);
 }
 
-.flex-wrap, .main-footer__info, .main-footer__container, .main-header__container, .filter-control, .filter-opener, .form__content fieldset:first-child, .section-title {
+.flex-wrap, .main-footer__info, .main-footer__container, .main-header__container, .tag-list .tag-label, .filter-control, .filter-opener, .form__content fieldset:first-child, .section-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3201,14 +3201,14 @@ main {
   object-fit: contain;
 }
 
-.button-default, #yandex_map .zoom-btns .zoom-btn, .tag-list .tag-label, .filter-opener {
+.button-default, #yandex_map .zoom-btns .zoom-btn, .tag-list .tag-label button, .filter-opener {
   border: 0;
   padding: 0;
   background-color: transparent;
   cursor: pointer;
 }
 
-.flex-centered-content, .main-footer__info a, #yandex_map .zoom-btns .zoom-btn, .callback__side, .hero__action a, .tag-list .tag-label, .main-btn {
+.flex-centered-content, .main-footer__info a, #yandex_map .zoom-btns .zoom-btn, .callback__side, .hero__action a, .main-btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3220,7 +3220,7 @@ main {
   justify-content: center;
 }
 
-.flex-wrap, .main-footer__info, .main-footer__container, .main-header__container, .filter-control, .filter-opener, .form__content fieldset:first-child, .section-title {
+.flex-wrap, .main-footer__info, .main-footer__container, .main-header__container, .tag-list .tag-label, .filter-control, .filter-opener, .form__content fieldset:first-child, .section-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3326,13 +3326,13 @@ main {
   clip: rect(0 0 0 0);
 }
 
-.hover-opacity-transition, .main-footer__info a, .nav__list-item a, .hero__action a, .tag-list .tag-label, .filter-opener, .main-btn {
+.hover-opacity-transition, .main-footer__info a, .nav__list-item a, .hero__action a, .tag-list .tag-label button, .filter-opener, .main-btn {
   -webkit-transition: opacity var(--main-transition);
   -o-transition: opacity var(--main-transition);
   transition: opacity var(--main-transition);
 }
 @media (min-width: 961px) {
-  .hover-opacity-transition:hover, .main-footer__info a:hover, .nav__list-item a:hover, .hero__action a:hover, .tag-list .tag-label:hover, .filter-opener:hover, .main-btn:hover, .hover-opacity-transition:focus, .main-footer__info a:focus, .nav__list-item a:focus, .hero__action a:focus, .tag-list .tag-label:focus, .filter-opener:focus, .main-btn:focus {
+  .hover-opacity-transition:hover, .main-footer__info a:hover, .nav__list-item a:hover, .hero__action a:hover, .tag-list .tag-label button:hover, .filter-opener:hover, .main-btn:hover, .hover-opacity-transition:focus, .main-footer__info a:focus, .nav__list-item a:focus, .hero__action a:focus, .tag-list .tag-label button:focus, .filter-opener:focus, .main-btn:focus {
     opacity: 0.7;
   }
 }
@@ -3963,6 +3963,10 @@ main {
   background-image: url("../assets/img/icon-filter-check.svg");
   background-size: 12px;
 }
+.filter-control input[type=checkbox]:disabled + label {
+  opacity: 0.5;
+  cursor: default;
+}
 
 .tag-list {
   overflow: hidden;
@@ -3975,7 +3979,9 @@ main {
 }
 .tag-list .tag-label {
   position: relative;
-  position: relative;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-size: 16px;
   line-height: 1;
   height: 32px;
@@ -3985,7 +3991,7 @@ main {
   background: #F6F6F6;
   border-radius: 65px;
 }
-.tag-list .tag-label::after {
+.tag-list .tag-label button {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -3995,20 +4001,24 @@ main {
   border-radius: 50%;
   background-color: var(--white);
 }
-.tag-list .tag-label::before {
+.tag-list .tag-label button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.tag-list .tag-label button::after {
   position: absolute;
   top: 50%;
-  right: 8px;
+  left: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
   content: "";
   width: 24px;
   height: 24px;
-  background-image: url("../assets/sprite.svg#icon-close");
+  background-image: url(../assets/sprite.svg#icon-close);
   background-repeat: no-repeat;
   background-size: cover;
-  z-index: 3;
+  background-position: center;
 }
 
 .accordeon-height, .accordeon__body, .accordeon__header, .accordeon {

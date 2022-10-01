@@ -59,6 +59,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     tags: Array,
@@ -75,10 +78,14 @@ __webpack_require__.r(__webpack_exports__);
     init: function init() {
       this.tagList = this.$props.tags;
       this.checkedList = this.$props.checked;
+      this.emitCheckedList();
+    },
+    emitCheckedList: function emitCheckedList() {
       this.$emit('tags', this.checkedList);
     },
-    update: function update() {
-      this.$emit('tags', this.checkedList);
+    selectAll: function selectAll() {
+      this.checkedList = this.tagList;
+      this.emitCheckedList();
     }
     /*disable() {
       console.log(this.checkedList, this.checkedList.length)
@@ -173,6 +180,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
@@ -214,9 +229,6 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     tags: function tags(val) {
       this.swiperUpdate();
-    },
-    checked: function checked(val) {
-      console.log('checked');
     }
   }
 });
@@ -17457,7 +17469,27 @@ var render = function () {
           "div",
           { staticClass: "filter-container" },
           [
-            _vm._m(0),
+            _c("div", { staticClass: "filter-control" }, [
+              _c("input", {
+                attrs: {
+                  type: "checkbox",
+                  id: "all",
+                  disabled:
+                    this.tagList.length === this.checkedList.length
+                      ? true
+                      : false,
+                },
+                domProps: {
+                  checked:
+                    this.tagList.length === this.checkedList.length
+                      ? true
+                      : false,
+                },
+                on: { click: _vm.selectAll },
+              }),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "all" } }, [_vm._v("Все")]),
+            ]),
             _vm._v(" "),
             _vm._l(this.tagList, function (tag, i) {
               return _c(
@@ -17477,6 +17509,11 @@ var render = function () {
                       type: "checkbox",
                       id: "tag_" + (i + 1),
                       "data-tag": tag,
+                      disabled:
+                        _vm.checkedList[0] === tag &&
+                        _vm.checkedList.length === 1
+                          ? true
+                          : false,
                     },
                     domProps: {
                       value: tag,
@@ -17505,7 +17542,7 @@ var render = function () {
                             _vm.checkedList = $$c
                           }
                         },
-                        _vm.update,
+                        _vm.emitCheckedList,
                       ],
                     },
                   }),
@@ -17522,18 +17559,7 @@ var render = function () {
       : _vm._e(),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "filter-control" }, [
-      _c("input", { attrs: { type: "checkbox", id: "all" } }),
-      _vm._v(" "),
-      _c("label", { attrs: { for: "all" } }, [_vm._v("Все")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -17651,15 +17677,18 @@ var render = function () {
             "div",
             { key: "tag_" + (i + 1), staticClass: "swiper-slide" },
             [
-              _c(
-                "button",
-                {
-                  staticClass: "tag-label",
-                  attrs: { type: "button", "data-tag": tag },
+              _c("div", { staticClass: "tag-label" }, [
+                _c("span", [_vm._v(_vm._s(tag))]),
+                _vm._v(" "),
+                _c("button", {
+                  attrs: {
+                    type: "button",
+                    "data-tag": tag,
+                    disabled: _vm.tags.length === 1 ? true : false,
+                  },
                   on: { click: _vm.removeTag },
-                },
-                [_vm._v(_vm._s(tag))]
-              ),
+                }),
+              ]),
             ]
           )
         }),
@@ -17712,8 +17741,6 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("portfolio-list-component", { attrs: { items: this.items } }),
-      _vm._v(" "),
-      _vm._v("-->\n"),
     ],
     1
   )

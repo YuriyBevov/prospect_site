@@ -5,7 +5,7 @@
       <tag-list-component :tags="this.checked" @remove="removeTag"></tag-list-component>
     </div>
     <portfolio-list-component :items="this.items"></portfolio-list-component>
-    <!--<load-more-button-component></load-more-button-component>-->-->
+    <!--<load-more-button-component></load-more-button-component>-->
   </div>
 </template>
 

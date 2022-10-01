@@ -7,7 +7,15 @@
           v-for="(tag, i) in tags"
           :key="'tag_' + (i+1)"
         >
-          <button class="tag-label" type="button" @click="removeTag" :data-tag="tag">{{tag}}</button>
+          <div class="tag-label">
+            <span>{{tag}}</span>
+            <button
+              type="button"
+              :data-tag="tag"
+              @click="removeTag"
+              :disabled="tags.length === 1 ? true : false"
+            ></button>
+          </div>
         </div>
       </div>
     </div>
@@ -61,10 +69,6 @@
       tags: function (val) {
         this.swiperUpdate();
       },
-
-      checked: function(val) {
-        console.log('checked')
-      }
     }
   }
   </script>

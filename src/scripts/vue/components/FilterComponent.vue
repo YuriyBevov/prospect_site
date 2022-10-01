@@ -19,6 +19,9 @@
         <input
           type="checkbox"
           id="all"
+          :checked="this.tagList.length === this.checkedList.length ? true : false"
+          :disabled="this.tagList.length === this.checkedList.length ? true : false"
+          @click="selectAll"
         />
         <label for="all">Все</label>
       </div>
@@ -36,8 +39,8 @@
 
           :value="tag"
           v-model="checkedList"
-
-          @change="update"
+          :disabled="checkedList[0] === tag && checkedList.length === 1 ? true : false"
+          @change="emitCheckedList"
         />
         <label :for="'tag_' + (i+1)">{{tag}}</label>
       </div>
@@ -66,12 +69,18 @@
         this.tagList = this.$props.tags;
         this.checkedList= this.$props.checked;
 
+        this.emitCheckedList();
+      },
+
+      emitCheckedList() {
         this.$emit('tags', this.checkedList);
       },
 
-      update() {
-        this.$emit('tags', this.checkedList);
-      },
+      selectAll() {
+        this.checkedList = this.tagList;
+
+        this.emitCheckedList();
+      }
 
       /*disable() {
         console.log(this.checkedList, this.checkedList.length)
