@@ -282,6 +282,7 @@ const server = () => {
     watch(PATHS.svg.watchSrc, series(svg, refresh));
     watch(PATHS.sprite.watchSrc, series(sprite, refresh));
     watch(PATHS.fonts.watchSrc, series(fonts, refresh));
+    watch(PATHS.content.watchSrc, series(isPugEnabled ? pug : html, js, refresh));
 }
 
 const refresh = (done) => {

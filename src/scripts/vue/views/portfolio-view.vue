@@ -1,34 +1,46 @@
 <template>
-  <div>
+  <div style="position: relative;">
     <div class="portfolio__header">
       <filter-component :tags="this.tags" :checked="this.checked" @tags="updateCheckedList"></filter-component>
       <tag-list-component :tags="this.checked" @remove="removeTag"></tag-list-component>
     </div>
     <portfolio-list-component :items="this.items"></portfolio-list-component>
-    <!--<load-more-button-component></load-more-button-component>-->
+    <div class="portfolio__footer">
+      <load-more-button-component @load="loadMoreItems" :disabled="this.isLoadMoreButtonDisabled"></load-more-button-component>
+      <collapse-button-component :state="this.isCollapseButtonDisabled" @collapse="collapsePortfolioList"></collapse-button-component>
+    </div>
   </div>
 </template>
 
 <script>
-  import * as data from "../data/PortfolioData"
-  import FilterComponent from "../components/FilterComponent.vue"
-  import TagListComponent from "../components/TagListComponent.vue"
-  import PortfolioListComponent from "../components/PortfolioListComponent.vue"
-  //import LoadMoreButton from "./views/LoadMoreButton.vue"
+  import * as data from "../../../content/PortfolioData";
+  import FilterComponent from "../components/FilterComponent.vue";
+  import TagListComponent from "../components/TagListComponent.vue";
+  import PortfolioListComponent from "../components/PortfolioListComponent.vue";
+  import LoadMoreButtonComponent from "../components/LoadMoreButtonComponent.vue";
+  import CollapseButtonComponent from "../components/CollapseButtonComponent.vue";
 
   export default {
     components: {
       'filter-component': FilterComponent,
       'tag-list-component': TagListComponent,
       'portfolio-list-component': PortfolioListComponent,
-      //'load-more-button-component': LoadMoreButton,
+      'load-more-button-component': LoadMoreButtonComponent,
+      'collapse-button-component': CollapseButtonComponent,
     },
 
     data() {
       return {
+        initialArray: [],
+
         items: [],
         tags: [],
-        checked: []
+        checked: [],
+
+        STEP: 4,
+        count: 0,
+        isLoadMoreButtonDisabled: false,
+        isCollapseButtonDisabled: false
       }
     },
 
@@ -36,33 +48,77 @@
       init() {
         let tags = [];
 
-        this.items.forEach(item => {
-          if(item.type === 'image') {
-            tags.push('Фото')
-          } else if (item.type === 'video') {
-            tags.push('Видео')
-          } else {
-            tags.push('Другое')
-          }
-
+        this.initialArray.forEach(item => {
           tags = [...tags, ...item.tags];
         });
 
         this.tags = [...new Set(tags)];
         this.checked = this.tags;
+        this.count += this.STEP;
+
+        this.fillPortfolioItems();
+      },
+
+      fillPortfolioItems() {
+        this.items = [];
+        let currentCount = 0;
+
+        this.initialArray.forEach(item => {
+          let isExist = item.tags.filter(it => this.checked.indexOf(it) !== -1);
+
+          if(currentCount < this.count && isExist.length) {
+            this.items.push(item)
+            currentCount++;
+          }
+        })
+
+        this.setLoadMoreButtonStatus();
+        this.setCollapseButtonStatus();
+
+      },
+
+      setLoadMoreButtonStatus() {
+        this.items.length < this.count || this.initialArray.length === this.items.length ?
+        this.isLoadMoreButtonDisabled = true :
+        this.isLoadMoreButtonDisabled = false
+      },
+
+      setCollapseButtonStatus() {
+        this.count > this.STEP ?
+        this.isCollapseButtonDisabled = true :
+        this.isCollapseButtonDisabled = false;
+      },
+
+      collapsePortfolioList() {
+        this.count = this.STEP;
+        this.fillPortfolioItems();
+      },
+
+      loadMoreItems() {
+        if(this.initialArray.length > (this.count + this.STEP) ) {
+          this.count += this.STEP;
+        } else {
+          this.count = this.initialArray.length;
+        }
+
+        this.fillPortfolioItems();
       },
 
       updateCheckedList(list) {
+        this.count = this.STEP;
         this.checked = list;
+        this.fillPortfolioItems();
       },
 
       removeTag(except) {
+        this.count = this.STEP;
         this.checked = this.checked.filter(item => item !== except);
+        this.fillPortfolioItems();
       }
     },
 
     mounted() {
-      this.items = [...data.PortfolioItems]
+      this.initialArray = [...data.PortfolioItems];
       this.init();
     }
   }

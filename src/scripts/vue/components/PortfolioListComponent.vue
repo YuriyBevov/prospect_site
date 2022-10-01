@@ -8,7 +8,7 @@
       <a href="#" aria-label="Посмотреть">
         <picture v-if="item.type === 'image'">
           <source :srcset="`../assets/img/${item.source}@1x.webp 1x, ../assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
-          <img :src="`../assets/img/${item.source}@1x.jpg`" :srcset="`../assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="789" height="589"/>
+          <img :src="`../assets/img/${item.source}@1x.jpg`" :srcset="`../assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="442"/>
         </picture>
 
         <video muted loop autoplay v-if="item.type === 'video'">
@@ -22,13 +22,11 @@
 </template>
 
 <script>
+
+
   export default {
     props: {
-      items: Array,
-    },
-
-    methods: {
-
+      items: Array
     }
   }
 </script>

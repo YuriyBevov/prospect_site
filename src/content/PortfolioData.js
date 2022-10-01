@@ -1,10 +1,18 @@
 export const PortfolioItems = [
   {
     type: 'image',
-    source: 'portfolio-item-1',
+    source: 'portfolio-item-2',
     description: 'Описание1',
     tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Рекламные конструкции', 'Световые панели', 'Внешняя подсветка', 'Внутренняя подсветка', 'Контражур']
   },
+
+  {
+    type: 'image',
+    source: 'portfolio-item-3',
+    description: 'Описание1',
+    tags: ['Фото','Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка']
+  },
+
   {
     type: 'video',
     source: 'ML01',
@@ -12,12 +20,6 @@ export const PortfolioItems = [
     tags: ['Видео']
   },
 
-  {
-    type: 'image',
-    source: 'portfolio-item-1',
-    description: 'Описание1',
-    tags: ['Фото','Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка']
-  },
   {
     type: 'video',
     source: 'ML01',

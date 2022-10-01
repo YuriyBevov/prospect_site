@@ -7,14 +7,15 @@ const header = document.querySelector('.main-header');
 if(header) {
   const headerInTimeline = gsap.timeline({
     scrollTrigger: {
-      trigger: ".portfolio__list",
-      start: "top top",
-      onLeaveBack: () => headerInTimeline.reverse() }
+      trigger: ".hero",
+      start: "bottom top",
+      onLeaveBack: () => headerInTimeline.reverse()
+    }
   });
 
   headerInTimeline
     .to(header, {
-      y: '-105%',
+      y: '-110%',
       position: 'fixed',
       opacity: 0,
       duration: 0,
@@ -22,7 +23,8 @@ if(header) {
       backgroundColor: 'transparent',
     })
     .to('.main-header-logo', {
-      display: 'block'
+      display: 'block',
+      opacity: 0,
     })
     .to(header, {
       duration: .3,

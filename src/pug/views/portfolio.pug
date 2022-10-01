@@ -1,6 +1,4 @@
 include ../mixins/section-title
-include ../mixins/main-btn
-include ../content/portfolio
 
 section.portfolio#portfolio
   .container.portfolio__container
@@ -11,26 +9,3 @@ section.portfolio#portfolio
     })
 
     #portfolio-app
-    //include ../components/portfolio-sort
-
-      ul.portfolio__list
-        each item in portfolio
-          li.portfolio__list-item(data-type= item.sourceType data-tags= item.tags)
-            a(href="#" aria-label="Посмотреть")
-              if item.sourceType === 'image'
-                picture
-                  source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
-                  img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
-
-              if item.sourceType === 'video'
-                video(muted loop)
-                  source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
-                  source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
-                  source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
-
-      +main-btn({
-        type: 'button',
-        btnType: 'button',
-        title: 'Больше работ',
-        cls: 'portfolio__more load-more-btn'
-      })

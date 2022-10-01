@@ -1,12 +1,13 @@
+import { body } from "../utils/nodesHelper";
 import {gsap} from "gsap";
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import {ScrollSmoother} from 'gsap/ScrollSmoother';
 
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger);
 
 const textElems = document.querySelectorAll('.section-title span');
 
 if(textElems) {
+  let pageHeight = body.getBoundingClientRect().height;
 
   function timeline(el) {
     const tl = gsap.timeline({
@@ -14,9 +15,7 @@ if(textElems) {
         trigger: el,
         start: "top bottom",
         end: "bottom top",
-        scrub: true,
-        //markers: true,
-        //onLeaveBack: () => tl.reverse()
+        scrub: true
       }
     });
 
@@ -33,4 +32,12 @@ if(textElems) {
   textElems.forEach(el => {
     timeline(el);
   });
+
+  document.addEventListener('scroll', () => {
+    const currentPageHeight = body.getBoundingClientRect().height;
+    if(currentPageHeight !== pageHeight) {
+      pageHeight = currentPageHeight;
+      ScrollTrigger.refresh();
+    }
+  })
 }

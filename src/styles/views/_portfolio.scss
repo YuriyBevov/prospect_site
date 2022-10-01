@@ -1,5 +1,6 @@
 .portfolio {
   @extend .section-offset;
+  overflow: hidden;
 
   will-change: auto;
   transform: translate3d(0,0,0);
@@ -95,6 +96,59 @@
     &:disabled {
       opacity: 0.2;
       cursor: initial;
+    }
+
+    @include m-b-tablet-lg-down {
+      margin: 0;
+    }
+
+    @include m-b-down(435px) {
+      width: 40px;
+      height: 40px;
+      min-width: fit-content;
+      padding: 0;
+      transform: rotate(90deg);
+      margin: 0 10px;
+      span {
+        display: none;
+      }
+    }
+  }
+
+  &__collapse {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 58px;
+    height: 58px;
+    min-width: fit-content;
+    padding: 0;
+    transform: rotate(-90deg);
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: initial;
+    }
+
+    @include m-b-down(435px) {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin: 0 10px;
+    }
+  }
+
+  &__footer {
+    @extend .flex-wrap;
+    align-items: center;
+    justify-content: center;
+
+    @include m-b-down(635px) {
+      justify-content: space-between;
+    }
+
+    @include m-b-down(435px) {
+      justify-content: center;
     }
   }
 }

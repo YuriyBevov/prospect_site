@@ -5,7 +5,7 @@
       type="button"
       class="filter-opener"
       :class="isOpenerActive ? 'active' : null"
-      @click="isOpenerActive = !isOpenerActive"
+      @click.stop="openFilter"
     >
       <span>Тэги:</span>
       <svg width="14" height="7">
@@ -13,7 +13,7 @@
       </svg>
     </button>
 
-    <div class="filter-container" v-if="isOpenerActive">
+    <div class="filter-container" v-show="isOpenerActive">
 
       <div class="filter-control">
         <input
@@ -23,7 +23,7 @@
           :disabled="this.tagList.length === this.checkedList.length ? true : false"
           @click="selectAll"
         />
-        <label for="all">Все</label>
+        <label for="all" tabindex="0">Все</label>
       </div>
 
       <div
@@ -42,7 +42,7 @@
           :disabled="checkedList[0] === tag && checkedList.length === 1 ? true : false"
           @change="emitCheckedList"
         />
-        <label :for="'tag_' + (i+1)">{{tag}}</label>
+        <label :for="'tag_' + (i+1)" tabindex="0">{{tag}}</label>
       </div>
     </div>
   </div>
@@ -80,16 +80,38 @@
         this.checkedList = this.tagList;
 
         this.emitCheckedList();
-      }
+      },
 
-      /*disable() {
-        console.log(this.checkedList, this.checkedList.length)
-        if(this.checkedList.length === this.tagList.length) {
-          this.isAllBtnDisabled = true
-        } else if(this.checkedList.length === 1) {
-          this.$emit('disable');
+      openFilter() {
+        const FilterContainer = document.querySelector('.filter-container');
+        this.isOpenerActive = !this.isOpenerActive;
+
+        if(this.isOpenerActive) {
+          document.addEventListener('click', this.onOverlayClickHandler);
+          document.addEventListener('keydown', this.onEscPressHandler);
+        } else {
+          document.removeEventListener('click', this.onOverlayClickHandler);
+          document.removeEventListener('keydown', this.onEscPressHandler);
         }
-      }*/
+      },
+
+      onOverlayClickHandler(evt) {
+        const FilterContainer = document.querySelector('.filter-container');
+
+        if(!FilterContainer.contains(evt.target)) {
+          this.isOpenerActive = false;
+          document.removeEventListener('click', this.onOverlayClickHandler);
+          document.removeEventListener('keydown', this.onEscPressHandler);
+        }
+      },
+
+      onEscPressHandler(evt) {
+        if(evt.key === 'Esc' || evt.key === 'Escape') {
+          this.isOpenerActive = false;
+          document.removeEventListener('click', this.onOverlayClickHandler);
+          document.removeEventListener('keydown', this.onEscPressHandler);
+        }
+      }
     },
 
     watch: {

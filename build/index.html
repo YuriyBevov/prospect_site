@@ -12,7 +12,7 @@
     <script src="https://api-maps.yandex.ru/2.1/?apikey=56c6be8d-b5f9-45d5-8ffa-7fdb884fcf53&amp;lang=ru_RU"></script>
   </head>
   <body>
-    <!--include ../components/page-overlay-->
+    <div class="page-overlay" style="position:fixed;top:0;left:0;display:flex;align-items:center;justify-content:center;width: 100vw;height: 100vh;background-color:var(--white);z-index: 101;"><span class="loader"></span></div>
     <header class="main-header">
       <div class="container-fluid main-header__container"><a class="main-header-logo" href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50"></a>
         <nav class="nav">
@@ -99,29 +99,6 @@
                   <h2>Портфолио<span aria-hidden="true">Портфолио</span></h2>
                 </div>
           <div id="portfolio-app"></div>
-          <!--include ../components/portfolio-sort
-          ul.portfolio__list
-            each item in portfolio
-              li.portfolio__list-item(data-type= item.sourceType data-tags= item.tags)
-                a(href="#" aria-label="Посмотреть")
-                  if item.sourceType === 'image'
-                    picture
-                      source(srcset=`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x` type="image/webp")
-                      img(src=`./assets/img/${item.source}@1x.jpg` srcset=`./assets/img/${item.source}.jpg 2x` alt= item.desc width="789" height="589")
-          
-                  if item.sourceType === 'video'
-                    video(muted loop)
-                      source(src=`./assets/video/${item.source}.mp4` type='video/ogg; codecs="theora, vorbis"')
-                      source(src=`./assets/video/${item.source}.mp4` type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"')
-                      source(src=`./assets/video/${item.source}.webm` type='video/webm; codecs="vp8, vorbis"')
-          
-          +main-btn({
-            type: 'button',
-            btnType: 'button',
-            title: 'Больше работ',
-            cls: 'portfolio__more load-more-btn'
-          })
-          -->
         </div>
       </section>
       <section class="features" id="features">
@@ -354,7 +331,7 @@
           <h2 class="visually-hidden">Оставить заявку</h2>
           <div class="callback__form">
             <p class="callback__text">Заполните форму <br/> и&nbsp;мы&nbsp;обязательно Вам перезвоним&nbsp;!</p>
-            <form class="form" action="#">
+            <form class="form">
               <div class="form__content">
                 <fieldset class="form__data">
                   <input type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off">
@@ -365,11 +342,13 @@
                   <label for="user_accept" tabindex="0"> Согласен на обработку персональных данных</label>
                 </fieldset>
               </div>
-                          <button class="form__submit main-btn" type="submit"><span>Отправить</span>
-                            <svg width="24" height="24">
-                              <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
-                            </svg>
-                          </button>
+              <div class="form__footer">
+                            <button class="form__submit main-btn" type="submit"><span>Отправить</span>
+                              <svg width="24" height="24">
+                                <use xlink:href="./assets/sprite.svg#icon-btn-arrow"></use>
+                              </svg>
+                            </button>
+              </div>
             </form>
           </div>
           <div class="callback__side">
@@ -400,8 +379,35 @@
         </div>
       </footer>
     </main>
-    <!--include ./modals/_main-modal-->
-    <!--include ./modals/_error-modal-->
-    <!--include ./modals/_thanks-modal-->
+    <div class="modal-overlay">
+      <div class="modal state-modal error-modal" id="error-modal">
+        <button class="modal__close" type="button">
+          <svg width="32" height="32">
+            <use xlink:href="./assets/sprite.svg#icon-close"></use>
+          </svg>
+        </button>
+        <div class="modal__content">
+          <svg width="100" height="100">
+            <use xlink:href="./assets/sprite.svg#icon-error"></use>
+          </svg>
+          <p>Что-то пошло не&nbsp;так... <br/> Попробуйте еще раз.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-overlay">
+      <div class="modal state-modal thanks-modal" id="thanks-modal">
+        <button class="modal__close" type="button">
+          <svg width="32" height="32">
+            <use xlink:href="./assets/sprite.svg#icon-close"></use>
+          </svg>
+        </button>
+        <div class="modal__content">
+          <svg width="100" height="100">
+            <use xlink:href="./assets/sprite.svg#icon-success"></use>
+          </svg>
+          <p>Ваша заявка <br/>успешно отправлена.</p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,6 +1,71 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap/ScrollToPlugin */ "./node_modules/gsap/ScrollToPlugin.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollToPlugin__WEBPACK_IMPORTED_MODULE_1__.ScrollToPlugin);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    state: Boolean
+  },
+  data: function data() {
+    return {
+      disabled: this.$props.state ? !this.$props.state : true
+    };
+  },
+  methods: {
+    collapse: function collapse() {
+      var _this = this;
+
+      gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(window, {
+        duration: 1.5,
+        scrollTo: {
+          y: '.portfolio',
+          offsetY: 40,
+          autoKill: true
+        },
+        ease: "power0.easeNone",
+        onComplete: function onComplete() {
+          return _this.$emit('collapse');
+        }
+      });
+    }
+  },
+  watch: {
+    state: function state() {
+      this.disabled = !this.$props.state;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=script&lang=js& ***!
@@ -86,16 +151,35 @@ __webpack_require__.r(__webpack_exports__);
     selectAll: function selectAll() {
       this.checkedList = this.tagList;
       this.emitCheckedList();
-    }
-    /*disable() {
-      console.log(this.checkedList, this.checkedList.length)
-      if(this.checkedList.length === this.tagList.length) {
-        this.isAllBtnDisabled = true
-      } else if(this.checkedList.length === 1) {
-        this.$emit('disable');
-      }
-    }*/
+    },
+    openFilter: function openFilter() {
+      var FilterContainer = document.querySelector('.filter-container');
+      this.isOpenerActive = !this.isOpenerActive;
 
+      if (this.isOpenerActive) {
+        document.addEventListener('click', this.onOverlayClickHandler);
+        document.addEventListener('keydown', this.onEscPressHandler);
+      } else {
+        document.removeEventListener('click', this.onOverlayClickHandler);
+        document.removeEventListener('keydown', this.onEscPressHandler);
+      }
+    },
+    onOverlayClickHandler: function onOverlayClickHandler(evt) {
+      var FilterContainer = document.querySelector('.filter-container');
+
+      if (!FilterContainer.contains(evt.target)) {
+        this.isOpenerActive = false;
+        document.removeEventListener('click', this.onOverlayClickHandler);
+        document.removeEventListener('keydown', this.onEscPressHandler);
+      }
+    },
+    onEscPressHandler: function onEscPressHandler(evt) {
+      if (evt.key === 'Esc' || evt.key === 'Escape') {
+        this.isOpenerActive = false;
+        document.removeEventListener('click', this.onOverlayClickHandler);
+        document.removeEventListener('keydown', this.onEscPressHandler);
+      }
+    }
   },
   watch: {
     tags: function tags() {
@@ -103,6 +187,44 @@ __webpack_require__.r(__webpack_exports__);
     },
     checked: function checked() {
       this.checkedList = this.$props.checked;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    disabled: Boolean
+  },
+  methods: {
+    showMore: function showMore() {
+      this.$emit('load');
     }
   }
 });
@@ -146,8 +268,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     items: Array
-  },
-  methods: {}
+  }
 });
 
 /***/ }),
@@ -246,10 +367,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _data_PortfolioData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/PortfolioData */ "./src/scripts/vue/data/PortfolioData.js");
+/* harmony import */ var _content_PortfolioData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../content/PortfolioData */ "./src/content/PortfolioData.js");
 /* harmony import */ var _components_FilterComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/FilterComponent.vue */ "./src/scripts/vue/components/FilterComponent.vue");
 /* harmony import */ var _components_TagListComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TagListComponent.vue */ "./src/scripts/vue/components/TagListComponent.vue");
 /* harmony import */ var _components_PortfolioListComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PortfolioListComponent.vue */ "./src/scripts/vue/components/PortfolioListComponent.vue");
+/* harmony import */ var _components_LoadMoreButtonComponent_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LoadMoreButtonComponent.vue */ "./src/scripts/vue/components/LoadMoreButtonComponent.vue");
+/* harmony import */ var _components_CollapseButtonComponent_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/CollapseButtonComponent.vue */ "./src/scripts/vue/components/CollapseButtonComponent.vue");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -273,56 +396,348 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
+//
+//
 
 
 
- //import LoadMoreButton from "./views/LoadMoreButton.vue"
+
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     'filter-component': _components_FilterComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     'tag-list-component': _components_TagListComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-    'portfolio-list-component': _components_PortfolioListComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"] //'load-more-button-component': LoadMoreButton,
-
+    'portfolio-list-component': _components_PortfolioListComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+    'load-more-button-component': _components_LoadMoreButtonComponent_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    'collapse-button-component': _components_CollapseButtonComponent_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
+      initialArray: [],
       items: [],
       tags: [],
-      checked: []
+      checked: [],
+      STEP: 4,
+      count: 0,
+      isLoadMoreButtonDisabled: false,
+      isCollapseButtonDisabled: false
     };
   },
   methods: {
     init: function init() {
       var tags = [];
-      this.items.forEach(function (item) {
-        if (item.type === 'image') {
-          tags.push('Фото');
-        } else if (item.type === 'video') {
-          tags.push('Видео');
-        } else {
-          tags.push('Другое');
-        }
-
+      this.initialArray.forEach(function (item) {
         tags = [].concat(_toConsumableArray(tags), _toConsumableArray(item.tags));
       });
       this.tags = _toConsumableArray(new Set(tags));
       this.checked = this.tags;
+      this.count += this.STEP;
+      this.fillPortfolioItems();
+    },
+    fillPortfolioItems: function fillPortfolioItems() {
+      var _this = this;
+
+      this.items = [];
+      var currentCount = 0;
+      this.initialArray.forEach(function (item) {
+        var isExist = item.tags.filter(function (it) {
+          return _this.checked.indexOf(it) !== -1;
+        });
+
+        if (currentCount < _this.count && isExist.length) {
+          _this.items.push(item);
+
+          currentCount++;
+        }
+      });
+      this.setLoadMoreButtonStatus();
+      this.setCollapseButtonStatus();
+    },
+    setLoadMoreButtonStatus: function setLoadMoreButtonStatus() {
+      this.items.length < this.count || this.initialArray.length === this.items.length ? this.isLoadMoreButtonDisabled = true : this.isLoadMoreButtonDisabled = false;
+    },
+    setCollapseButtonStatus: function setCollapseButtonStatus() {
+      this.count > this.STEP ? this.isCollapseButtonDisabled = true : this.isCollapseButtonDisabled = false;
+    },
+    collapsePortfolioList: function collapsePortfolioList() {
+      this.count = this.STEP;
+      this.fillPortfolioItems();
+    },
+    loadMoreItems: function loadMoreItems() {
+      if (this.initialArray.length > this.count + this.STEP) {
+        this.count += this.STEP;
+      } else {
+        this.count = this.initialArray.length;
+      }
+
+      this.fillPortfolioItems();
     },
     updateCheckedList: function updateCheckedList(list) {
+      this.count = this.STEP;
       this.checked = list;
+      this.fillPortfolioItems();
     },
     removeTag: function removeTag(except) {
+      this.count = this.STEP;
       this.checked = this.checked.filter(function (item) {
         return item !== except;
       });
+      this.fillPortfolioItems();
     }
   },
   mounted: function mounted() {
-    this.items = _toConsumableArray(_data_PortfolioData__WEBPACK_IMPORTED_MODULE_0__.PortfolioItems);
+    this.initialArray = _toConsumableArray(_content_PortfolioData__WEBPACK_IMPORTED_MODULE_0__.PortfolioItems);
     this.init();
   }
 });
+
+/***/ }),
+
+/***/ "./src/content/PortfolioData.js":
+/*!**************************************!*\
+  !*** ./src/content/PortfolioData.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "PortfolioItems": () => (/* binding */ PortfolioItems)
+/* harmony export */ });
+var PortfolioItems = [{
+  type: 'image',
+  source: 'portfolio-item-2',
+  description: 'Описание1',
+  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Рекламные конструкции', 'Световые панели', 'Внешняя подсветка', 'Внутренняя подсветка', 'Контражур']
+}, {
+  type: 'image',
+  source: 'portfolio-item-3',
+  description: 'Описание1',
+  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка']
+}, {
+  type: 'video',
+  source: 'ML01',
+  description: 'Описание2',
+  tags: ['Видео']
+}, {
+  type: 'video',
+  source: 'ML01',
+  description: 'Описание2',
+  tags: ['Видео', 'Наружная реклама', 'Внутренняя подсветка', 'Контражур']
+}, {
+  type: 'image',
+  source: 'portfolio-item-1',
+  description: 'Описание1',
+  tags: ['Фото', 'Контражур', 'Прямоугольный короб']
+}, {
+  type: 'video',
+  source: 'ML01',
+  description: 'Описание2',
+  tags: ['Видео', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
+}, {
+  type: 'image',
+  source: 'portfolio-item-1',
+  description: 'Описание1',
+  tags: ['Фото', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
+}, {
+  type: 'video',
+  source: 'ML01',
+  description: 'Описание2',
+  tags: ['Видео', 'Интерьерная печать', 'Внутренняя подсветка']
+}, {
+  type: 'image',
+  source: 'portfolio-item-1',
+  description: 'Описание1',
+  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Прямоугольный короб', 'Внутренняя подсветка', 'Контражур']
+}, {
+  type: 'video',
+  source: 'ML01',
+  description: 'Описание2',
+  tags: ['Видео', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
+}];
+
+/***/ }),
+
+/***/ "./src/scripts/classes/Modal.js":
+/*!**************************************!*\
+  !*** ./src/scripts/classes/Modal.js ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Modal": () => (/* binding */ Modal)
+/* harmony export */ });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Modal = /*#__PURE__*/function () {
+  function Modal(modal) {
+    var _this = this;
+
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+
+    _classCallCheck(this, Modal);
+
+    _defineProperty(this, "bodyLocker", function (bool) {
+      var body = document.querySelector('body');
+      var paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+
+      if (bool) {
+        body.style.overflow = 'hidden';
+        body.style.paddingRight = paddingOffset;
+      } else {
+        body.style.overflow = 'auto';
+        body.style.paddingRight = '0px';
+      }
+    });
+
+    _defineProperty(this, "focusTrap", function () {
+      var firstFocusableElement = _this.modal.querySelectorAll(_this.focusableElements)[0];
+
+      var focusableContent = _this.modal.querySelectorAll(_this.focusableElements);
+
+      var lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+      var onBtnClickHandler = function onBtnClickHandler(evt) {
+        var isTabPressed = evt.key === 'Tab' || evt.key === 9;
+
+        if (evt.key === 'Escape') {
+          document.removeEventListener('keydown', onBtnClickHandler);
+        }
+
+        if (!isTabPressed) {
+          return;
+        }
+
+        if (evt.shiftKey) {
+          if (document.activeElement === firstFocusableElement) {
+            lastFocusableElement.focus();
+            evt.preventDefault();
+          }
+        } else {
+          if (document.activeElement === lastFocusableElement) {
+            firstFocusableElement.focus();
+            evt.preventDefault();
+          }
+        }
+      };
+
+      document.addEventListener('keydown', onBtnClickHandler);
+      firstFocusableElement.focus();
+    });
+
+    _defineProperty(this, "addListeners", function () {
+      _this.openers.forEach(function (opener) {
+        opener.removeEventListener('click', _this.openModal);
+      });
+
+      document.addEventListener('click', _this.closeByOverlayClick);
+      document.addEventListener('keydown', _this.closeByEscBtn);
+
+      _this.close.addEventListener('click', _this.closeByBtnClick);
+    });
+
+    _defineProperty(this, "refresh", function () {
+      document.removeEventListener('click', _this.closeByOverlayClick);
+      document.removeEventListener('keydown', _this.closeByEscBtn);
+
+      _this.close.removeEventListener('click', _this.closeByBtnClick);
+
+      _this.overlay.classList.remove('is-opened');
+
+      _this.modal.classList.remove('is-active');
+
+      _this.bodyLocker(false);
+
+      _this.openers.forEach(function (opener) {
+        opener.addEventListener('click', _this.openModal);
+      }); //если в модалке есть форма, при закрытии обнуляю поля
+
+
+      _this.modal.querySelectorAll('form').forEach(function (f) {
+        return f.reset();
+      });
+    });
+
+    _defineProperty(this, "closeByOverlayClick", function (evt) {
+      if (evt.target === _this.overlay) {
+        _this.refresh();
+      }
+    });
+
+    _defineProperty(this, "closeByEscBtn", function (evt) {
+      if (evt.key === "Escape") {
+        _this.refresh();
+      }
+    });
+
+    _defineProperty(this, "closeByBtnClick", function () {
+      _this.refresh();
+    });
+
+    _defineProperty(this, "openModal", function (evt) {
+      evt.preventDefault();
+
+      _this.overlay.classList.add('is-opened');
+
+      _this.modal.classList.add('is-active');
+
+      _this.addListeners();
+
+      _this.focusTrap();
+
+      _this.bodyLocker(true);
+    });
+
+    _defineProperty(this, "show", function () {
+      _this.overlay.classList.add('is-opened');
+
+      _this.modal.classList.add('is-active');
+
+      _this.addListeners();
+
+      _this.focusTrap();
+
+      _this.bodyLocker(true);
+    });
+
+    this.isBodyLocked = options.isBodyLocked ? true : false, this.modal = modal;
+    this.id = this.modal.getAttribute('id');
+    this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
+    this.isInited = false;
+    this.overlay = this.modal.parentNode;
+    this.close = this.modal.querySelector('.modal__close');
+    this.focusableElements = ['a[href]', 'input', 'select', 'textarea', 'button', 'iframe', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
+    this.init();
+  }
+
+  _createClass(Modal, [{
+    key: "init",
+    value: function init() {
+      var _this2 = this;
+
+      if (this.openers) {
+        this.isInited = true;
+        this.openers.forEach(function (opener) {
+          opener.addEventListener('click', _this2.openModal, _this2.modal, _this2.overlay);
+        });
+      } else {
+        console.error('Не добавлена кнопка открытия модального окна, либо в ней не прописан аттр-т: data-modal-anchor={modal-id} ');
+      }
+    }
+  }]);
+
+  return Modal;
+}();
 
 /***/ }),
 
@@ -838,6 +1253,173 @@ phoneFields.forEach(function (field) {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/form.js":
+/*!*************************************!*\
+  !*** ./src/scripts/modules/form.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _form_formValidation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./form/formValidation */ "./src/scripts/modules/form/formValidation.js");
+
+var form = document.querySelector('form');
+
+var onClickSendForm = function onClickSendForm(evt) {
+  evt.preventDefault();
+  (0,_form_formValidation__WEBPACK_IMPORTED_MODULE_0__.formValidation)(form);
+};
+
+if (form) {
+  var button = form.querySelector('button[type="submit"]');
+  button.addEventListener('click', onClickSendForm);
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/form/formValidation.js":
+/*!****************************************************!*\
+  !*** ./src/scripts/modules/form/formValidation.js ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "formValidation": () => (/* binding */ formValidation)
+/* harmony export */ });
+/* harmony import */ var _setControlState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./setControlState */ "./src/scripts/modules/form/setControlState.js");
+/* harmony import */ var _sendForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sendForm */ "./src/scripts/modules/form/sendForm.js");
+
+
+function formValidation(form) {
+  var invalidControls = [];
+  var controls = form.querySelectorAll('input');
+  controls.forEach(function (control) {
+    (0,_setControlState__WEBPACK_IMPORTED_MODULE_0__.setControlState)(control, 'valid');
+  });
+  controls.forEach(function (control) {
+    if (control.type === 'text') {
+      if (control.value.trim() === '') {
+        invalidControls.push(control);
+      }
+    }
+
+    if (control.type === 'tel') {
+      if (control.value.length !== 18) {
+        invalidControls.push(control);
+      }
+    }
+
+    if (control.type === 'checkbox') {
+      if (!control.checked) {
+        invalidControls.push(control);
+      }
+    }
+  });
+
+  if (!invalidControls.length) {
+    setTimeout(function () {
+      // убрать, это для проверки лоадера
+      (0,_sendForm__WEBPACK_IMPORTED_MODULE_1__.sendForm)(form);
+    }, 1000);
+  } else {
+    invalidControls.forEach(function (control) {
+      (0,_setControlState__WEBPACK_IMPORTED_MODULE_0__.setControlState)(control, 'invalid');
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/form/sendForm.js":
+/*!**********************************************!*\
+  !*** ./src/scripts/modules/form/sendForm.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "sendForm": () => (/* binding */ sendForm)
+/* harmony export */ });
+/* harmony import */ var _classes_Modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../classes/Modal */ "./src/scripts/classes/Modal.js");
+ //const loader = document.querySelector('.page-overlay');
+
+function sendForm(form) {
+  var thanksModal = document.getElementById('thanks-modal');
+  var errorModal = document.getElementById('error-modal');
+
+  function success() {
+    form.reset();
+    var modals = document.querySelectorAll('.modal');
+    modals.forEach(function (modal) {
+      new _classes_Modal__WEBPACK_IMPORTED_MODULE_0__.Modal(modal).refresh();
+    }); //loader.classList.add('hidden');
+
+    new _classes_Modal__WEBPACK_IMPORTED_MODULE_0__.Modal(thanksModal).show();
+    var footer = form.querySelector('.form__footer');
+    footer.innerHTML = "\n      <div class=\"status-message\">\n        <svg width=\"60\" height=\"60\">\n          <use xlink:href=\"./assets/sprite.svg#icon-success\"></use>\n        </svg><span>\u0412\u0430\u0448\u0430 \u0437\u0430\u044F\u0432\u043A\u0430 \u0443\u0441\u043F\u0435\u0448\u043D\u043E \u043E\u0442\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430.</span>\n      </div>\n    ";
+    var controls = form.querySelectorAll('input');
+    controls.forEach(function (ctrl) {
+      ctrl.disabled = true;
+    });
+  }
+
+  function error() {
+    //loader.classList.add('hidden');
+    new _classes_Modal__WEBPACK_IMPORTED_MODULE_0__.Modal(errorModal).show();
+  } // handle the form submission event
+
+
+  var data = new FormData(form);
+  ajax(form.method, form.action, data, success, error); // helper function for sending an AJAX request
+
+  function ajax(method, url, data, success, error) {
+    console.log(method, url, data, success, error);
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url);
+    xhr.setRequestHeader("Accept", "application/json");
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== XMLHttpRequest.DONE) return;
+
+      if (xhr.status === 200) {
+        success(xhr.response, xhr.responseType);
+      } else {
+        error(xhr.status, xhr.response, xhr.responseType);
+      }
+    };
+
+    xhr.send(data);
+  }
+
+  ;
+}
+
+/***/ }),
+
+/***/ "./src/scripts/modules/form/setControlState.js":
+/*!*****************************************************!*\
+  !*** ./src/scripts/modules/form/setControlState.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "setControlState": () => (/* binding */ setControlState)
+/* harmony export */ });
+function setControlState(control, validState) {
+  if (validState === 'valid') {
+    control.classList.contains('js-invalid-control') ? control.classList.remove('js-invalid-control') : null;
+  } else if (validState === 'invalid') {
+    !control.classList.contains('js-invalid-control') ? control.classList.add('js-invalid-control') : null;
+  }
+}
+
+/***/ }),
+
 /***/ "./src/scripts/modules/header.js":
 /*!***************************************!*\
   !*** ./src/scripts/modules/header.js ***!
@@ -856,22 +1438,23 @@ var header = document.querySelector('.main-header');
 if (header) {
   var headerInTimeline = gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline({
     scrollTrigger: {
-      trigger: ".portfolio__list",
-      start: "top top",
+      trigger: ".hero",
+      start: "bottom top",
       onLeaveBack: function onLeaveBack() {
         return headerInTimeline.reverse();
       }
     }
   });
   headerInTimeline.to(header, {
-    y: '-105%',
+    y: '-110%',
     position: 'fixed',
     opacity: 0,
     duration: 0,
     padding: '15px 0',
     backgroundColor: 'transparent'
   }).to('.main-header-logo', {
-    display: 'block'
+    display: 'block',
+    opacity: 0
   }).to(header, {
     duration: .3,
     ease: 'linear',
@@ -904,6 +1487,39 @@ gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.fromTo('.hero__arrow-down', {
 
 /***/ }),
 
+/***/ "./src/scripts/modules/loader.js":
+/*!***************************************!*\
+  !*** ./src/scripts/modules/loader.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+
+var tl = gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline();
+window.addEventListener('load', function () {
+  tl.to('.loader', {
+    display: 'none'
+  }).to('.page-overlay', {
+    opacity: 0,
+    ease: 'linear',
+    duration: .8,
+    delay: .2
+  }).fromTo('body', {
+    opacity: 0
+  }, {
+    opacity: 1,
+    ease: 'linear',
+    duration: .8,
+    delay: .2
+  }, "-=800").to('.page-overlay', {
+    display: 'none'
+  });
+});
+
+/***/ }),
+
 /***/ "./src/scripts/modules/navbar.js":
 /*!***************************************!*\
   !*** ./src/scripts/modules/navbar.js ***!
@@ -931,25 +1547,25 @@ if (nav && burger) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
-/* harmony import */ var gsap_ScrollSmoother__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollSmoother */ "./node_modules/gsap/ScrollSmoother.js");
+/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
 
 
 
-gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_1__.ScrollTrigger, gsap_ScrollSmoother__WEBPACK_IMPORTED_MODULE_2__.ScrollSmoother);
+gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger);
 var textElems = document.querySelectorAll('.section-title span');
 
 if (textElems) {
+  var pageHeight = _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.body.getBoundingClientRect().height;
+
   function timeline(el) {
-    var tl = gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.timeline({
+    var tl = gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.timeline({
       scrollTrigger: {
         trigger: el,
         start: "top bottom",
         end: "bottom top",
-        scrub: true //markers: true,
-        //onLeaveBack: () => tl.reverse()
-
+        scrub: true
       }
     });
     tl.fromTo(el, {
@@ -966,6 +1582,14 @@ if (textElems) {
 
   textElems.forEach(function (el) {
     timeline(el);
+  });
+  document.addEventListener('scroll', function () {
+    var currentPageHeight = _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.body.getBoundingClientRect().height;
+
+    if (currentPageHeight !== pageHeight) {
+      pageHeight = currentPageHeight;
+      gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
+    }
   });
 }
 
@@ -1319,71 +1943,6 @@ __webpack_require__.r(__webpack_exports__);
 var body = document.querySelector('body');
 var header = document.querySelector('header');
 var burger = document.querySelector('.burger');
-
-/***/ }),
-
-/***/ "./src/scripts/vue/data/PortfolioData.js":
-/*!***********************************************!*\
-  !*** ./src/scripts/vue/data/PortfolioData.js ***!
-  \***********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PortfolioItems": () => (/* binding */ PortfolioItems)
-/* harmony export */ });
-var PortfolioItems = [{
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Рекламные конструкции', 'Световые панели', 'Внешняя подсветка', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Наружная реклама', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Интерьерная печать', 'Внутренняя подсветка']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Прямоугольный короб', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}];
 
 /***/ }),
 
@@ -4212,815 +4771,6 @@ Observer.getById = function (id) {
 };
 
 _getGSAP() && gsap.registerPlugin(Observer);
-
-
-/***/ }),
-
-/***/ "./node_modules/gsap/ScrollSmoother.js":
-/*!*********************************************!*\
-  !*** ./node_modules/gsap/ScrollSmoother.js ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "ScrollSmoother": () => (/* binding */ ScrollSmoother),
-/* harmony export */   "default": () => (/* binding */ ScrollSmoother)
-/* harmony export */ });
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-/*!
- * ScrollSmoother 3.10.4
- * https://greensock.com
- *
- * @license Copyright 2008-2022, GreenSock. All rights reserved.
- * Subject to the terms at https://greensock.com/standard-license or for
- * Club GreenSock members, the agreement issued with that membership.
- * @author: Jack Doyle, jack@greensock.com
-*/
-
-/* eslint-disable */
-var gsap,
-    _coreInitted,
-    _win,
-    _doc,
-    _docEl,
-    _body,
-    _root,
-    _toArray,
-    _clamp,
-    ScrollTrigger,
-    _mainInstance,
-    _expo,
-    _getVelocityProp,
-    _inputObserver,
-    _windowExists = function _windowExists() {
-  return typeof window !== "undefined";
-},
-    _getGSAP = function _getGSAP() {
-  return gsap || _windowExists() && (gsap = window.gsap) && gsap.registerPlugin && gsap;
-},
-    _bonusValidated = 1,
-    //<name>ScrollSmoother</name>
-_isViewport = function _isViewport(e) {
-  return !!~_root.indexOf(e);
-},
-    _getTime = Date.now,
-    _round = function _round(value) {
-  return Math.round(value * 100000) / 100000 || 0;
-},
-    _autoDistance = function _autoDistance(el, progress) {
-  // for calculating the distance (and offset) for elements with speed: "auto". Progress is for if it's "above the fold" (negative start position), so we can crop as little as possible.
-  var parent = el.parentNode || _docEl,
-      b1 = el.getBoundingClientRect(),
-      b2 = parent.getBoundingClientRect(),
-      gapTop = b2.top - b1.top,
-      gapBottom = b2.bottom - b1.bottom,
-      change = (Math.abs(gapTop) > Math.abs(gapBottom) ? gapTop : gapBottom) / (1 - progress),
-      offset = -change * progress,
-      ratio,
-      extraChange;
-
-  if (change > 0) {
-    // if the image starts at the BOTTOM of the container, adjust things so that it shows as much of the image as possible while still covering.
-    ratio = b2.height / (_win.innerHeight + b2.height);
-    extraChange = ratio === 0.5 ? b2.height * 2 : Math.min(b2.height, -change * ratio / (2 * ratio - 1)) * 2;
-    offset += -extraChange / 2; // whatever the offset, we must double that in the opposite direction to compensate.
-
-    change += extraChange;
-  }
-
-  return {
-    change: change,
-    offset: offset
-  };
-},
-    _wrap = function _wrap(el) {
-  var wrapper = _doc.querySelector(".ScrollSmoother-wrapper"); // some frameworks load multiple times, so one already exists, just use that to avoid duplicates
-
-
-  if (!wrapper) {
-    wrapper = _doc.createElement("div");
-    wrapper.classList.add("ScrollSmoother-wrapper");
-    el.parentNode.insertBefore(wrapper, el);
-    wrapper.appendChild(el);
-  }
-
-  return wrapper;
-};
-
-var ScrollSmoother = /*#__PURE__*/function () {
-  function ScrollSmoother(vars) {
-    var _this = this;
-
-    _coreInitted || ScrollSmoother.register(gsap) || console.warn("Please gsap.registerPlugin(ScrollSmoother)");
-    vars = this.vars = vars || {};
-    _mainInstance && _mainInstance.kill();
-    _mainInstance = this;
-
-    var _vars = vars,
-        smoothTouch = _vars.smoothTouch,
-        _onUpdate = _vars.onUpdate,
-        onStop = _vars.onStop,
-        smooth = _vars.smooth,
-        onFocusIn = _vars.onFocusIn,
-        normalizeScroll = _vars.normalizeScroll,
-        content,
-        wrapper,
-        height,
-        mainST,
-        effects,
-        sections,
-        intervalID,
-        wrapperCSS,
-        contentCSS,
-        paused,
-        pausedNormalizer,
-        recordedRefreshScroll,
-        scrollFunc = ScrollTrigger.getScrollFunc(_win),
-        smoothDuration = ScrollTrigger.isTouch === 1 ? smoothTouch === true ? 0.8 : parseFloat(smoothTouch) || 0 : smooth === 0 || smooth === false ? 0 : parseFloat(smooth) || 0.8,
-        currentY = 0,
-        delta = 0,
-        startupPhase = 1,
-        tracker = _getVelocityProp(0),
-        updateVelocity = function updateVelocity() {
-      return tracker.update(-currentY);
-    },
-        scroll = {
-      y: 0
-    },
-        removeScroll = function removeScroll() {
-      return content.style.overflow = "visible";
-    },
-        isProxyScrolling,
-        killScrub = function killScrub(trigger) {
-      trigger.update(); // it's possible that it hasn't been synchronized with the actual scroll position yet, like if it's later in the _triggers Array. If it was already updated, it'll skip the processing anyway.
-
-      var scrub = trigger.getTween();
-
-      if (scrub) {
-        scrub.pause();
-        scrub._time = scrub._dur; // force the playhead to completion without rendering just so that when it resumes, it doesn't jump back in the .resetTo().
-
-        scrub._tTime = scrub._tDur;
-      }
-
-      isProxyScrolling = false;
-      trigger.animation.progress(trigger.progress, true);
-    },
-        render = function render(y, force) {
-      if (y !== currentY && !paused || force) {
-        smoothDuration && (content.style.transform = "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, " + y + ", 0, 1)"); //smoothDuration && (content.style.transform = "translateY(" + y + "px)"); // NOTE: when we used matrix3d() or set will-change: transform, it performed noticeably worse on iOS counter-intuitively!
-
-        delta = y - currentY;
-        currentY = y;
-        ScrollTrigger.isUpdating || ScrollTrigger.update();
-      }
-    },
-        scrollTop = function scrollTop(value) {
-      if (arguments.length) {
-        paused ? currentY = -value : render(-value);
-        scroll.y = -value; // don't use currentY because we must accurately track the delta variable (in render() method)
-
-        isProxyScrolling = true; // otherwise, if snapping was applied (or anything that attempted to SET the scroll proxy's scroll position), we'd set the scroll here which would then (on the next tick) update the content tween/ScrollTrigger which would try to smoothly animate to that new value, thus the scrub tween would impede the progress. So we use this flag to respond accordingly in the ScrollTrigger's onUpdate and effectively force the scrub to its end immediately.
-
-        scrollFunc(value);
-        return this;
-      }
-
-      return -currentY - scrollFunc.offset;
-    },
-        lastFocusElement,
-        _onFocusIn = function _onFocusIn(e) {
-      // when the focus changes, make sure that element is on-screen
-      wrapper.scrollTop = 0;
-
-      if (onFocusIn && onFocusIn(_this, e) === false) {
-        return;
-      }
-
-      ScrollTrigger.isInViewport(e.target) || e.target === lastFocusElement || _this.scrollTo(e.target, false, "center center");
-      lastFocusElement = e.target;
-    },
-        adjustParallaxPosition = function adjustParallaxPosition(triggers, createdAfterEffectWasApplied) {
-      var pins, start, dif, markers;
-      effects.forEach(function (st) {
-        pins = st.pins;
-        markers = st.markers;
-        triggers.forEach(function (trig) {
-          if ((trig.trigger === st.trigger || trig.pinnedContainer === st.trigger) && st !== trig) {
-            start = trig.start;
-            dif = (start - st.start - st.offset) / st.ratio - (start - st.start); // createdAfterEffectWasApplied && (dif -= (gsap.getProperty(st.trigger, "y") - st.startY) / st.ratio); // the effect applied a y offset, so if the ScrollTrigger was created after that, it'll be based on that position so we must compensate. Later we added code to ScrollTrigger to roll back in this situation anyway, so this isn't necessary. Saving it in case a situation arises where it comes in handy.
-
-            pins.forEach(function (p) {
-              return dif -= p.distance / st.ratio - p.distance;
-            });
-            trig.setPositions(start + dif, trig.end + dif);
-            trig.markerStart && markers.push(gsap.quickSetter([trig.markerStart, trig.markerEnd], "y", "px"));
-
-            if (trig.pin && trig.end > 0) {
-              dif = trig.end - trig.start;
-              pins.push({
-                start: trig.start,
-                end: trig.end,
-                distance: dif,
-                trig: trig
-              });
-              st.setPositions(st.start, st.end + dif);
-              st.vars.onRefresh(st);
-            }
-          }
-        });
-      });
-    },
-        onRefresh = function onRefresh() {
-      removeScroll();
-      requestAnimationFrame(removeScroll);
-
-      if (effects) {
-        // adjust all the effect start/end positions including any pins!
-        effects.forEach(function (st) {
-          var start = st.start,
-              end = st.auto ? Math.min(ScrollTrigger.maxScroll(st.scroller), st.end) : start + (st.end - start) / st.ratio,
-              offset = (end - st.end) / 2; // we split the difference so that it reaches its natural position in the MIDDLE of the viewport
-
-          start -= offset;
-          end -= offset;
-          st.offset = offset || 0.0001; // we assign at least a tiny value because we check in the onUpdate for .offset being set in order to apply values.
-
-          st.pins.length = 0;
-          st.setPositions(Math.min(start, end), Math.max(start, end));
-          st.vars.onRefresh(st);
-        });
-        adjustParallaxPosition(ScrollTrigger.sort());
-      }
-
-      tracker.reset();
-    },
-        restoreEffects = function restoreEffects() {
-      return effects && effects.forEach(function (st) {
-        return st.vars.onRefresh(st);
-      });
-    },
-        revertEffects = function revertEffects() {
-      effects && effects.forEach(function (st) {
-        return st.vars.onRefreshInit(st);
-      });
-      return restoreEffects;
-    },
-        effectValueGetter = function effectValueGetter(name, value, index, el) {
-      return function () {
-        var v = typeof value === "function" ? value(index, el) : value;
-        v || v === 0 || (v = el.getAttribute("data-" + name) || (name === "speed" ? 1 : 0));
-        el.setAttribute("data-" + name, v);
-        return v === "auto" ? v : parseFloat(v);
-      };
-    },
-        createEffect = function createEffect(el, speed, lag, index) {
-      var getSpeed = effectValueGetter("speed", speed, index, el),
-          getLag = effectValueGetter("lag", lag, index, el),
-          startY = gsap.getProperty(el, "y"),
-          cache = el._gsap,
-          ratio,
-          st,
-          autoSpeed,
-          scrub,
-          progressOffset,
-          yOffset,
-          initDynamicValues = function initDynamicValues() {
-        speed = getSpeed();
-        lag = getLag();
-        ratio = parseFloat(speed) || 1;
-        autoSpeed = speed === "auto";
-        progressOffset = autoSpeed ? 0 : 0.5;
-        scrub && scrub.kill();
-        scrub = lag && gsap.to(el, {
-          ease: _expo,
-          overwrite: false,
-          y: "+=0",
-          duration: lag
-        });
-
-        if (st) {
-          st.ratio = ratio;
-          st.autoSpeed = autoSpeed;
-        }
-      },
-          revert = function revert() {
-        cache.y = startY + "px";
-        cache.renderTransform(1);
-        initDynamicValues();
-      },
-          pins = [],
-          markers = [],
-          change = 0,
-          updateChange = function updateChange(self) {
-        if (autoSpeed) {
-          revert();
-
-          var auto = _autoDistance(el, _clamp(0, 1, -self.start / (self.end - self.start)));
-
-          change = auto.change;
-          yOffset = auto.offset;
-        } else {
-          change = (self.end - self.start) * (1 - ratio);
-          yOffset = 0;
-        }
-
-        pins.forEach(function (p) {
-          return change -= p.distance * (1 - ratio);
-        });
-        self.vars.onUpdate(self);
-        scrub && scrub.progress(1);
-      };
-
-      initDynamicValues();
-
-      if (ratio !== 1 || autoSpeed || scrub) {
-        st = ScrollTrigger.create({
-          trigger: autoSpeed ? el.parentNode : el,
-          scroller: wrapper,
-          scrub: true,
-          refreshPriority: -999,
-          // must update AFTER any other ScrollTrigger pins
-          onRefreshInit: revert,
-          onRefresh: updateChange,
-          onKill: function onKill(self) {
-            var i = effects.indexOf(self);
-            i >= 0 && effects.splice(i, 1);
-            revert();
-          },
-          onUpdate: function onUpdate(self) {
-            var y = startY + change * (self.progress - progressOffset),
-                i = pins.length,
-                extraY = 0,
-                pin,
-                scrollY,
-                end;
-
-            if (self.offset) {
-              // wait until the effects are adjusted.
-              if (i) {
-                // pinning must be handled in a special way because when pinned, slope changes to 1.
-                scrollY = -currentY; // -scroll.y;
-
-                end = self.end;
-
-                while (i--) {
-                  pin = pins[i];
-
-                  if (pin.trig.isActive || scrollY >= pin.start && scrollY <= pin.end) {
-                    // currently pinned so no need to set anything
-                    if (scrub) {
-                      pin.trig.progress += pin.trig.direction < 0 ? 0.001 : -0.001; // just to make absolutely sure that it renders (if the progress didn't change, it'll skip)
-
-                      pin.trig.update(0, 0, 1);
-                      scrub.resetTo("y", parseFloat(cache.y), -delta, true);
-                      startupPhase && scrub.progress(1);
-                    }
-
-                    return;
-                  }
-
-                  scrollY > pin.end && (extraY += pin.distance);
-                  end -= pin.distance;
-                }
-
-                y = startY + extraY + change * ((gsap.utils.clamp(self.start, self.end, scrollY) - self.start - extraY) / (end - self.start) - progressOffset);
-              }
-
-              y = _round(y + yOffset);
-              markers.length && !autoSpeed && markers.forEach(function (setter) {
-                return setter(y - extraY);
-              });
-
-              if (scrub) {
-                scrub.resetTo("y", y, -delta, true);
-                startupPhase && scrub.progress(1);
-              } else {
-                cache.y = y + "px";
-                cache.renderTransform(1);
-              }
-            }
-          }
-        });
-        updateChange(st);
-        gsap.core.getCache(st.trigger).stRevert = revertEffects; // if user calls ScrollSmoother.create() with effects and THEN creates a ScrollTrigger on the same trigger element, the effect would throw off the start/end positions thus we needed a way to revert things when creating a new ScrollTrigger in that scenario, so we use this stRevert property of the GSCache inside ScrollTrigger.
-
-        st.startY = startY;
-        st.pins = pins;
-        st.markers = markers;
-        st.ratio = ratio;
-        st.autoSpeed = autoSpeed;
-        el.style.willChange = "transform";
-      }
-
-      return st;
-    };
-
-    ScrollTrigger.addEventListener("refresh", onRefresh);
-    gsap.delayedCall(0.5, function () {
-      return startupPhase = 0;
-    });
-    this.scrollTop = scrollTop;
-
-    this.scrollTo = function (target, smooth, position) {
-      var p = gsap.utils.clamp(0, ScrollTrigger.maxScroll(_win), isNaN(target) ? _this.offset(target, position) : +target);
-      !smooth ? scrollTop(p) : paused ? gsap.to(_this, {
-        duration: smoothDuration,
-        scrollTop: p,
-        overwrite: "auto",
-        ease: _expo
-      }) : scrollFunc(p);
-    };
-
-    this.offset = function (target, position) {
-      target = _toArray(target)[0];
-      var cssText = target.style.cssText,
-          // because if there's an effect applied, we revert(). We need to restore.
-      st = ScrollTrigger.create({
-        trigger: target,
-        start: position || "top top"
-      }),
-          y;
-      effects && adjustParallaxPosition([st], true);
-      y = st.start;
-      st.kill(false);
-      target.style.cssText = cssText;
-      gsap.core.getCache(target).uncache = 1;
-      return y;
-    };
-
-    function refreshHeight() {
-      height = content.clientHeight;
-      content.style.overflow = "visible";
-      _body.style.height = height + "px";
-      return height - _win.innerHeight;
-    }
-
-    this.content = function (element) {
-      if (arguments.length) {
-        var newContent = _toArray(element || "#smooth-content")[0] || _body.children[0];
-
-        if (newContent !== content) {
-          content = newContent;
-          contentCSS = content.getAttribute("style") || "";
-          gsap.set(content, {
-            overflow: "visible",
-            width: "100%",
-            boxSizing: "border-box"
-          });
-        }
-
-        return this;
-      }
-
-      return content;
-    };
-
-    this.wrapper = function (element) {
-      if (arguments.length) {
-        wrapper = _toArray(element || "#smooth-wrapper")[0] || _wrap(content);
-        wrapperCSS = wrapper.getAttribute("style") || "";
-        refreshHeight();
-        gsap.set(wrapper, smoothDuration ? {
-          overflow: "hidden",
-          position: "fixed",
-          height: "100%",
-          width: "100%",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0
-        } : {
-          overflow: "visible",
-          position: "relative",
-          width: "100%",
-          height: "auto",
-          top: "auto",
-          bottom: "auto",
-          left: "auto",
-          right: "auto"
-        });
-        return this;
-      }
-
-      return wrapper;
-    };
-
-    this.effects = function (targets, config) {
-      var _effects;
-
-      effects || (effects = []);
-
-      if (!targets) {
-        return effects.slice(0);
-      }
-
-      targets = _toArray(targets);
-      targets.forEach(function (target) {
-        var i = effects.length;
-
-        while (i--) {
-          if (effects[i].trigger === target) {
-            effects[i].kill();
-            effects.splice(i, 1);
-          }
-        }
-      });
-      config = config || {};
-      var _config = config,
-          speed = _config.speed,
-          lag = _config.lag,
-          effectsToAdd = [],
-          i,
-          st;
-
-      for (i = 0; i < targets.length; i++) {
-        st = createEffect(targets[i], speed, lag, i);
-        st && effectsToAdd.push(st);
-      }
-
-      (_effects = effects).push.apply(_effects, effectsToAdd);
-
-      return effectsToAdd;
-    };
-
-    this.sections = function (targets, config) {
-      var _sections;
-
-      sections || (sections = []);
-
-      if (!targets) {
-        return sections.slice(0);
-      }
-
-      var newSections = _toArray(targets).map(function (el) {
-        return ScrollTrigger.create({
-          trigger: el,
-          start: "top 120%",
-          end: "bottom -20%",
-          onToggle: function onToggle(self) {
-            el.style.opacity = self.isActive ? "1" : "0";
-            el.style.pointerEvents = self.isActive ? "all" : "none";
-          }
-        });
-      });
-
-      config && config.add ? (_sections = sections).push.apply(_sections, newSections) : sections = newSections.slice(0);
-      return newSections;
-    };
-
-    this.content(vars.content);
-    this.wrapper(vars.wrapper);
-
-    this.render = function (y) {
-      return render(y || y === 0 ? y : currentY);
-    };
-
-    this.getVelocity = function () {
-      return tracker.getVelocity(-currentY);
-    };
-
-    ScrollTrigger.scrollerProxy(wrapper, {
-      scrollTop: scrollTop,
-      scrollHeight: function scrollHeight() {
-        return refreshHeight() && _body.scrollHeight;
-      },
-      fixedMarkers: vars.fixedMarkers !== false && !!smoothDuration,
-      content: content,
-      getBoundingClientRect: function getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: _win.innerWidth,
-          height: _win.innerHeight
-        };
-      }
-    });
-    ScrollTrigger.defaults({
-      scroller: wrapper
-    });
-    var existingScrollTriggers = ScrollTrigger.getAll().filter(function (st) {
-      return st.scroller === _win || st.scroller === wrapper;
-    });
-    existingScrollTriggers.forEach(function (st) {
-      return st.revert(true);
-    }); // in case it's in an environment like React where child components that have ScrollTriggers instantiate BEFORE the parent that does ScrollSmoother.create(...);
-
-    mainST = ScrollTrigger.create({
-      animation: gsap.to(scroll, {
-        y: function y() {
-          return -refreshHeight();
-        },
-        ease: "none",
-        data: "ScrollSmoother",
-        duration: 100,
-        // for added precision
-        onUpdate: function onUpdate() {
-          var force = isProxyScrolling;
-
-          if (force) {
-            scroll.y = currentY;
-            killScrub(mainST);
-          }
-
-          render(scroll.y, force);
-          updateVelocity();
-          _onUpdate && !paused && _onUpdate(_this);
-        }
-      }),
-      onRefreshInit: function onRefreshInit() {
-        recordedRefreshScroll = currentY;
-        scroll.y = wrapper.scrollTop = 0; // set wrapper.scrollTop to 0 because in some very rare situations, the browser will auto-set that, like if there's a hash in the link or changing focus to an off-screen input
-      },
-      id: "ScrollSmoother",
-      scroller: _win,
-      invalidateOnRefresh: true,
-      start: 0,
-      refreshPriority: -9999,
-      // because all other pins, etc. should be calculated first before this figures out the height of the body. BUT this should also update FIRST so that the scroll position on the proxy is up-to-date when all the ScrollTriggers calculate their progress! -9999 is a special number that ScrollTrigger looks for to handle in this way.
-      end: refreshHeight,
-      onScrubComplete: function onScrubComplete() {
-        tracker.reset();
-        onStop && onStop(_this);
-      },
-      scrub: smoothDuration || true,
-      onRefresh: function onRefresh(self) {
-        killScrub(self);
-        scroll.y = -scrollFunc();
-        render(scroll.y);
-        startupPhase || self.animation.progress(gsap.utils.clamp(0, 1, recordedRefreshScroll / -self.end));
-      }
-    });
-
-    this.smooth = function (value) {
-      smoothDuration = value;
-      return arguments.length ? mainST.scrubDuration(value) : mainST.getTween() ? mainST.getTween().duration() : 0;
-    };
-
-    mainST.getTween() && (mainST.getTween().vars.ease = vars.ease || _expo);
-    this.scrollTrigger = mainST;
-    vars.effects && this.effects(vars.effects === true ? "[data-speed], [data-lag]" : vars.effects, {});
-    vars.sections && this.sections(vars.sections === true ? "[data-section]" : vars.sections);
-    existingScrollTriggers.forEach(function (st) {
-      st.vars.scroller = wrapper;
-      st.init(st.vars, st.animation);
-    });
-
-    this.paused = function (value, allowNestedScroll) {
-      if (arguments.length) {
-        if (!!paused !== value) {
-          if (value) {
-            // pause
-            mainST.getTween() && mainST.getTween().pause();
-            scrollFunc(-currentY);
-            tracker.reset();
-            pausedNormalizer = ScrollTrigger.normalizeScroll();
-            pausedNormalizer && pausedNormalizer.disable(); // otherwise the normalizer would try to scroll the page on things like wheel events.
-
-            paused = ScrollTrigger.observe({
-              preventDefault: true,
-              type: "wheel,touch,scroll",
-              debounce: false,
-              allowClicks: true,
-              onChangeY: function onChangeY() {
-                return scrollTop(-currentY);
-              } // refuse to scroll
-
-            });
-            paused.nested = _inputObserver(_docEl, "wheel,touch,scroll", true, allowNestedScroll !== false); // allow nested scrolling, like modals
-          } else {
-            // resume
-            paused.nested.kill();
-            paused.kill();
-            paused = 0;
-            pausedNormalizer && pausedNormalizer.enable();
-            mainST.progress = (-currentY - mainST.start) / (mainST.end - mainST.start);
-            killScrub(mainST);
-          }
-        }
-
-        return this;
-      }
-
-      return !!paused;
-    };
-
-    this.kill = function () {
-      _this.paused(false);
-
-      killScrub(mainST);
-      mainST.kill();
-      var triggers = (effects || []).concat(sections || []),
-          i = triggers.length;
-
-      while (i--) {
-        // make sure we go backwards because the onKill() will effects.splice(index, 1) and we don't want to skip
-        triggers[i].kill();
-      }
-
-      ScrollTrigger.scrollerProxy(wrapper);
-      ScrollTrigger.removeEventListener("refresh", onRefresh);
-
-      _body.style.removeProperty("height");
-
-      wrapper.style.cssText = wrapperCSS;
-      content.style.cssText = contentCSS;
-      var defaults = ScrollTrigger.defaults({});
-      defaults && defaults.scroller === wrapper && ScrollTrigger.defaults({
-        scroller: _win
-      });
-      _this.normalizer && ScrollTrigger.normalizeScroll(false);
-      clearInterval(intervalID);
-      _mainInstance = null;
-
-      _win.removeEventListener("focusin", _onFocusIn);
-    };
-
-    this.refresh = function (soft, force) {
-      return mainST.refresh(soft, force);
-    };
-
-    if (normalizeScroll) {
-      this.normalizer = ScrollTrigger.normalizeScroll(normalizeScroll === true ? {
-        debounce: true,
-        content: content
-      } : normalizeScroll);
-    }
-
-    ScrollTrigger.config(vars); // in case user passes in ignoreMobileResize for example
-
-    "overscrollBehavior" in _win.getComputedStyle(_body) && gsap.set([_body, _docEl], {
-      overscrollBehavior: "none"
-    });
-    "scrollBehavior" in _win.getComputedStyle(_body) && gsap.set([_body, _docEl], {
-      scrollBehavior: "auto"
-    }); // if the user hits the tab key (or whatever) to shift focus to an element that's off-screen, center that element.
-
-    _win.addEventListener("focusin", _onFocusIn);
-
-    intervalID = setInterval(updateVelocity, 250);
-    _doc.readyState === "loading" || requestAnimationFrame(function () {
-      return ScrollTrigger.refresh();
-    });
-  }
-
-  ScrollSmoother.register = function register(core) {
-    if (!_coreInitted) {
-      gsap = core || _getGSAP();
-
-      if (_windowExists() && window.document) {
-        _win = window;
-        _doc = document;
-        _docEl = _doc.documentElement;
-        _body = _doc.body;
-      }
-
-      if (gsap) {
-        _toArray = gsap.utils.toArray;
-        _clamp = gsap.utils.clamp;
-        _expo = gsap.parseEase("expo");
-        ScrollTrigger = gsap.core.globals().ScrollTrigger;
-        gsap.core.globals("ScrollSmoother", ScrollSmoother); // must register the global manually because in Internet Explorer, functions (classes) don't have a "name" property.
-        //	gsap.ticker.lagSmoothing(50, 100); // generally people don't want things to jump (honoring smoothness over time is better with smooth scrolling)
-
-        if (_body && ScrollTrigger) {
-          _root = [_win, _doc, _docEl, _body];
-          _getVelocityProp = ScrollTrigger.core._getVelocityProp;
-          _inputObserver = ScrollTrigger.core._inputObserver;
-          ScrollSmoother.refresh = ScrollTrigger.refresh;
-          _coreInitted = 1;
-        }
-      }
-    }
-
-    return _coreInitted;
-  };
-
-  _createClass(ScrollSmoother, [{
-    key: "progress",
-    get: function get() {
-      return this.scrollTrigger.animation._time / 100;
-    }
-  }]);
-
-  return ScrollSmoother;
-}();
-ScrollSmoother.version = "3.10.4";
-
-ScrollSmoother.create = function (vars) {
-  return _mainInstance && vars && _mainInstance.content() === _toArray(vars.content)[0] ? _mainInstance : new ScrollSmoother(vars);
-};
-
-ScrollSmoother.get = function () {
-  return _mainInstance;
-};
-
-_getGSAP() && gsap.registerPlugin(ScrollSmoother);
 
 
 /***/ }),
@@ -17136,6 +16886,45 @@ _core_holder_js__WEBPACK_IMPORTED_MODULE_2__["default"].MaskedRegExp = MaskedReg
 
 /***/ }),
 
+/***/ "./src/scripts/vue/components/CollapseButtonComponent.vue":
+/*!****************************************************************!*\
+  !*** ./src/scripts/vue/components/CollapseButtonComponent.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CollapseButtonComponent.vue?vue&type=template&id=4371f40e& */ "./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e&");
+/* harmony import */ var _CollapseButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CollapseButtonComponent.vue?vue&type=script&lang=js& */ "./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CollapseButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/scripts/vue/components/CollapseButtonComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./src/scripts/vue/components/FilterComponent.vue":
 /*!********************************************************!*\
   !*** ./src/scripts/vue/components/FilterComponent.vue ***!
@@ -17171,6 +16960,45 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "src/scripts/vue/components/FilterComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./src/scripts/vue/components/LoadMoreButtonComponent.vue":
+/*!****************************************************************!*\
+  !*** ./src/scripts/vue/components/LoadMoreButtonComponent.vue ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0& */ "./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0&");
+/* harmony import */ var _LoadMoreButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoadMoreButtonComponent.vue?vue&type=script&lang=js& */ "./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _LoadMoreButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__.render,
+  _LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "src/scripts/vue/components/LoadMoreButtonComponent.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -17292,6 +17120,22 @@ component.options.__file = "src/scripts/vue/views/portfolio-view.vue"
 
 /***/ }),
 
+/***/ "./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_CollapseButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CollapseButtonComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_CollapseButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./src/scripts/vue/components/FilterComponent.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************!*\
   !*** ./src/scripts/vue/components/FilterComponent.vue?vue&type=script&lang=js& ***!
@@ -17305,6 +17149,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FilterComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=script&lang=js&");
  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadMoreButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LoadMoreButtonComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-1[0].rules[0].use!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_1_0_rules_0_use_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadMoreButtonComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -17356,6 +17216,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e&":
+/*!***********************************************************************************************!*\
+  !*** ./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CollapseButtonComponent_vue_vue_type_template_id_4371f40e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./CollapseButtonComponent.vue?vue&type=template&id=4371f40e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e&");
+
+
+/***/ }),
+
 /***/ "./src/scripts/vue/components/FilterComponent.vue?vue&type=template&id=7a26c675&":
 /*!***************************************************************************************!*\
   !*** ./src/scripts/vue/components/FilterComponent.vue?vue&type=template&id=7a26c675& ***!
@@ -17369,6 +17246,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterComponent_vue_vue_type_template_id_7a26c675___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilterComponent_vue_vue_type_template_id_7a26c675___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./FilterComponent.vue?vue&type=template&id=7a26c675& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=template&id=7a26c675&");
+
+
+/***/ }),
+
+/***/ "./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0&":
+/*!***********************************************************************************************!*\
+  !*** ./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0& ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoadMoreButtonComponent_vue_vue_type_template_id_5a2d1ba0___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0&");
 
 
 /***/ }),
@@ -17424,6 +17318,45 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/CollapseButtonComponent.vue?vue&type=template&id=4371f40e& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "portfolio__collapse main-btn",
+      attrs: { type: "button", disabled: this.disabled },
+      on: { click: _vm.collapse },
+    },
+    [
+      _c("svg", { attrs: { width: "24", height: "24" } }, [
+        _c("use", {
+          attrs: { "xlink:href": "../assets/sprite.svg#icon-btn-arrow" },
+        }),
+      ]),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=template&id=7a26c675&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/FilterComponent.vue?vue&type=template&id=7a26c675& ***!
@@ -17449,7 +17382,8 @@ var render = function () {
         attrs: { type: "button" },
         on: {
           click: function ($event) {
-            _vm.isOpenerActive = !_vm.isOpenerActive
+            $event.stopPropagation()
+            return _vm.openFilter.apply(null, arguments)
           },
         },
       },
@@ -17464,100 +17398,146 @@ var render = function () {
       ]
     ),
     _vm._v(" "),
-    _vm.isOpenerActive
-      ? _c(
-          "div",
-          { staticClass: "filter-container" },
-          [
-            _c("div", { staticClass: "filter-control" }, [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isOpenerActive,
+            expression: "isOpenerActive",
+          },
+        ],
+        staticClass: "filter-container",
+      },
+      [
+        _c("div", { staticClass: "filter-control" }, [
+          _c("input", {
+            attrs: {
+              type: "checkbox",
+              id: "all",
+              disabled:
+                this.tagList.length === this.checkedList.length ? true : false,
+            },
+            domProps: {
+              checked:
+                this.tagList.length === this.checkedList.length ? true : false,
+            },
+            on: { click: _vm.selectAll },
+          }),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "all", tabindex: "0" } }, [
+            _vm._v("Все"),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._l(this.tagList, function (tag, i) {
+          return _c(
+            "div",
+            { key: "tag_" + (i + 1), staticClass: "filter-control" },
+            [
               _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.checkedList,
+                    expression: "checkedList",
+                  },
+                ],
                 attrs: {
                   type: "checkbox",
-                  id: "all",
+                  id: "tag_" + (i + 1),
+                  "data-tag": tag,
                   disabled:
-                    this.tagList.length === this.checkedList.length
+                    _vm.checkedList[0] === tag && _vm.checkedList.length === 1
                       ? true
                       : false,
                 },
                 domProps: {
-                  checked:
-                    this.tagList.length === this.checkedList.length
-                      ? true
-                      : false,
+                  value: tag,
+                  checked: Array.isArray(_vm.checkedList)
+                    ? _vm._i(_vm.checkedList, tag) > -1
+                    : _vm.checkedList,
                 },
-                on: { click: _vm.selectAll },
+                on: {
+                  change: [
+                    function ($event) {
+                      var $$a = _vm.checkedList,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = tag,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.checkedList = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkedList = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkedList = $$c
+                      }
+                    },
+                    _vm.emitCheckedList,
+                  ],
+                },
               }),
               _vm._v(" "),
-              _c("label", { attrs: { for: "all" } }, [_vm._v("Все")]),
-            ]),
-            _vm._v(" "),
-            _vm._l(this.tagList, function (tag, i) {
-              return _c(
-                "div",
-                { key: "tag_" + (i + 1), staticClass: "filter-control" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.checkedList,
-                        expression: "checkedList",
-                      },
-                    ],
-                    attrs: {
-                      type: "checkbox",
-                      id: "tag_" + (i + 1),
-                      "data-tag": tag,
-                      disabled:
-                        _vm.checkedList[0] === tag &&
-                        _vm.checkedList.length === 1
-                          ? true
-                          : false,
-                    },
-                    domProps: {
-                      value: tag,
-                      checked: Array.isArray(_vm.checkedList)
-                        ? _vm._i(_vm.checkedList, tag) > -1
-                        : _vm.checkedList,
-                    },
-                    on: {
-                      change: [
-                        function ($event) {
-                          var $$a = _vm.checkedList,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = tag,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 && (_vm.checkedList = $$a.concat([$$v]))
-                            } else {
-                              $$i > -1 &&
-                                (_vm.checkedList = $$a
-                                  .slice(0, $$i)
-                                  .concat($$a.slice($$i + 1)))
-                            }
-                          } else {
-                            _vm.checkedList = $$c
-                          }
-                        },
-                        _vm.emitCheckedList,
-                      ],
-                    },
-                  }),
-                  _vm._v(" "),
-                  _c("label", { attrs: { for: "tag_" + (i + 1) } }, [
-                    _vm._v(_vm._s(tag)),
-                  ]),
-                ]
-              )
-            }),
-          ],
-          2
-        )
-      : _vm._e(),
+              _c("label", { attrs: { for: "tag_" + (i + 1), tabindex: "0" } }, [
+                _vm._v(_vm._s(tag)),
+              ]),
+            ]
+          )
+        }),
+      ],
+      2
+    ),
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./src/scripts/vue/components/LoadMoreButtonComponent.vue?vue&type=template&id=5a2d1ba0& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "button",
+    {
+      staticClass: "portfolio__more main-btn",
+      attrs: { type: "button", disabled: this.$props.disabled ? true : false },
+      on: { click: _vm.showMore },
+    },
+    [
+      _c("span", [_vm._v("Больше работ")]),
+      _vm._v(" "),
+      _c("svg", { attrs: { width: "24", height: "24" } }, [
+        _c("use", {
+          attrs: { "xlink:href": "../assets/sprite.svg#icon-btn-arrow" },
+        }),
+      ]),
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -17607,8 +17587,8 @@ var render = function () {
                     src: "../assets/img/" + item.source + "@1x.jpg",
                     srcset: "../assets/img/" + item.source + "@2x.jpg 2x",
                     alt: item.description,
-                    width: "789",
-                    height: "589",
+                    width: "787",
+                    height: "442",
                   },
                 }),
               ])
@@ -17722,6 +17702,7 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticStyle: { position: "relative" } },
     [
       _c(
         "div",
@@ -17741,6 +17722,23 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("portfolio-list-component", { attrs: { items: this.items } }),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "portfolio__footer" },
+        [
+          _c("load-more-button-component", {
+            attrs: { disabled: this.isLoadMoreButtonDisabled },
+            on: { load: _vm.loadMoreItems },
+          }),
+          _vm._v(" "),
+          _c("collapse-button-component", {
+            attrs: { state: this.isCollapseButtonDisabled },
+            on: { collapse: _vm.collapsePortfolioList },
+          }),
+        ],
+        1
+      ),
     ],
     1
   )
@@ -39397,22 +39395,22 @@ var __webpack_exports__ = {};
   !*** ./src/scripts/main.js ***!
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue/main.js */ "./src/scripts/vue/main.js");
-/* harmony import */ var _modules_hero_arrow_down__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/hero-arrow-down */ "./src/scripts/modules/hero-arrow-down.js");
-/* harmony import */ var _modules_anchor_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/anchor-link */ "./src/scripts/modules/anchor-link.js");
-/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
-/* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
-/* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
-/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
-/* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
-//import "./modules/loader";
- //import "./modules/swiper.js";
+/* harmony import */ var _modules_loader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/loader */ "./src/scripts/modules/loader.js");
+/* harmony import */ var _vue_main_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue/main.js */ "./src/scripts/vue/main.js");
+/* harmony import */ var _modules_hero_arrow_down__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/hero-arrow-down */ "./src/scripts/modules/hero-arrow-down.js");
+/* harmony import */ var _modules_anchor_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/anchor-link */ "./src/scripts/modules/anchor-link.js");
+/* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
+/* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
+/* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
+/* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
+/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
+/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
+/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modules/form */ "./src/scripts/modules/form.js");
 
 
 
@@ -39423,7 +39421,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- //import "./modules/portfolio-init";
+
+
 
 
 })();

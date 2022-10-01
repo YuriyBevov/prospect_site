@@ -1,3 +1,42 @@
+.invalid-animation {
+  animation: shake 0.5s 0.1s linear;
+}
+
+.disabled {
+  opacity: .4;
+  cursor: default;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-10px);
+  }
+
+  50% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.invalid-control {
+  &::placeholder {
+    color: var(--accent);
+  }
+
+  & + label {
+    color: var(--accent);
+  }
+
+  @extend .invalid-animation;
+}
+
 .form {
   &__content {
     display: grid;
@@ -34,6 +73,10 @@
         @include m-b-mobile-lg-down {
           width: 100%;
         }
+
+        &.js-invalid-control {
+          @extend .invalid-control;
+        }
       }
 
       input,
@@ -44,9 +87,44 @@
 
         color: var(--white);
       }
+
+    }
+
+    input.js-invalid-control {
+      @extend .invalid-control;
+    }
+
+    input:disabled {
+      @extend .disabled;
+
+      & + label,
+      & + label::before {
+        @extend .disabled;
+      }
     }
 
     @extend .main-checkbox;
+  }
+
+  &__footer {
+    .status-message {
+      @extend .flex-wrap;
+      align-items: center;
+
+      font-size: 20px;
+      line-height: 1.2;
+
+      color: var(--white);
+
+      svg {
+        fill: var(--white);
+        margin-right: 25px;
+      }
+
+      span {
+        max-width: 205px;
+      }
+    }
   }
 
   &__submit {

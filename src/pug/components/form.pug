@@ -1,6 +1,6 @@
 include ../mixins/main-btn
 
-form(action="#").form
+form().form
   .form__content
     fieldset.form__data
       input(type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off")
@@ -10,9 +10,10 @@ form(action="#").form
       input(type="checkbox" id="user_accept" )
       label(for="user_accept" tabindex="0")  Согласен на обработку персональных данных
 
-  +main-btn({
-    type: 'button',
-    btnType: 'submit',
-    title: 'Отправить',
-    cls: 'form__submit'
-  })
+  .form__footer
+    +main-btn({
+      type: 'button',
+      btnType: 'submit',
+      title: 'Отправить',
+      cls: 'form__submit'
+    })

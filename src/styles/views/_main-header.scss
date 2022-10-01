@@ -17,20 +17,6 @@
   &__container {
     @extend .flex-wrap;
     align-items: center;
+    padding: 0 5vw;
   }
-
-  /*&__navbar {
-    display: flex;
-    align-items: center;
-
-    overflow-x: hidden;
-
-    .nav {
-      flex-grow: 1;
-    }
-
-    @include m-b-tablet-lg-down {
-      justify-content: space-between;
-    }
-  }*/
 }

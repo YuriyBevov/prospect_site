@@ -72,6 +72,11 @@ const PATHS = {
   resources: {
     src: `${SOURCE_PATH}root-resources/**`,
     dest: BUILD_PATH
+  },
+
+  content: {
+    src: `${SOURCE_PATH}content/**`,
+    watchSrc: `${SOURCE_PATH}content/**`
   }
 };
 
