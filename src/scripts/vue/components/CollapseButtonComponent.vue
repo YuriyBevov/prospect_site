@@ -4,6 +4,7 @@
     type="button"
     :disabled="this.disabled"
     @click="collapse"
+    aria-label="Свернуть"
   >
     <svg width="24" height="24">
       <use :xlink:href="`./assets/sprite.svg#icon-btn-arrow`"></use>

@@ -34,13 +34,13 @@ if(map) {
       let ZoomLayout = ymaps.templateLayoutFactory.createClass(
         //Шаблон html кнопок зума
         "<div class='zoom-btns'>"                                   +
-            "<button id='zoom-in' class='zoom-btn zoom-btn-in'>"    +
+            "<button id='zoom-in' class='zoom-btn zoom-btn-in' aria-label='Увеличить масштаб'>"    +
                 "<svg width='14' height='14'>"                      +
                     "<use xlink:href='./assets/sprite.svg#icon-zoom-in'>"   +
                 "</svg>"                                            +
             "</button>"                                             +
 
-            "<button id='zoom-out' class='zoom-btn zoom-btn-out'>"  +
+            "<button id='zoom-out' class='zoom-btn zoom-btn-out' aria-label='Уменьшить масштаб'>"  +
                 "<svg width='14' height='2'>"                       +
                     "<use xlink:href='./assets/sprite.svg#icon-zoom-out'>"  +
                 "</svg>"                                            +

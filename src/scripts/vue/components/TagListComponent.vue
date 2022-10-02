@@ -14,6 +14,7 @@
               :data-tag="tag"
               @click="removeTag"
               :disabled="tags.length === 1 ? true : false"
+              aria-label="Удалить"
             ></button>
           </div>
         </div>
