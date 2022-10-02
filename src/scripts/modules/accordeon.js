@@ -1,7 +1,8 @@
 import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
+import {ScrollToPlugin} from 'gsap/ScrollToPlugin';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const accordeon = document.querySelector('.accordeon');
 
@@ -124,8 +125,16 @@ if(accordeon) {
     field.style.left = OFFSET_WIDTH * i + 'px';
   })
 
+  const scrollToTop = (target) => {
+    gsap.to(window, {duration: 1, scrollTo: {y: target, offsetY: 150, autoKill: true}, ease: "power0.easeNone"});
+  }
+
   const onClickOpenaccordeonField = (evt) => {
     const target = evt.currentTarget.parentNode;
+
+    if(window.innerWidth < 961) {
+      scrollToTop(target);
+    }
 
     if(!target.classList.contains('active')) {
       calculatePos(fields, target);

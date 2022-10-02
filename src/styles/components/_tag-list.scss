@@ -20,6 +20,12 @@
     background: #F6F6F6;
     border-radius: 65px;
 
+    span {
+      @extend .text-nowrap;
+      width: fit-content;
+      max-width: calc(100vw - 215px);
+    }
+
     button {
       @extend .button-default;
       position: absolute;

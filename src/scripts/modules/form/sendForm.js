@@ -1,20 +1,28 @@
 import { Modal } from "../../classes/Modal";
-//const loader = document.querySelector('.page-overlay');
+import { gsap } from 'gsap';
+import { loader } from "../../utils/nodesHelper";
 
 export function sendForm(form) {
 
   const thanksModal = document.getElementById('thanks-modal');
   const errorModal = document.getElementById('error-modal');
 
-  function success() {
-    form.reset();
-    let modals = document.querySelectorAll('.modal');
-
-    modals.forEach(modal => {
-      new Modal(modal).refresh();
+  function loaderFadeOut() {
+    console.log('fadeout')
+    return gsap.to('.loader', {
+      opacity: 0,
+      duration: 1,
+      ease: 'ease-in',
+      onComplete: () => {
+        loader.style.display = 'none';
+      }
     });
+  }
 
-    //loader.classList.add('hidden');
+  function success() {
+    loaderFadeOut();
+    form.reset();
+
     new Modal(thanksModal).show();
 
     const footer = form.querySelector('.form__footer');
@@ -26,7 +34,6 @@ export function sendForm(form) {
         </svg><span>Ваша заявка успешно отправлена.</span>
       </div>
     `
-
     const controls = form.querySelectorAll('input');
 
     controls.forEach(ctrl => {
@@ -35,7 +42,7 @@ export function sendForm(form) {
   }
 
   function error() {
-    //loader.classList.add('hidden');
+    loaderFadeOut();
     new Modal(errorModal).show();
   }
 

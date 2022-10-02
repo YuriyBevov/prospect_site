@@ -9,20 +9,22 @@
 @import "keyframes";
 
 /*components*/
-@import "./components/page-overlay";
+
 @import "./components/loader";
 @import "./components/burger";
-@import "./components/section-title";
 @import "./components/main-btn";
+@import "./components/section-title";
 @import "./components/custom-select";
-@import "./components/form";
 @import "./components/filter";
 @import "./components/tag-list";
-@import "./components/state-modal";
-@import "./components/modal";
-
 @import "./components/accordeon";
+@import "./components/form";
 @import "./components/yandex-map";
+@import "./components/modal-overlay";
+@import "./components/modal";
+@import "./components/state-modal";
+@import "./components/portfolio-slider";
+@import "./components/fancybox-custom";
 /*views*/
 @import "./views/main-header";
 

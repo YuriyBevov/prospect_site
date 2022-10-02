@@ -26,6 +26,7 @@
 }
 
 .invalid-control {
+  color: var(--accent);
   &::placeholder {
     color: var(--accent);
   }
@@ -123,6 +124,16 @@
 
       span {
         max-width: 205px;
+      }
+
+      @include m-b-mobile-lg-down {
+        svg {
+          margin-right: 15px;
+        }
+
+        span {
+          font-size: 16px;
+        }
       }
     }
   }

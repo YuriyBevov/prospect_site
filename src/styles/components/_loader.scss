@@ -5,14 +5,21 @@
   animation-fill-mode: both;
   animation: bubblesFadeInOut 1.8s infinite ease-in-out;
 }
+
 .loader {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+
   color: var(--primary);
   font-size: 7px;
-  position: relative;
   text-indent: -9999em;
-  transform: translateZ(0);
   animation-delay: -0.16s;
+
+  z-index: 102;
 }
+
 .loader:before,
 .loader:after {
   content: '';

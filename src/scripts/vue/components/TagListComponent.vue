@@ -1,6 +1,6 @@
 <template>
   <div class="tag-list">
-    <div class="swiper-container">
+    <div class="swiper-container tag-swiper-container">
       <div class="swiper-wrapper">
         <div
           class="swiper-slide"
@@ -46,7 +46,7 @@
       },
 
       swiperInit() {
-        this.swiper = new Swiper ('.swiper-container', {
+        this.swiper = new Swiper ('.tag-swiper-container', {
           slidesPerView: 'auto',
           spaceBetween: 20,
         })

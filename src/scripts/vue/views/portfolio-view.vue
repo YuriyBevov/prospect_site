@@ -41,7 +41,7 @@
         STEP: 4,
         count: 0,
         isLoadMoreButtonDisabled: false,
-        isCollapseButtonDisabled: false
+        isCollapseButtonDisabled: false,
       }
     },
 
@@ -50,7 +50,6 @@
         let tags = [];
 
         this.initialArray.forEach(item => {
-          console.log(item)
           tags = [...tags, ...item.tags];
         });
 

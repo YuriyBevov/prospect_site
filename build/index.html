@@ -8,11 +8,13 @@
     <meta name="keywords" content=""/>
     <title>ООО ПРОСПЕКТ</title>
     <link rel="stylesheet" href="./assets/main.css"/>
+    <!--link(rel="preload" href="./assets/fonts/Exo2-Medium.woff2" as="font" type="font/woff2" crossorigin="anonymous")-->
     <script defer="defer" src="./assets/bundle.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=56c6be8d-b5f9-45d5-8ffa-7fdb884fcf53&amp;lang=ru_RU"></script>
   </head>
   <body>
-    <div class="page-overlay" style="position:fixed;top:0;left:0;display:flex;align-items:center;justify-content:center;width: 100vw;height: 100vh;background-color:var(--white);z-index: 101;"><span class="loader"></span></div>
+    <div class="page-overlay" style="position:fixed;top:0;left:0;display:flex;align-items:center;justify-content:center;width: 100vw;height: 100vh;background-color:var(--white);z-index: 101;"></div>
+    <div class="modal-overlay"></div><span class="loader"></span>
     <header class="main-header">
       <div class="container-fluid main-header__container"><a class="main-header-logo" href="index.html" aria-label="Обновить"><img src="./assets/img/main-logo.svg" alt="Логотип" width="81" height="50"></a>
         <nav class="nav">
@@ -27,8 +29,6 @@
         <button class="burger" type="button"><span class="burger__line burger__line--top"></span><span class="burger__line burger__line--middle"></span><span class="burger__line burger__line--bottom"></span></button>
       </div>
     </header>
-    <!--#smooth-wrapper#smooth-content
-    -->
     <main>
       <section class="hero" id="hero"><div class="video-foreground">
 <iframe frameborder="0" width="1920" height="1080" allowfullscreen srcdoc="<html><head><style>body{margin: 0;padding: 0;}.bg-video-wrap {position: relative;overflow: hidden;width: 100%;height: 100vh;display: flex;}video {object-fit: cover;min-width: 100%;min-height: 100vh;z-index: 1;}</style></head><body><div class='bg-video-wrap'><video loop muted autoplay><source src='./assets/video/hero-video.mp4' type='video/mp4'><source src='./assets/video/hero-video.webm' type='video/webm'></video></div></body></html>"></iframe>
@@ -331,7 +331,7 @@
           <h2 class="visually-hidden">Оставить заявку</h2>
           <div class="callback__form">
             <p class="callback__text">Заполните форму <br/> и&nbsp;мы&nbsp;обязательно Вам перезвоним&nbsp;!</p>
-            <form class="form">
+            <form class="form" action="mail.php" method="POST">
               <div class="form__content">
                 <fieldset class="form__data">
                   <input type="text" placeholder="Как к вам обращаться" id="user_name" name="user_name" autocomplete="off">
@@ -379,34 +379,32 @@
         </div>
       </footer>
     </main>
-    <div class="modal-overlay">
-      <div class="modal state-modal error-modal" id="error-modal">
-        <button class="modal__close" type="button">
-          <svg width="32" height="32">
-            <use xlink:href="./assets/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-        <div class="modal__content">
-          <svg width="100" height="100">
-            <use xlink:href="./assets/sprite.svg#icon-error"></use>
-          </svg>
-          <p>Что-то пошло не&nbsp;так... <br/> Попробуйте еще раз.</p>
-        </div>
+    <!--.modal-overlay-->
+    <div class="modal state-modal error-modal" id="error-modal">
+      <button class="modal__close" type="button">
+        <svg width="32" height="32">
+          <use xlink:href="./assets/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+      <div class="modal__content">
+        <svg width="100" height="100">
+          <use xlink:href="./assets/sprite.svg#icon-error"></use>
+        </svg>
+        <p>Что-то пошло не&nbsp;так... <br/> Попробуйте еще раз.</p>
       </div>
     </div>
-    <div class="modal-overlay">
-      <div class="modal state-modal thanks-modal" id="thanks-modal">
-        <button class="modal__close" type="button">
-          <svg width="32" height="32">
-            <use xlink:href="./assets/sprite.svg#icon-close"></use>
-          </svg>
-        </button>
-        <div class="modal__content">
-          <svg width="100" height="100">
-            <use xlink:href="./assets/sprite.svg#icon-success"></use>
-          </svg>
-          <p>Ваша заявка <br/>успешно отправлена.</p>
-        </div>
+    <!--.modal-overlay-->
+    <div class="modal state-modal thanks-modal" id="thanks-modal">
+      <button class="modal__close" type="button">
+        <svg width="32" height="32">
+          <use xlink:href="./assets/sprite.svg#icon-close"></use>
+        </svg>
+      </button>
+      <div class="modal__content">
+        <svg width="100" height="100">
+          <use xlink:href="./assets/sprite.svg#icon-success"></use>
+        </svg>
+        <p>Ваша заявка <br/>успешно отправлена.</p>
       </div>
     </div>
   </body>

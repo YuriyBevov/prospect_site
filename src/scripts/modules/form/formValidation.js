@@ -1,7 +1,12 @@
 import { setControlState } from "./setControlState";
 import { sendForm } from "./sendForm";
+import { loader } from "../../utils/nodesHelper";
+import { modalOverlay } from "../../utils/nodesHelper";
+import { bodyLocker } from "../../utils/functions";
+import { gsap } from 'gsap';
 
 export function formValidation(form) {
+
   let invalidControls = []
   let controls = form.querySelectorAll('input');
 
@@ -30,11 +35,18 @@ export function formValidation(form) {
   })
 
   if(!invalidControls.length) {
+    loader.style.display = 'block';
+    modalOverlay.style.display = 'block';
+    loader.style.color = 'var(--white)';
 
-    setTimeout(() => {// убрать, это для проверки лоадера
-      sendForm(form);
-    }, 1000);
+    gsap.to('.modal-overlay', {
+      opacity: 1,
+      duration: 1,
+      ease: 'ease-in'
+    })
 
+    bodyLocker(true);
+    sendForm(form);
   } else {
     invalidControls.forEach(control => {
       setControlState(control, 'invalid');

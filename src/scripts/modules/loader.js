@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
       duration: .8,
       delay: .2
     })
-    .fromTo('body', {opacity: 0},{
+    .fromTo('body', {opacity: 0}, {
       opacity: 1,
       ease: 'linear',
       duration: .8,

@@ -40,15 +40,15 @@ function setVieportHeight() {
   setCssProperty('--vh', `${vh}px`);
 
   window.addEventListener('resize', () => {
-    let vh = window.innerHeight * 0.01;
+    vh = window.innerHeight * 0.01;
     setCssProperty('--vh', `${vh}px`);
   });
 }
 
 // запрет скролла у body
 function bodyLocker(bool) {
-  let body = document.querySelector('body');
-  let paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
+  const body = document.querySelector('body');
+  const paddingOffset = window.innerWidth - document.body.offsetWidth + 'px';
 
   if(bool) {
       body.style.overflow = 'hidden';
