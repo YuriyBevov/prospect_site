@@ -13,7 +13,8 @@
 </template>
 
 <script>
-  import * as data from "../../../content/PortfolioData";
+  //import * as data from "../../../content/PortfolioData";
+  import json from "../../../assets/content/portfolio.json";
   import FilterComponent from "../components/FilterComponent.vue";
   import TagListComponent from "../components/TagListComponent.vue";
   import PortfolioListComponent from "../components/PortfolioListComponent.vue";
@@ -49,6 +50,7 @@
         let tags = [];
 
         this.initialArray.forEach(item => {
+          console.log(item)
           tags = [...tags, ...item.tags];
         });
 
@@ -114,11 +116,11 @@
         this.count = this.STEP;
         this.checked = this.checked.filter(item => item !== except);
         this.fillPortfolioItems();
-      }
+      },
     },
 
     mounted() {
-      this.initialArray = [...data.PortfolioItems];
+      this.initialArray = [...json.data];
       this.init();
     }
   }

@@ -77,6 +77,12 @@ const PATHS = {
   content: {
     src: `${SOURCE_PATH}content/**`,
     watchSrc: `${SOURCE_PATH}content/**`
+  },
+
+  json: {
+    src: `${SOURCE_PATH}assets/content/**/*.json`,
+    watchSrc: `${SOURCE_PATH}assets/content/**/*.json`,
+    dest: `${BUILD_PATH}assets/content/`
   }
 };
 

@@ -238,6 +238,11 @@ const svg = () => {
     .pipe(dest(PATHS.svg.dest));
 }
 
+const json = () => {
+  return src(PATHS.json.src)
+  .pipe(dest(PATHS.json.dest))
+}
+
 const images = () => {
   return src(PATHS.images.src)
   .pipe(gulpif(isProd, imagemin([
@@ -282,7 +287,8 @@ const server = () => {
     watch(PATHS.svg.watchSrc, series(svg, refresh));
     watch(PATHS.sprite.watchSrc, series(sprite, refresh));
     watch(PATHS.fonts.watchSrc, series(fonts, refresh));
-    watch(PATHS.content.watchSrc, series(isPugEnabled ? pug : html, js, refresh));
+    //watch(PATHS.content.watchSrc, series(isPugEnabled ? pug : html, js, refresh));
+    watch(PATHS.json.watchSrc, series(js, refresh));
 }
 
 const refresh = (done) => {
@@ -290,6 +296,6 @@ const refresh = (done) => {
     done();
 }
 
-exports.start = series(clean, fonts, isPugEnabled ? pug : html, styles, js, resources, video, sprite, images, toWebp, svg, server);
-exports.build = series(toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, video, resources, sprite, images, toWebp, svg);
-exports.buildMinAll = series(htmlMinify, toProd, clean, fonts, isPugEnabled ? pug : html, styles, js, resources, video, sprite, images, toWebp, svg);
+exports.start = series(clean, fonts, isPugEnabled ? pug : html, styles, json, js, resources, video, sprite, images, toWebp, svg, server);
+exports.build = series(toProd, clean, fonts, isPugEnabled ? pug : html, styles, json, js, video, resources, sprite, images, toWebp, svg);
+exports.buildMinAll = series(htmlMinify, toProd, clean, fonts, isPugEnabled ? pug : html, styles, json, js, resources, video, sprite, images, toWebp, svg);

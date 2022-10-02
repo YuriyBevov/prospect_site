@@ -367,7 +367,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _content_PortfolioData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../content/PortfolioData */ "./src/content/PortfolioData.js");
+/* harmony import */ var _assets_content_portfolio_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../assets/content/portfolio.json */ "./src/assets/content/portfolio.json");
 /* harmony import */ var _components_FilterComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/FilterComponent.vue */ "./src/scripts/vue/components/FilterComponent.vue");
 /* harmony import */ var _components_TagListComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/TagListComponent.vue */ "./src/scripts/vue/components/TagListComponent.vue");
 /* harmony import */ var _components_PortfolioListComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/PortfolioListComponent.vue */ "./src/scripts/vue/components/PortfolioListComponent.vue");
@@ -399,6 +399,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//import * as data from "../../../content/PortfolioData";
 
 
 
@@ -429,6 +430,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     init: function init() {
       var tags = [];
       this.initialArray.forEach(function (item) {
+        console.log(item);
         tags = [].concat(_toConsumableArray(tags), _toConsumableArray(item.tags));
       });
       this.tags = _toConsumableArray(new Set(tags));
@@ -488,75 +490,10 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
     }
   },
   mounted: function mounted() {
-    this.initialArray = _toConsumableArray(_content_PortfolioData__WEBPACK_IMPORTED_MODULE_0__.PortfolioItems);
+    this.initialArray = _toConsumableArray(_assets_content_portfolio_json__WEBPACK_IMPORTED_MODULE_0__.data);
     this.init();
   }
 });
-
-/***/ }),
-
-/***/ "./src/content/PortfolioData.js":
-/*!**************************************!*\
-  !*** ./src/content/PortfolioData.js ***!
-  \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "PortfolioItems": () => (/* binding */ PortfolioItems)
-/* harmony export */ });
-var PortfolioItems = [{
-  type: 'image',
-  source: 'portfolio-item-2',
-  description: 'Описание1',
-  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Рекламные конструкции', 'Световые панели', 'Внешняя подсветка', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-3',
-  description: 'Описание1',
-  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Видео']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Видео', 'Наружная реклама', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Фото', 'Контражур', 'Прямоугольный короб']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Видео', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Фото', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Видео', 'Интерьерная печать', 'Внутренняя подсветка']
-}, {
-  type: 'image',
-  source: 'portfolio-item-1',
-  description: 'Описание1',
-  tags: ['Фото', 'Наружная реклама', 'Интерьерная печать', 'Прямоугольный короб', 'Внутренняя подсветка', 'Контражур']
-}, {
-  type: 'video',
-  source: 'ML01',
-  description: 'Описание2',
-  tags: ['Видео', 'Наружная реклама', 'Интерьерная печать', 'Внутренняя подсветка', 'Контражур']
-}];
 
 /***/ }),
 
@@ -39304,6 +39241,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/***/ }),
+
+/***/ "./src/assets/content/portfolio.json":
+/*!*******************************************!*\
+  !*** ./src/assets/content/portfolio.json ***!
+  \*******************************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"data":[{"type":"image","source":"portfolio-item-2","description":"Описание1","tags":["Фото","Наружная реклама","Световые панели"]},{"type":"image","source":"portfolio-item-3","description":"Описание1","tags":["Фото","Интерьерная печать","Внутренняя подсветка"]},{"type":"video","source":"ML01","description":"Описание2","tags":["Видео"]},{"type":"video","source":"ML01","description":"Описание2","tags":["Видео","Внутренняя подсветка","Контражур"]},{"type":"image","source":"portfolio-item-1","description":"Описание1","tags":["Фото","Контражур","Прямоугольный короб"]},{"type":"video","source":"ML01","description":"Описание2","tags":["Видео","Наружная реклама"]},{"type":"image","source":"portfolio-item-1","description":"Описание1","tags":["Фото","Интерьерная печать","Внутренняя подсветка","Контражур"]},{"type":"video","source":"ML01","description":"Описание2","tags":["Видео","Интерьерная печать","Внутренняя подсветка"]},{"type":"image","source":"portfolio-item-1","description":"Описание1","tags":["Фото","Наружная реклама","Интерьерная печать","Прямоугольный короб","Внутренняя подсветка","Контражур"]},{"type":"video","source":"ML01","description":"Описание2","tags":["Видео","Наружная реклама","Интерьерная печать","Внутренняя подсветка","Контражур"]}]}');
 
 /***/ })
 
