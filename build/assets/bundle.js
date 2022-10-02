@@ -17344,7 +17344,7 @@ var render = function () {
     [
       _c("svg", { attrs: { width: "24", height: "24" } }, [
         _c("use", {
-          attrs: { "xlink:href": "../assets/sprite.svg#icon-btn-arrow" },
+          attrs: { "xlink:href": "./assets/sprite.svg#icon-btn-arrow" },
         }),
       ]),
     ]
@@ -17392,7 +17392,7 @@ var render = function () {
         _vm._v(" "),
         _c("svg", { attrs: { width: "14", height: "7" } }, [
           _c("use", {
-            attrs: { "xlink:href": "../assets/sprite.svg#icon-arrow-down" },
+            attrs: { "xlink:href": "./assets/sprite.svg#icon-arrow-down" },
           }),
         ]),
       ]
@@ -17533,7 +17533,7 @@ var render = function () {
       _vm._v(" "),
       _c("svg", { attrs: { width: "24", height: "24" } }, [
         _c("use", {
-          attrs: { "xlink:href": "../assets/sprite.svg#icon-btn-arrow" },
+          attrs: { "xlink:href": "./assets/sprite.svg#icon-btn-arrow" },
         }),
       ]),
     ]
@@ -17573,9 +17573,9 @@ var render = function () {
                 _c("source", {
                   attrs: {
                     srcset:
-                      "../assets/img/" +
+                      "./assets/img/" +
                       item.source +
-                      "@1x.webp 1x, ../assets/img/" +
+                      "@1x.webp 1x, ./assets/img/" +
                       item.source +
                       "@2x.webp 2x",
                     type: "image/webp",
@@ -17584,8 +17584,8 @@ var render = function () {
                 _vm._v(" "),
                 _c("img", {
                   attrs: {
-                    src: "../assets/img/" + item.source + "@1x.jpg",
-                    srcset: "../assets/img/" + item.source + "@2x.jpg 2x",
+                    src: "./assets/img/" + item.source + "@1x.jpg",
+                    srcset: "./assets/img/" + item.source + "@2x.jpg 2x",
                     alt: item.description,
                     width: "787",
                     height: "442",
@@ -17604,14 +17604,14 @@ var render = function () {
                 [
                   _c("source", {
                     attrs: {
-                      src: "../assets/video/" + item.source + ".mp4",
+                      src: "./assets/video/" + item.source + ".mp4",
                       type: "video/mp4",
                     },
                   }),
                   _vm._v(" "),
                   _c("source", {
                     attrs: {
-                      src: "../assets/video/" + item.source + ".webm",
+                      src: "./assets/video/" + item.source + ".webm",
                       type: "video/webm",
                     },
                   }),

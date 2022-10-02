@@ -9,7 +9,7 @@
     >
       <span>Тэги:</span>
       <svg width="14" height="7">
-        <use :xlink:href="`../assets/sprite.svg#icon-arrow-down`"></use>
+        <use :xlink:href="`./assets/sprite.svg#icon-arrow-down`"></use>
       </svg>
     </button>
 

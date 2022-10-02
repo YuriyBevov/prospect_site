@@ -7,13 +7,13 @@
 
       <a href="#" aria-label="Посмотреть">
         <picture v-if="item.type === 'image'">
-          <source :srcset="`../assets/img/${item.source}@1x.webp 1x, ../assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
-          <img :src="`../assets/img/${item.source}@1x.jpg`" :srcset="`../assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="442"/>
+          <source :srcset="`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
+          <img :src="`./assets/img/${item.source}@1x.jpg`" :srcset="`./assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="442"/>
         </picture>
 
         <video muted loop autoplay v-if="item.type === 'video'">
-          <source :src="`../assets/video/${item.source}.mp4`" type='video/mp4'>
-          <source :src="`../assets/video/${item.source}.webm`" type='video/webm'>
+          <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
+          <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
       </a>
 

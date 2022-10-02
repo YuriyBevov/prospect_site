@@ -6,7 +6,7 @@
     @click="collapse"
   >
     <svg width="24" height="24">
-      <use :xlink:href="`../assets/sprite.svg#icon-btn-arrow`"></use>
+      <use :xlink:href="`./assets/sprite.svg#icon-btn-arrow`"></use>
     </svg>
   </button>
 </template>
