@@ -18,6 +18,16 @@ body {
   -webkit-text-size-adjust: none;
 }
 
+section,
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+*:focus-visible {
+  outline: 1px solid var(--dark);
+}
+
 body {
   position: relative;
   display: flex;
@@ -32,6 +42,22 @@ body {
 
   &.body-locked {
     overflow: hidden;
+  }
+}
+
+.page-bg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  &-top {
+    top: 0;
+  }
+
+  &-bottom {
+    top: 0;
   }
 }
 

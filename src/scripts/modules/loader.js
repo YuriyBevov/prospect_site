@@ -10,16 +10,16 @@ window.addEventListener('load', () => {
     .to('.page-overlay', {
       opacity: 0,
       ease: 'linear',
-      duration: .8,
-      delay: .2
+      duration: .5,
+    })
+    .to('.page-overlay', {
+      display: 'none'
     })
     .fromTo('body', {opacity: 0}, {
       opacity: 1,
       ease: 'linear',
       duration: .8,
       delay: .2
-    }, "-=800")
-    .to('.page-overlay', {
-      display: 'none'
-    })
+    }, "-=200")
+
 })

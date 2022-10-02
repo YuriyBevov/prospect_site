@@ -4124,6 +4124,16 @@ body {
   -webkit-text-size-adjust: none;
 }
 
+section,
+footer {
+  position: relative;
+  z-index: 10;
+}
+
+*:focus-visible {
+  outline: 1px solid var(--dark);
+}
+
 body {
   position: relative;
   display: -webkit-box;
@@ -4143,6 +4153,21 @@ body {
 }
 body.body-locked {
   overflow: hidden;
+}
+
+.page-bg {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.page-bg-top {
+  top: 0;
+}
+.page-bg-bottom {
+  top: 0;
 }
 
 footer {
@@ -4739,7 +4764,7 @@ main {
 .section-title h2 {
   position: relative;
   font-weight: 700;
-  font-size: clamp(36px, 7vw, 54px);
+  font-size: clamp(28px, 7vw, 54px);
   margin: 0 auto;
 }
 .section-title--dublicated {
@@ -4932,6 +4957,7 @@ main {
   font-weight: 600;
   font-size: 16px;
   line-height: 19px;
+  min-height: 20px;
   text-transform: capitalize;
   padding-left: 30px;
   color: var(--main-color);
@@ -5856,6 +5882,7 @@ main {
 }
 .nav__list-item {
   overflow: hidden;
+  padding: 3px;
   margin-bottom: clamp(15px, 3vw, 30px);
 }
 .nav__list-item a {

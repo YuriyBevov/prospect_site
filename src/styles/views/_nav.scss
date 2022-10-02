@@ -39,6 +39,7 @@
 
   &__list-item {
     overflow: hidden;
+    padding: 3px;
     margin-bottom: clamp(15px, 3vw, 30px);
 
     a {
