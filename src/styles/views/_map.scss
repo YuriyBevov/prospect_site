@@ -5,13 +5,7 @@
   max-width: 2400px;
   height: 500px;
   margin: 0 auto;
-  background-color: var(--dark);
-  background-image: url('../assets/img/map-static@1x.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  //margin-bottom: 80px;
+  background-color: var(--light);
 
   @include m-b-tablet-lg-down {
     height: 400px;
