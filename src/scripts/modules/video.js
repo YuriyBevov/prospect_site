@@ -1,6 +1,6 @@
 const videos = document.querySelectorAll('video');
 
-if(videos) {
+/*if(videos) {
   videos.forEach(video => {
     console.log(video)
     const observer = new IntersectionObserver(entries => {
@@ -17,5 +17,4 @@ if(videos) {
 
     observer.observe(video);
   });
-
-}
+}*/

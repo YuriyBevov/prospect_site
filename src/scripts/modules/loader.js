@@ -10,7 +10,7 @@ window.addEventListener('load', () => {
     .to('.page-overlay', {
       opacity: 0,
       ease: 'linear',
-      duration: .5,
+      duration: .7,
     })
     .to('.page-overlay', {
       display: 'none'
@@ -18,8 +18,7 @@ window.addEventListener('load', () => {
     .fromTo('body', {opacity: 0}, {
       opacity: 1,
       ease: 'linear',
-      duration: .8,
-      delay: .2
-    }, "-=200")
+      duration: .5
+    }, "-=300")
 
 })

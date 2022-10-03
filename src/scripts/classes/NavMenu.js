@@ -1,4 +1,4 @@
-import { burgerLinesAnimationIn, burgerLinesAnimationOut } from "../modules/burgerAnimation";
+import { burgerLinesAnimationIn, burgerLinesAnimationOut } from "../modules/burger-animation";
 import { focusTrap, bodyLocker } from "../utils/functions";
 import { debounce, setDebounce } from "../utils/debounce";
 import { gsap } from 'gsap';
