@@ -156,7 +156,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isOpenerActive: false,
       checkedList: [],
-      tagList: []
+      tagList: [],
+      isChecked: true
     };
   },
   methods: {
@@ -170,6 +171,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     selectAll: function selectAll() {
       this.checkedList = this.tagList;
+      console.log(this.isChecked);
       this.emitCheckedList();
     },
     openFilter: function openFilter() {
@@ -17481,17 +17483,44 @@ var render = function () {
       [
         _c("div", { staticClass: "filter-control" }, [
           _c("input", {
-            attrs: {
-              type: "checkbox",
-              id: "all",
-              disabled:
-                this.tagList.length === this.checkedList.length ? true : false,
-            },
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.isChecked,
+                expression: "isChecked",
+              },
+            ],
+            attrs: { type: "checkbox", id: "all" },
             domProps: {
               checked:
                 this.tagList.length === this.checkedList.length ? true : false,
+              checked: Array.isArray(_vm.isChecked)
+                ? _vm._i(_vm.isChecked, null) > -1
+                : _vm.isChecked,
             },
-            on: { click: _vm.selectAll },
+            on: {
+              click: _vm.selectAll,
+              change: function ($event) {
+                var $$a = _vm.isChecked,
+                  $$el = $event.target,
+                  $$c = $$el.checked ? true : false
+                if (Array.isArray($$a)) {
+                  var $$v = null,
+                    $$i = _vm._i($$a, $$v)
+                  if ($$el.checked) {
+                    $$i < 0 && (_vm.isChecked = $$a.concat([$$v]))
+                  } else {
+                    $$i > -1 &&
+                      (_vm.isChecked = $$a
+                        .slice(0, $$i)
+                        .concat($$a.slice($$i + 1)))
+                  }
+                } else {
+                  _vm.isChecked = $$c
+                }
+              },
+            },
           }),
           _vm._v(" "),
           _c("label", { attrs: { for: "all", tabindex: "0" } }, [

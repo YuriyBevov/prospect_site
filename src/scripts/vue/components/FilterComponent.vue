@@ -20,8 +20,8 @@
           type="checkbox"
           id="all"
           :checked="this.tagList.length === this.checkedList.length ? true : false"
-          :disabled="this.tagList.length === this.checkedList.length ? true : false"
           @click="selectAll"
+          v-model="isChecked"
         />
         <label for="all" tabindex="0">Все</label>
       </div>
@@ -61,6 +61,7 @@
         isOpenerActive: false,
         checkedList: [],
         tagList: [],
+        isChecked: true,
       }
     },
 
@@ -78,7 +79,7 @@
 
       selectAll() {
         this.checkedList = this.tagList;
-
+        console.log(this.isChecked)
         this.emitCheckedList();
       },
 

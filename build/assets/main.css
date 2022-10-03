@@ -4238,9 +4238,14 @@ main {
     margin-bottom: 40px;
   }
 }
-@media (max-width: 534px) {
+@media (max-width: 768px) {
   .section-mb, .hero, .section-offset, .outdoor, .features, .portfolio {
     margin-bottom: 30px;
+  }
+}
+@media (max-width: 534px) {
+  .section-mb, .hero, .section-offset, .outdoor, .features, .portfolio {
+    margin-bottom: 0;
   }
 }
 

@@ -10,8 +10,12 @@
     margin-bottom: 40px;
   }
 
-  @include m-b-mobile-lg-down {
+  @include m-b-tablet-down {
     margin-bottom: 30px;
+  }
+
+  @include m-b-mobile-lg-down {
+    margin-bottom: 0;
   }
 }
 
