@@ -5813,7 +5813,12 @@ main {
 .hero__arrow-down {
   bottom: 100px;
   margin: 0 auto;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
+}
+@media (max-width: 768px) {
+  .hero__arrow-down {
+    margin-bottom: 100px;
+  }
 }
 .hero__arrow-down svg {
   fill: var(--white);
