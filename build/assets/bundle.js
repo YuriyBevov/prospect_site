@@ -1034,7 +1034,6 @@ if (accordeon) {
           }
 
           fields.forEach(function (field, j) {
-            //показ
             if (j > i) {
               if (!field.classList.contains('transitioned')) {
                 gsap__WEBPACK_IMPORTED_MODULE_0__.gsap.to(field, {
@@ -1053,8 +1052,7 @@ if (accordeon) {
               field.classList.contains('active') ? field.classList.remove('active') : null;
             });
             target.classList.add('active');
-          } // скрытие
-
+          }
 
           fields.forEach(function (field, j) {
             if (j < i + 1) {
@@ -1129,6 +1127,7 @@ if (accordeon) {
 
   var onClickOpenaccordeonField = function onClickOpenaccordeonField(evt) {
     var target = evt.currentTarget.parentNode;
+    console.log(target);
 
     if (window.innerWidth < 961) {
       scrollToTop(target);

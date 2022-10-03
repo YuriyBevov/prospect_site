@@ -35,7 +35,6 @@ if(accordeon) {
           }
 
           fields.forEach((field,j) => {
-            //показ
             if(j > i) {
               if(!field.classList.contains('transitioned')) {
                 gsap.to(field, {
@@ -60,7 +59,6 @@ if(accordeon) {
             target.classList.add('active');
           }
 
-          // скрытие
           fields.forEach((field,j) => {
             if(j < i + 1 ) {
               if(field.classList.contains('transitioned')) {
@@ -132,6 +130,7 @@ if(accordeon) {
   const onClickOpenaccordeonField = (evt) => {
     const target = evt.currentTarget.parentNode;
 
+    console.log(target);
     if(window.innerWidth < 961) {
       scrollToTop(target);
     }
