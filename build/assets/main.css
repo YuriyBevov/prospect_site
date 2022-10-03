@@ -4150,9 +4150,17 @@ body {
   color: var(--main-color);
   background-color: var(--main-bg-color);
   overflow-x: hidden !important;
+  /* up/down desktop-lg(1920),desktop(1440),laptop(1140),tablet-lg(960),tablet(768),mobile-lg(534)*/
 }
 body.body-locked {
   overflow: hidden;
+}
+@media (max-width: 534px) {
+  body button,
+body a,
+body *[tabindex="0"] {
+    outline: none;
+  }
 }
 
 .page-bg {
