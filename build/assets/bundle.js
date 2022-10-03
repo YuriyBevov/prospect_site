@@ -1657,24 +1657,39 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (() => {
 
 var videos = document.querySelectorAll('video');
-/*if(videos) {
-  videos.forEach(video => {
-    console.log(video)
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach( entry => {
-        if(entry.isIntersecting) {
+
+if (videos) {
+  videos.forEach(function (video) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
           video.play('muted');
         } else {
-          if(video.currentTime > 0){
+          if (video.currentTime > 0) {
             video.pause();
           }
         }
       });
     });
-
     observer.observe(video);
   });
-}*/
+}
+/*
+
+
+
+  $('body').on('click touchstart', function () {
+    const videoElement = document.getElementById('home_video');
+    if (videoElement.playing) {
+        // video is already playing so do nothing
+    }
+    else {
+        // video is not playing
+        // so play video now
+        videoElement.play();
+    }
+  });
+*/
 
 /***/ }),
 
@@ -17670,7 +17685,14 @@ var render = function () {
                 _c(
                   "video",
                   {
-                    attrs: { muted: "", loop: "", controls: "" },
+                    attrs: {
+                      muted: "",
+                      loop: "",
+                      autoplay: "",
+                      poster: "./assets/img/hero-logo.svg",
+                      "webkit-playsinline": "",
+                      playsinline: "",
+                    },
                     domProps: { muted: true },
                   },
                   [
