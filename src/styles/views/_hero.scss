@@ -1,10 +1,10 @@
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 618px;
+  min-height: 844px;
   max-height: 1080px;
-  height: calc(var(--vh, 1vh) * 100);
-  transition: height 0.4s ease-in;
+  height: 100vh;//calc(var(--vh, 1vh) * 100);
+  //transition: height 0.4s ease-in;
   background-color: var(--primary);
 
 
@@ -25,8 +25,16 @@
     left: 0;
   }
 
+  @include m-b-tablet-lg-down {
+    min-height: 657px;
+  }
+
+  @include m-b-tablet-down {
+    min-height: 578px;
+  }
+
   @include m-b-mobile-lg-down {
-    min-height: 423px;
+    min-height: 438px;
   }
 
   &__container {
