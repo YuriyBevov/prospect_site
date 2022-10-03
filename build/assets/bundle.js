@@ -1177,13 +1177,14 @@ if (anchors) {
 
     if (!_utils_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
       var anchor = evt.currentTarget.dataset.scrollTo;
-      var target = document.querySelector('#' + anchor);
+      var target = document.querySelector('#' + anchor); //console.log()
+
       gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.to(window, {
         duration: 1.5,
         scrollTo: {
-          y: target,
+          y: target.offsetTop,
           offsetY: 40,
-          autoKill: true
+          autoKill: false
         },
         ease: "power0.easeNone"
       });

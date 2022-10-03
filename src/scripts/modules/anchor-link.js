@@ -12,8 +12,9 @@ if(anchors) {
     if(!debounce) {
       const anchor = evt.currentTarget.dataset.scrollTo;
       const target = document.querySelector('#' + anchor);
+      //console.log()
 
-      gsap.to(window, {duration: 1.5, scrollTo: {y: target, offsetY: 40, autoKill: true}, ease: "power0.easeNone"});
+      gsap.to(window, {duration: 1.5, scrollTo: {y: target.offsetTop, offsetY: 40, autoKill: false}, ease: "power0.easeNone"});
     }
   }
 
