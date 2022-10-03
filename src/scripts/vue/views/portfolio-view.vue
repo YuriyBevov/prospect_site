@@ -13,7 +13,6 @@
 </template>
 
 <script>
-  //import * as data from "../../../content/PortfolioData";
   import json from "../../../assets/content/portfolio.json";
   import FilterComponent from "../components/FilterComponent.vue";
   import TagListComponent from "../components/TagListComponent.vue";

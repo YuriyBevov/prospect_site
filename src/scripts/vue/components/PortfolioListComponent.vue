@@ -20,6 +20,11 @@
         <img :src="`./assets/img/hero-logo.svg`" alt="Заглушка" width="787" height="589" class="visually-hidden"/>
       </a>
     </li>
+
+    <li v-if="!this.$props.items.length" class="portfolio__list-item portfolio__list-item--empty">
+      <img :src="`./assets/img/hero-logo.svg`" width="100%" height="400"/>
+      <p>Кажется, вы не выбрали ни одного праметра фильтрации...</p>
+    </li>
   </ul>
 </template>
 

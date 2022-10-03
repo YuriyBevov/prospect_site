@@ -7,7 +7,7 @@
       :class="isOpenerActive ? 'active' : null"
       @click.stop="openFilter"
     >
-      <span>Тэги:</span>
+      <span>Фильтр:</span>
       <svg width="14" height="7">
         <use :xlink:href="`./assets/sprite.svg#icon-arrow-down`"></use>
       </svg>
@@ -19,9 +19,8 @@
         <input
           type="checkbox"
           id="all"
-          :checked="this.tagList.length === this.checkedList.length ? true : false"
+          v-model="isAllBtnChecked"
           @click="selectAll"
-          v-model="isChecked"
         />
         <label for="all" tabindex="0">Все</label>
       </div>
@@ -39,7 +38,6 @@
 
           :value="tag"
           v-model="checkedList"
-          :disabled="checkedList[0] === tag && checkedList.length === 1 ? true : false"
           @change="emitCheckedList"
         />
         <label :for="'tag_' + (i+1)" tabindex="0">{{tag}}</label>
@@ -61,7 +59,7 @@
         isOpenerActive: false,
         checkedList: [],
         tagList: [],
-        isChecked: true,
+        isAllBtnChecked: true
       }
     },
 
@@ -78,8 +76,11 @@
       },
 
       selectAll() {
-        this.checkedList = this.tagList;
-        console.log(this.isChecked)
+        console.log(this.isAllBtnChecked)
+        !this.isAllBtnChecked ?
+        this.checkedList = this.tagList :
+        this.checkedList = [];
+
         this.emitCheckedList();
       },
 
@@ -122,6 +123,9 @@
 
       checked: function() {
         this.checkedList = this.$props.checked;
+
+        this.tagList.length === this.checkedList.length ?
+        this.isAllBtnChecked = true : this.isAllBtnChecked = false;
       }
     }
   }
