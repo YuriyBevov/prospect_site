@@ -40,7 +40,12 @@
   &__list-item {
     overflow: hidden;
     padding: 3px;
-    margin-bottom: clamp(15px, 3vw, 30px);
+
+    margin-bottom: 30px;
+
+    @include m-b-tablet-down {
+      margin-bottom: 15px;
+    }
 
     a {
       font-size: 54px;

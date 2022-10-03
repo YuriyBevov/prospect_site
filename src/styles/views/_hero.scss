@@ -8,7 +8,7 @@
   background-color: var(--primary);
 
 
-  margin-bottom: clamp(30px, 5vw, 60px);
+  @extend .section-mb;
   overflow: hidden;
 
   will-change: auto;

@@ -1,11 +1,35 @@
 .section-offset {
   padding: 20px 0;
-  margin-bottom: clamp(30px, 5vw, 60px);
+  @extend .section-mb;
+}
+
+.section-mb {
+  margin-bottom: 60px;
+
+  @include m-b-laptop-down {
+    margin-bottom: 40px;
+  }
+
+  @include m-b-mobile-lg-down {
+    margin-bottom: 30px;
+  }
 }
 
 .list-offset {
   margin: 0 auto;
-  margin-bottom: clamp(40px, 6vw, 70px);
+  margin-bottom: 70px;
+
+  @include m-b-laptop-down {
+    margin-bottom: 60px;
+  }
+
+  @include m-b-tablet-lg-down {
+    margin-bottom: 50px;
+  }
+
+  @include m-b-mobile-lg-down {
+    margin-bottom: 40px;
+  }
 }
 
 .flex-wrap {

@@ -8,19 +8,6 @@
   &__container {
     position: relative;
     @extend .flex-column;
-
-    /*&::before {
-      position: absolute;
-      top: 25%;
-      left: -350px;
-      width: 2418px;
-      height: 1598px;
-      content: "";
-      background-image: url(../assets/img/page-bg-big@1x.png);
-      background-size: 2418px 1598px;
-      z-index: -1;
-      background-repeat: no-repeat;
-    }*/
   }
 
   &__header {

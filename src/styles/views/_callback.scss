@@ -1,5 +1,22 @@
 .callback {
-  padding: clamp(30px, 5vw,70px) 0;
+  padding: 70px 0;
+
+  @include m-b-desktop-down {
+    padding: 60px 0;
+  }
+
+  @include m-b-laptop-down {
+    padding: 50px 0;
+  }
+
+  @include m-b-tablet-lg-down {
+    padding: 40px 0;
+  }
+
+  @include m-b-mobile-lg-down {
+    padding: 30px 0;
+  }
+
   background-color: var(--primary);
 
   &__container {
@@ -16,7 +33,24 @@
     @extend .flex-column;
 
     p {
-      font-size: clamp(28px, 2vw, 44px);
+      font-size: 44px;
+
+      @include m-b-laptop-down {
+        font-size: 40px;
+      }
+
+      @include m-b-laptop-down {
+        font-size: 36px;
+      }
+
+      @include m-b-tablet-lg-down {
+        font-size: 32px;
+      }
+
+      @include m-b-mobile-lg-down {
+        font-size: 28px;
+      }
+
       line-height: 1.1;
 
       margin-bottom: 60px;
@@ -50,15 +84,24 @@
 
       span {
         font-weight: 700;
-        font-size: clamp(50px, 9vw, 214px);
-        line-height: 80%;
-        text-align: center;
+        font-size: 128px;
 
-        color: #40BDC5;
+        @include m-b-desktop-lg-up {
+          font-size: 214px;
+        }
+
+        @include m-b-desktop-down {
+          font-size: 102px;
+        }
 
         @include m-b-laptop-down {
           font-size: 60px;
         }
+
+        line-height: 80%;
+        text-align: center;
+
+        color: #40BDC5;
       }
     }
 
