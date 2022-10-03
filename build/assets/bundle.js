@@ -1684,9 +1684,30 @@ if (videos) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _utils_functions_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/functions.js */ "./src/scripts/utils/functions.js");
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
 
-(0,_utils_functions_js__WEBPACK_IMPORTED_MODULE_0__.setVieportHeight)();
+
+
+gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger);
+
+function setCssProperty(name, value) {
+  _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.root.style.setProperty(name, value);
+}
+
+function setVieportHeight() {
+  var vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', "".concat(vh, "px"));
+  gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
+  window.addEventListener('resize', function () {
+    vh = window.innerHeight * 0.01;
+    setCssProperty('--vh', "".concat(vh, "px"));
+    gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
+  });
+}
+
+setVieportHeight();
 
 /***/ }),
 
@@ -1979,8 +2000,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "burger": () => (/* binding */ burger),
 /* harmony export */   "header": () => (/* binding */ header),
 /* harmony export */   "loader": () => (/* binding */ loader),
-/* harmony export */   "modalOverlay": () => (/* binding */ modalOverlay)
+/* harmony export */   "modalOverlay": () => (/* binding */ modalOverlay),
+/* harmony export */   "root": () => (/* binding */ root)
 /* harmony export */ });
+var root = document.querySelector(':root');
 var body = document.querySelector('body');
 var header = document.querySelector('header');
 var burger = document.querySelector('.burger');
