@@ -12,7 +12,7 @@
       </a>
 
       <a :href="`./assets/video/${item.source}.mp4`" :data-index="index" aria-label="Посмотреть" data-fancybox="gallery" v-if="item.type === 'video'">
-        <video muted loop autoplay :poster="`./assets/img/hero-logo.svg`" webkit-playsinline playsinline>
+        <video muted loop autoplay :poster="`./assets/img/hero-logo.svg`" playsinline>
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>

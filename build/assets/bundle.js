@@ -1177,8 +1177,7 @@ if (anchors) {
 
     if (!_utils_debounce__WEBPACK_IMPORTED_MODULE_0__.debounce) {
       var anchor = evt.currentTarget.dataset.scrollTo;
-      var target = document.querySelector('#' + anchor); //console.log()
-
+      var target = document.querySelector('#' + anchor);
       gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.to(window, {
         duration: 1.5,
         scrollTo: {
@@ -1675,22 +1674,6 @@ if (videos) {
     observer.observe(video);
   });
 }
-/*
-
-
-
-  $('body').on('click touchstart', function () {
-    const videoElement = document.getElementById('home_video');
-    if (videoElement.playing) {
-        // video is already playing so do nothing
-    }
-    else {
-        // video is not playing
-        // so play video now
-        videoElement.play();
-    }
-  });
-*/
 
 /***/ }),
 
@@ -17691,7 +17674,6 @@ var render = function () {
                       loop: "",
                       autoplay: "",
                       poster: "./assets/img/hero-logo.svg",
-                      "webkit-playsinline": "",
                       playsinline: "",
                     },
                     domProps: { muted: true },
