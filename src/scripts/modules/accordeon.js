@@ -124,15 +124,16 @@ if(accordeon) {
   })
 
   const scrollToTop = (target) => {
-    gsap.to(window, {duration: 1, scrollTo: {y: target, offsetY: 150, autoKill: true}, ease: "power0.easeNone"});
+    gsap.to(window, {duration: 0, scrollTo: {y: target, offsetY: 150, autoKill: true}, ease: "power0.easeNone"});
   }
 
   const onClickOpenaccordeonField = (evt) => {
     const target = evt.currentTarget.parentNode;
 
-    console.log(target);
     if(window.innerWidth < 961) {
-      scrollToTop(target);
+      setTimeout(() => {
+        scrollToTop(target);
+      }, 50);
     }
 
     if(!target.classList.contains('active')) {

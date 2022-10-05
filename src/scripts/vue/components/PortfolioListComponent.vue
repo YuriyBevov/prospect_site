@@ -4,14 +4,16 @@
       v-for="(item, index) in items"
       :key="index"
     >
-      <a :href="`./assets/img/${item.source}@1x.jpg`" :data-index="index" aria-label="Посмотреть" data-fancybox="gallery" v-if="item.type === 'image'">
+      <!--<a :href="`./assets/img/${item.source}@1x.jpg`" @click="showFancy" :data-index="index" aria-label="Посмотреть" data-fancybox="gallery" v-if="item.type === 'image'">-->
+       <a href="#" @click="showFancy" v-if="item.type === 'image'" :data-id="item.id" aria-label="Посмотреть">
         <picture>
           <source :srcset="`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
           <img :src="`./assets/img/${item.source}@1x.jpg`" :srcset="`./assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="589"/>
         </picture>
       </a>
 
-      <a :href="`./assets/video/${item.source}.mp4`" :data-index="index" aria-label="Посмотреть" data-fancybox="gallery" v-if="item.type === 'video'">
+      <!--<a :href="`./assets/video/${item.source}.mp4`" @click="showFancy" :data-index="index" aria-label="Посмотреть" data-fancybox="gallery" v-if="item.type === 'video'">-->
+      <a href="#" @click="showFancy" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
         <video muted loop autoplay :poster="`./assets/img/hero-logo.svg`" playsinline>
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
@@ -32,13 +34,26 @@
   import { Fancybox } from "@fancyapps/ui";
   export default {
     props: {
-      items: Array
+      items: Array,
+      initialArray: Array
+    },
+
+    data() {
+      return {
+        fancyList: []
+      }
     },
 
     methods: {
-      initFancy() {
+      showFancy(evt) {
+        evt.preventDefault();
 
-        Fancybox.bind('[data-fancybox="gallery"]', {
+        const index = evt.currentTarget.dataset.id - 1;
+        const prev = this.fancyList.slice(0, index);
+        const next = this.fancyList.slice(index, this.fancyList.length);
+        const current = [...next, ...prev];
+
+        Fancybox.show(current, {
           Toolbar: {
             display: [
               "counter",
@@ -56,12 +71,31 @@
             ELEMENT_NOT_FOUND: "HTML-элемент не найден",
           }
         });
+      },
+
+      fillFancyList() {
+        this.$props.initialArray.forEach(item => {
+          if(item.type === 'image') {
+            this.fancyList.push({
+              src: `./assets/img/${item.source}@1x.jpg`,
+              type: "image",
+              id: item.id
+            });
+          } else if (item.type === 'video') {
+            this.fancyList.push({
+              src: `./assets/video/${item.source}.mp4`,
+              type: "video",
+              id: item.id,
+              thumb: item.thumb
+            });
+          }
+        });
       }
     },
 
     watch: {
-      items: function() {
-        this.initFancy();
+      initialArray: function() {
+        this.fillFancyList();
       }
     }
   }

@@ -4,7 +4,7 @@
       <filter-component :tags="this.tags" :checked="this.checked" @tags="updateCheckedList"></filter-component>
       <tag-list-component :tags="this.checked" @remove="removeTag"></tag-list-component>
     </div>
-    <portfolio-list-component :items="this.items"></portfolio-list-component>
+    <portfolio-list-component :items="this.items" :initialArray="this.initialArray"></portfolio-list-component>
     <div class="portfolio__footer">
       <load-more-button-component @load="loadMoreItems" :disabled="this.isLoadMoreButtonDisabled"></load-more-button-component>
       <collapse-button-component :state="this.isCollapseButtonDisabled" @collapse="collapsePortfolioList"></collapse-button-component>
