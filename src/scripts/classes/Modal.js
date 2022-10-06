@@ -8,7 +8,7 @@ export class Modal {
     this.id = this.modal.getAttribute('id');
     this.openers = document.querySelectorAll('[data-modal-anchor="' + this.id + '"]');
     this.isInited = false;
-    this.overlay = document.querySelector('.modal-overaly');
+    this.overlay = document.querySelector('.modal-overlay');
     this.close = this.modal.querySelector('.modal__close');
     this.focusableElements = [
       'a[href]',
@@ -42,50 +42,59 @@ export class Modal {
     const focusableContent = this.modal.querySelectorAll(this.focusableElements);
     const lastFocusableElement = focusableContent[focusableContent.length - 1];
 
-    let onBtnClickHandler = (evt) => {
-        let isTabPressed = evt.key === 'Tab' || evt.key === 9;
+    if(focusableContent.length) {
+      const onBtnClickHandler = (evt) => {
+          const isTabPressed = evt.key === 'Tab' || evt.key === 9;
 
-        if(evt.key === 'Escape') {
-            document.removeEventListener('keydown', onBtnClickHandler);
-        }
+          if(evt.key === 'Escape') {
+              document.removeEventListener('keydown', onBtnClickHandler);
+          }
 
-        if (!isTabPressed) {
-            return;
-        }
+          if (!isTabPressed) {
+              return;
+          }
 
-        if (evt.shiftKey) {
-            if (document.activeElement === firstFocusableElement) {
-                lastFocusableElement.focus();
-                evt.preventDefault();
-            }
-        } else {
-            if (document.activeElement === lastFocusableElement) {
-                firstFocusableElement.focus();
-                evt.preventDefault();
-            }
-        }
+          if (evt.shiftKey) {
+              if (document.activeElement === firstFocusableElement) {
+                  lastFocusableElement.focus();
+                  evt.preventDefault();
+              }
+          } else {
+              if (document.activeElement === lastFocusableElement) {
+                  firstFocusableElement.focus();
+                  evt.preventDefault();
+              }
+          }
+      }
+
+      document.addEventListener('keydown', onBtnClickHandler);
+
+      firstFocusableElement.focus();
     }
-
-    document.addEventListener('keydown', onBtnClickHandler);
-    firstFocusableElement.focus();
   }
 
   addListeners = () => {
-    this.openers.forEach(opener => {
-        opener.removeEventListener('click', this.openModal);
-    })
+    if(this.openers) {
+      this.openers.forEach(opener => {
+          opener.removeEventListener('click', this.openModal);
+      });
+    }
 
     document.addEventListener('click', this.closeByOverlayClick);
     document.addEventListener('keydown', this.closeByEscBtn);
 
-    this.close.addEventListener('click', this.closeByBtnClick);
+    if(this.close) {
+      this.close.addEventListener('click', this.closeByBtnClick);
+    }
   }
 
   refresh = () => {
     document.removeEventListener('click', this.closeByOverlayClick);
     document.removeEventListener('keydown', this.closeByEscBtn);
 
-    this.close.removeEventListener('click', this.closeByBtnClick);
+    if(this.close) {
+      this.close.removeEventListener('click', this.closeByBtnClick);
+    }
 
     gsap.to(modalOverlay, {
       opacity: 0,
@@ -100,9 +109,11 @@ export class Modal {
 
     this.bodyLocker(false);
 
-    this.openers.forEach(opener => {
-        opener.addEventListener('click', this.openModal);
-    })
+    if(this.openers) {
+      this.openers.forEach(opener => {
+          opener.addEventListener('click', this.openModal);
+      });
+    }
 
     //если в модалке есть форма, при закрытии обнуляю поля
     this.modal.querySelectorAll('form').forEach(f=>f.reset());

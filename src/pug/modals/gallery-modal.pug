@@ -1,2 +1,40 @@
-.gallery-modal
-  p gallery
+.modal#gallery-modal.gallery-modal
+  button(type="button" class="modal__close")
+    svg(width="32" height="32")
+      use(xlink:href="./assets/sprite.svg#icon-close")
+  .swiper.gallery-swiper
+      <div class="swiper swiper-main">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./assets/img/portfolio-item-1@1x.webp 1x, ./assets/img/portfolio-item-1@2x.webp 2x" type="image/webp" />
+              <img src="./assets/img/portfolio-item-1@1x.jpg" srcset="`./assets/img/portfolio-item-1@2x.jpg 2x" alt="item" width="787" height="589"/>
+            </picture>
+          </div>
+          <div class="swiper-slide">
+            <video muted loop controls poster="./assets/img/hero-logo.svg" playsinline>
+              <source src="./assets/video/ML01.mp4" type='video/mp4'>
+              <source src="./assets/video/ML01.webm" type='video/webm'>
+            </video>
+          </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+      <div thumbsSlider="" class="swiper swiper-thumbs">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <picture>
+              <source srcset="./assets/img/portfolio-item-1@1x.webp 1x, ./assets/img/portfolio-item-1@2x.webp 2x" type="image/webp" />
+              <img src="./assets/img/portfolio-item-1@1x.jpg" srcset="`./assets/img/portfolio-item-1@2x.jpg 2x" alt="item" width="787" height="589"/>
+            </picture>
+          </div>
+          <div class="swiper-slide">
+            <video muted loop poster="./assets/img/hero-logo.svg" playsinline>
+              <source src="./assets/video/ML01.mp4" type='video/mp4'>
+              <source src="./assets/video/ML01.webm" type='video/webm'>
+            </video>
+          </div>
+        </div>
+      </div>

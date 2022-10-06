@@ -41,7 +41,7 @@
     }
 
     svg {
-      fill: var(--dark-color);
+      fill: var(--white);
 
       @include m-b-tablet-down {
         width: 32px;
