@@ -8,12 +8,14 @@
   padding: 50px;
 
   .modal__close {
+    top: 50px;
     z-index: 3;
     background-color: rgba(0,0,0,.5);
   }
 
   @include m-b-tablet-down {
     padding: 30px;
+    padding-top: 50px;
   }
 
   @include m-b-mobile-lg-down {
