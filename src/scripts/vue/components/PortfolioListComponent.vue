@@ -92,7 +92,7 @@
           if(slide.type === 'video') {
             swiperMainLayout += `
               <div class="swiper-slide">
-                <video muted loop poster="./assets/img/hero-logo.svg" playsinline>
+                <video muted loop autoplay poster="./assets/img/hero-logo.svg" playsinline>
                   <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
                   <source src="./assets/video/${slide.source}.webm" type='video/webm'>
                 </video>
