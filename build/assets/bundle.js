@@ -1546,6 +1546,8 @@ if (header) {
   }).to('.main-header-logo', {
     display: 'block',
     opacity: 1
+  }).to('.main-header .contacts', {
+    display: 'flex'
   }).to(header, {
     duration: .3,
     ease: 'linear',

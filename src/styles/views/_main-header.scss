@@ -17,6 +17,17 @@
   &__container {
     @extend .flex-wrap;
     align-items: center;
-    padding: 0 5vw;
+    //padding: 0 5vw;
+  }
+
+  .contacts {
+    display: none;
+    width: fit-content;
+    border-bottom: 0;
+    padding: 0;
+    margin: 0;
+    @include m-b-down(435px) {
+      display: none !important;
+    }
   }
 }
