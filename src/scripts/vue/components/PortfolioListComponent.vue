@@ -50,8 +50,8 @@
         const prev = this.fancyList.slice(0, index);
         const next = this.fancyList.slice(index, this.fancyList.length);
         const current = [...next, ...prev];
-        console.log(current)
-        Fancybox.show(current, {
+
+        /*Fancybox.show(current, {
           Toolbar: {
             display: [
               "counter",
@@ -60,8 +60,6 @@
           },
 
           Html: {
-            draggable: true,
-            isDraggable: true,
             html5video : {
               tpl: `
                 <video class="fancybox__html5video" playsinline poster="{{poster}}" loop>
@@ -81,7 +79,7 @@
             IMAGE_ERROR: "Изображение не найдено",
             ELEMENT_NOT_FOUND: "HTML-элемент не найден",
           }
-        });
+        });*/
       },
 
       fillFancyList() {

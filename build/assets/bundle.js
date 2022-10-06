@@ -324,28 +324,33 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       var prev = this.fancyList.slice(0, index);
       var next = this.fancyList.slice(index, this.fancyList.length);
       var current = [].concat(_toConsumableArray(next), _toConsumableArray(prev));
-      console.log(current);
-      _fancyapps_ui__WEBPACK_IMPORTED_MODULE_0__.Fancybox.show(current, {
+      /*Fancybox.show(current, {
         Toolbar: {
-          display: ["counter", "close"]
+          display: [
+            "counter",
+            "close",
+          ],
         },
-        Html: {
-          draggable: true,
-          isDraggable: true,
-          html5video: {
-            tpl: "\n              <video class=\"fancybox__html5video\" playsinline poster=\"{{poster}}\" loop>\n                <source src=\"{{src}}\" type=\"video/mp4\" />\n                \u041A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E, \u0412\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440 \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0435\u0441\u0442\u0438 \u0434\u0430\u043D\u043D\u043E\u0435 \u0432\u0438\u0434\u0435\u043E!\n                \u041F\u043E\u043F\u0440\u043E\u0431\u043E\u0432\u0430\u0442\u044C \u0435\u0433\u043E <a href=\"{{src}}\">\u0441\u043A\u0430\u0447\u0430\u0442\u044C</a> \u0438 \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u043D\u0430 \u0441\u0432\u043E\u0435\u043C \u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440\u0435!\n              </video>"
+         Html: {
+          html5video : {
+            tpl: `
+              <video class="fancybox__html5video" playsinline poster="{{poster}}" loop>
+                <source src="{{src}}" type="video/mp4" />
+                К сожалению, Ваш браузер не может воспроизвести данное видео!
+                Попробовать его <a href="{{src}}">скачать</a> и посмотреть на своем компьютере!
+              </video>`
           }
         },
-        l10n: {
+         l10n: {
           CLOSE: "Закрыть",
           NEXT: "Вперед",
           PREV: "Назад",
           MODAL: "Вы можете закрыть это модальное окно, с помощью кнопки ESC",
           ERROR: "Что то пошло не так... Попробуйте снова.",
           IMAGE_ERROR: "Изображение не найдено",
-          ELEMENT_NOT_FOUND: "HTML-элемент не найден"
+          ELEMENT_NOT_FOUND: "HTML-элемент не найден",
         }
-      });
+      });*/
     },
     fillFancyList: function fillFancyList() {
       var _this = this;

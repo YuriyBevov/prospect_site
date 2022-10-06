@@ -6097,6 +6097,9 @@ main {
     margin-bottom: 15px;
   }
 }
+.nav__list-item:first-child {
+  margin-top: auto;
+}
 .nav__list-item a {
   font-size: 54px;
   font-weight: 500;
