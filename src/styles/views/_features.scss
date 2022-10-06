@@ -100,21 +100,19 @@
       }
     }
 
-    @include m-b-tablet-lg-up {
-      &:hover,
-      &:focus {
-        img {
-          transform: scale(1.1);
+    &:hover,
+    &:focus {
+      img {
+        transform: scale(1.1);
+      }
+
+      .features__list-item-content {
+        svg {
+          fill: var(--primary);
         }
 
-        .features__list-item-content {
-          svg {
-            fill: var(--primary);
-          }
-
-          span {
-            color: var(--primary);
-          }
+        span {
+          color: var(--primary);
         }
       }
     }
