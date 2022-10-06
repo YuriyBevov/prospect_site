@@ -50,13 +50,26 @@
         const prev = this.fancyList.slice(0, index);
         const next = this.fancyList.slice(index, this.fancyList.length);
         const current = [...next, ...prev];
-
+        console.log(current)
         Fancybox.show(current, {
           Toolbar: {
             display: [
               "counter",
               "close",
             ],
+          },
+
+          Html: {
+            draggable: true,
+            isDraggable: true,
+            html5video : {
+              tpl: `
+                <video class="fancybox__html5video" playsinline poster="{{poster}}" loop>
+                  <source src="{{src}}" type="video/mp4" />
+                  К сожалению, Ваш браузер не может воспроизвести данное видео!
+                  Попробовать его <a href="{{src}}">скачать</a> и посмотреть на своем компьютере!
+                </video>`
+            }
           },
 
           l10n: {
@@ -82,7 +95,7 @@
           } else if (item.type === 'video') {
             this.fancyList.push({
               src: `./assets/video/${item.source}.mp4`,
-              type: "video",
+              type: "html5video",
               id: item.id,
               thumb: item.thumb
             });

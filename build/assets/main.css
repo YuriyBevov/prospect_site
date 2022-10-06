@@ -4329,7 +4329,7 @@ main {
   cursor: pointer;
 }
 
-.flex-centered-content, #yandex_map .zoom-btns .zoom-btn, .callback__side, .hero__action a, .modal__close, .main-btn, .contacts a {
+.flex-centered-content, #yandex_map .zoom-btns .zoom-btn, .callback__side, .hero__action .contact-helper, .hero__action a, .modal__close, .main-btn, .contacts a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4447,13 +4447,13 @@ main {
   clip: rect(0 0 0 0);
 }
 
-.hover-opacity-transition, .nav__list-item a, .hero__action a, .tag-list .tag-label button, .filter-opener, .main-btn, .contacts a {
+.hover-opacity-transition, .nav__list-item a, .tag-list .tag-label button, .filter-opener, .main-btn, .contacts a {
   -webkit-transition: opacity var(--main-transition);
   -o-transition: opacity var(--main-transition);
   transition: opacity var(--main-transition);
 }
 @media (min-width: 961px) {
-  .hover-opacity-transition:hover, .nav__list-item a:hover, .hero__action a:hover, .tag-list .tag-label button:hover, .filter-opener:hover, .main-btn:hover, .contacts a:hover, .hover-opacity-transition:focus, .nav__list-item a:focus, .hero__action a:focus, .tag-list .tag-label button:focus, .filter-opener:focus, .main-btn:focus, .contacts a:focus {
+  .hover-opacity-transition:hover, .nav__list-item a:hover, .tag-list .tag-label button:hover, .filter-opener:hover, .main-btn:hover, .contacts a:hover, .hover-opacity-transition:focus, .nav__list-item a:focus, .tag-list .tag-label button:focus, .filter-opener:focus, .main-btn:focus, .contacts a:focus {
     opacity: 0.7;
   }
 }
@@ -5951,6 +5951,7 @@ main {
   transform: translateY(-50%);
 }
 .hero__action a {
+  position: relative;
   width: 50px;
   height: 50px;
   border: 2px solid var(--white);
@@ -5959,10 +5960,55 @@ main {
 .hero__action a svg {
   fill: var(--white);
 }
+.hero__action a:hover .contact-helper, .hero__action a:focus .contact-helper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: fadeIn 0.5s ease-in forwards;
+  animation: fadeIn 0.5s ease-in forwards;
+}
 @media (max-width: 960px) {
   .hero__action {
     display: none;
   }
+}
+.hero__action .contact-helper {
+  display: none;
+  position: absolute;
+  top: -2px;
+  left: calc(100% + 20px);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 50px;
+  padding: 15px;
+  border-radius: 4px;
+  opacity: 0;
+  color: var(--dark);
+  background-color: var(--white);
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.hero__action .contact-helper::before {
+  position: absolute;
+  top: 50%;
+  left: -5px;
+  -webkit-transform: translate(-50%);
+  -ms-transform: translate(-50%);
+  transform: translateY(-50%) rotate(45deg);
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  background-color: white;
+  z-index: -1;
+}
+.hero__action .contact-helper span {
+  display: block;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  white-space: nowrap;
 }
 .hero__arrow-down {
   bottom: 100px;

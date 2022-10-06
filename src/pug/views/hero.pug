@@ -9,13 +9,22 @@ section.hero#hero
         svg(width="24" height="24")
           use(xlink:href="./assets/sprite.svg#icon-mail")
 
+        .contact-helper
+          span pro-rek@info.ru
+
       a(href="tel:+78126426449" aria-label="Связаться по телефону")
         svg(width="24" height="24")
           use(xlink:href="./assets/sprite.svg#icon-phone")
 
+        .contact-helper
+          span +7 812 642-64-49
+
       a(href="#" aria-label="Оставить заявку" data-scroll-to="callback").anchor-link
         svg(width="24" height="24")
-          use(xlink:href="./assets/sprite.svg#icon-hand")
+          use(xlink:href="./assets/sprite.svg#icon-help")
+
+        .contact-helper
+          span Оставить заявку
 
     .hero__logo
       include ../components/hero-logo
