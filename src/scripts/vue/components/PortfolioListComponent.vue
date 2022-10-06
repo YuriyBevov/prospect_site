@@ -4,14 +4,14 @@
       v-for="(item, index) in items"
       :key="index"
     >
-      <a href="#" @click="showFancy" data-modal-anchor="gallery" v-if="item.type === 'image'" :data-id="item.id" aria-label="Посмотреть">
+      <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'image'" :data-id="item.id" aria-label="Посмотреть">
         <picture>
           <source :srcset="`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
           <img :src="`./assets/img/${item.source}@1x.jpg`" :srcset="`./assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="589"/>
         </picture>
       </a>
 
-      <a href="#" @click="showFancy" data-modal-anchor="gallery" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
+      <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
         <video muted loop autoplay :poster="`./assets/img/hero-logo.svg`" playsinline>
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
@@ -34,6 +34,8 @@
   import SwiperCore, { Autoplay, Scrollbar, Navigation, Pagination, Thumbs } from 'swiper/core';
   SwiperCore.use([Autoplay, Scrollbar, Navigation, Pagination, Thumbs]);
 
+  let swiper, thumbs = null;
+
   export default {
     props: {
       items: Array,
@@ -42,24 +44,78 @@
 
     data() {
       return {
-        fancyList: [],
+        galleryList: [],
       }
     },
 
     methods: {
-      showFancy(evt) {
+      showGalleryModal(evt) {
         evt.preventDefault();
 
-        const index = evt.currentTarget.dataset.id - 1;
-        const prev = this.fancyList.slice(0, index);
-        const next = this.fancyList.slice(index, this.fancyList.length);
-        const current = [...next, ...prev];
+        swiper.slideTo(evt.currentTarget.dataset.id - 1);
+        thumbs.slideTo(evt.currentTarget.dataset.id - 1);
 
         const modal = document.querySelector('#gallery-modal');
         new Modal(modal).show();
+      },
 
-        let swiper = new Swiper(".swiper-thumbs", {
-          //loop: true,
+      fillSwiper() {
+        const swiperMainNode = document.querySelector('.swiper-main > .swiper-wrapper');
+        const swiperThumbsNode = document.querySelector('.swiper-thumbs > .swiper-wrapper');
+
+        let swiperMainLayout = '';
+        let swiperThubsLayout = '';
+
+        this.galleryList.forEach(slide => {
+          if(slide.type === 'image') {
+            swiperMainLayout += `
+              <div class="swiper-slide
+                <picture>
+                  <source srcset="./assets/img/${slide.source}@1x.webp 1x, ./assets/img/${slide.source}@2x.webp 2x" type="image/webp" />
+                  <img src="./assets/img/${slide.source}@1x.jpg" srcset="./assets/img/${slide.source}@2x.jpg 2x" alt="item" width="787" height="589"/>
+                </picture>
+              </div>
+            `;
+
+            swiperThubsLayout += `
+              <div class="swiper-slide
+                <picture>
+                  <source srcset="./assets/img/${slide.source}@1x.webp 1x, ./assets/img/${slide.source}@2x.webp 2x" type="image/webp" />
+                  <img src="./assets/img/${slide.source}@1x.jpg" srcset="./assets/img/${slide.source}@2x.jpg 2x" alt="item" width="787" height="589"/>
+                </picture>
+              </div>
+            `;
+          }
+
+          if(slide.type === 'video') {
+            swiperMainLayout += `
+              <div class="swiper-slide">
+                <video muted loop controls poster="./assets/img/hero-logo.svg" playsinline>
+                  <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
+                  <source src="./assets/video/${slide.source}.webm" type='video/webm'>
+                </video>
+              </div>
+            `;
+
+            swiperThubsLayout += `
+              <div class="swiper-slide">
+                <video muted loop poster="./assets/img/hero-logo.svg" playsinline>
+                  <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
+                  <source src="./assets/video/${slide.source}.webm" type='video/webm'>
+                </video>
+              </div>
+            `;
+          }
+
+          swiperMainNode.innerHTML = swiperMainLayout;
+          swiperThumbsNode.innerHTML = swiperThubsLayout;
+        });
+
+        this.initSwiper();
+      },
+
+      initSwiper() {
+        swiper = new Swiper(".swiper-thumbs", {
           spaceBetween: 15,
           slidesPerView: 'auto',
           freeMode: false,
@@ -67,8 +123,7 @@
           slideToClickedSlide: true,
         });
 
-        let thumbs = new Swiper(".swiper-main", {
-          //loop: true,
+        thumbs = new Swiper(".swiper-main", {
           spaceBetween: 15,
 
           centeredSlides: true,
@@ -82,31 +137,27 @@
           },
         });
 
-      },
+        const videos = document.querySelectorAll('.swiper-main video');
+        videos.forEach(video => {
+          let observer = new IntersectionObserver(entries => {
+            entries.forEach( entry => {
+              if(entry.isIntersecting) {
+                video.play('muted');
+              } else {
+                video.pause();
+              }
+            });
+          });
 
-      fillFancyList() {
-        this.$props.initialArray.forEach(item => {
-          if(item.type === 'image') {
-            this.fancyList.push({
-              src: `./assets/img/${item.source}@1x.jpg`,
-              type: "image",
-              id: item.id
-            });
-          } else if (item.type === 'video') {
-            this.fancyList.push({
-              src: `./assets/video/${item.source}.mp4`,
-              type: "video",
-              id: item.id,
-              thumb: item.thumb
-            });
-          }
+          observer.observe(video);
         });
-      }
+      },
     },
 
     watch: {
       initialArray: function() {
-        this.fillFancyList();
+        this.galleryList = this.$props.initialArray;
+        this.fillSwiper();
       }
     }
   }
