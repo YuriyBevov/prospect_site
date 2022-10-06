@@ -38,7 +38,7 @@ export class NavMenu {
         })
         .fromTo('.nav__list', {opacity: 0}, {
           opacity: 1,
-          duration: 0.7,
+          duration: 0.5,
           ease: 'power2'
         }, "-=0.7")
         .fromTo('.nav__list-item', {
@@ -47,10 +47,10 @@ export class NavMenu {
         }, {
           y: 0,
           opacity: 1,
-          duration: 0.5,
-          stagger: 0.2,
+          duration: 0.3,
+          stagger: 0.075,
           ease: 'ease-in'
-        }, "-=0.3");
+        }, "-=0.4");
     }
   }
 
@@ -66,7 +66,7 @@ export class NavMenu {
       this.#closeNavTl
         .to(this.#container, {
           opacity: 0,
-          duration: 0.7
+          duration: 0.5
         })
         .to(this.#container, {
           display: 'none',
