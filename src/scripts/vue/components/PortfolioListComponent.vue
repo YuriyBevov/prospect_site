@@ -29,6 +29,8 @@
 </template>
 
 <script>
+
+  import {gsap} from 'gsap';
   import { Modal } from "../../classes/Modal";
   import Swiper from 'swiper'
   import SwiperCore, { Autoplay, Scrollbar, Navigation, Pagination, Thumbs } from 'swiper/core';
@@ -90,7 +92,7 @@
           if(slide.type === 'video') {
             swiperMainLayout += `
               <div class="swiper-slide">
-                <video muted loop controls poster="./assets/img/hero-logo.svg" playsinline>
+                <video muted loop poster="./assets/img/hero-logo.svg" playsinline>
                   <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
                   <source src="./assets/video/${slide.source}.webm" type='video/webm'>
                 </video>
@@ -151,7 +153,33 @@
 
           observer.observe(video);
         });
+
+        setTimeout(() => {
+          this.hideLoader();
+        }, 1000);
       },
+
+      hideLoader() {
+        const tl = gsap.timeline();
+
+        tl
+          .to('.loader', {
+            display: 'none'
+          })
+          .to('.page-overlay', {
+            opacity: 0,
+            ease: 'linear',
+            duration: .7,
+          })
+          .to('.page-overlay', {
+            display: 'none'
+          })
+          .fromTo('body', {opacity: 0}, {
+            opacity: 1,
+            ease: 'linear',
+            duration: .5
+          }, "-=300")
+      }
     },
 
     watch: {
