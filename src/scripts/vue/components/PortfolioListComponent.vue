@@ -33,8 +33,8 @@
   import {gsap} from 'gsap';
   import { Modal } from "../../classes/Modal";
   import Swiper from 'swiper'
-  import SwiperCore, { Autoplay, Scrollbar, Navigation, Pagination, Thumbs } from 'swiper/core';
-  SwiperCore.use([Autoplay, Scrollbar, Navigation, Pagination, Thumbs]);
+  import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
+  SwiperCore.use([ Navigation, Thumbs]);
 
   let swiper, thumbs = null;
 
@@ -140,6 +140,7 @@
         });
 
         const videos = document.querySelectorAll('.swiper-main video');
+
         videos.forEach(video => {
           let observer = new IntersectionObserver(entries => {
             entries.forEach( entry => {
