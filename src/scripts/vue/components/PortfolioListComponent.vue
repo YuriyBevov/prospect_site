@@ -12,25 +12,23 @@
       </a>
 
       <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
-        <video muted loop autoplay :poster="`./assets/img/hero-logo.svg`" playsinline>
+        <video autoplay muted loop playsinline :poster="`./assets/img/hero-logo.svg`">
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
 
-        <img :src="`./assets/img/hero-logo.svg`" alt="Заглушка" width="787" height="589" class="visually-hidden"/>
+        <!--<img :src="`./assets/img/hero-logo.svg`" alt="Заглушка" width="787" height="589" class="visually-hidden"/>-->
       </a>
     </li>
 
     <li v-if="!this.$props.items.length" class="portfolio__list-item portfolio__list-item--empty">
       <img :src="`./assets/img/hero-logo.svg`" width="100%" height="400"/>
-      <p>Кажется, вы не выбрали ни одного праметра фильтрации...</p>
+      <p>Кажется, вы не выбрали ни одного параметра фильтрации...</p>
     </li>
   </ul>
 </template>
 
 <script>
-
-  import {gsap} from 'gsap';
   import { Modal } from "../../classes/Modal";
   import Swiper from 'swiper'
   import SwiperCore, { Navigation, Thumbs } from 'swiper/core';
@@ -41,7 +39,7 @@
   export default {
     props: {
       items: Array,
-      initialArray: Array
+      initial: Array
     },
 
     data() {
@@ -54,11 +52,13 @@
       showGalleryModal(evt) {
         evt.preventDefault();
 
-        swiper.slideTo(evt.currentTarget.dataset.id - 1);
-        thumbs.slideTo(evt.currentTarget.dataset.id - 1);
-
         const modal = document.querySelector('#gallery-modal');
         new Modal(modal).show();
+
+        this.initSwiper();
+
+        swiper.slideTo(evt.currentTarget.dataset.id - 1);
+        thumbs.slideTo(evt.currentTarget.dataset.id - 1);
       },
 
       fillSwiper() {
@@ -92,7 +92,7 @@
           if(slide.type === 'video') {
             swiperMainLayout += `
               <div class="swiper-slide">
-                <video muted loop autoplay poster="./assets/img/hero-logo.svg" playsinline>
+                <video autoplay muted controls playsinline loop poster="./assets/img/hero-logo.svg" >
                   <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
                   <source src="./assets/video/${slide.source}.webm" type='video/webm'>
                 </video>
@@ -112,8 +112,6 @@
           swiperMainNode.innerHTML = swiperMainLayout;
           swiperThumbsNode.innerHTML = swiperThubsLayout;
         });
-
-        this.initSwiper();
       },
 
       initSwiper() {
@@ -138,55 +136,37 @@
             swiper: swiper,
           },
         });
-
-        const videos = document.querySelectorAll('.swiper-main video');
-
-        videos.forEach(video => {
-          let observer = new IntersectionObserver(entries => {
-            entries.forEach( entry => {
-              if(entry.isIntersecting) {
-                video.play();
-              } else {
-                video.pause();
-              }
-            });
-          });
-
-          observer.observe(video);
-        });
-
-        setTimeout(() => {
-          this.hideLoader();
-        }, 1000);
       },
-
-      hideLoader() {
-        const tl = gsap.timeline();
-
-        tl
-          .to('.loader', {
-            display: 'none'
-          })
-          .to('.page-overlay', {
-            opacity: 0,
-            ease: 'linear',
-            duration: .7,
-          })
-          .to('.page-overlay', {
-            display: 'none'
-          })
-          .fromTo('body', {opacity: 0}, {
-            opacity: 1,
-            ease: 'linear',
-            duration: .5
-          }, "-=300")
-      }
     },
 
     watch: {
-      initialArray: function() {
-        this.galleryList = this.$props.initialArray;
+      initial: function() {
+        this.galleryList = this.$props.initial;
         this.fillSwiper();
+      },
+
+      items: function () {
+        /*const videos = document.querySelectorAll('.portfolio__list-item video');
+        console.log(videos)
+        if(videos) {
+          videos.forEach(video => {
+            const observer = new IntersectionObserver(entries => {
+              entries.forEach( entry => {
+                if(entry.isIntersecting) {
+                  video.play('muted');
+                  console.log('play')
+                } else {
+                  if(video.currentTime > 0){
+                    video.pause();
+                    console.log('paused')
+                  }
+                }
+              });
+            });
+
+            observer.observe(video);
+          });
+        };*/
       }
     }
   }

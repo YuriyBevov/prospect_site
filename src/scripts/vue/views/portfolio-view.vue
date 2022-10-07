@@ -4,7 +4,7 @@
       <filter-component :tags="this.tags" :checked="this.checked" @tags="updateCheckedList"></filter-component>
       <tag-list-component :tags="this.checked" @remove="removeTag"></tag-list-component>
     </div>
-    <portfolio-list-component :items="this.items" :initialArray="this.initialArray"></portfolio-list-component>
+    <portfolio-list-component :items="this.items" :initial="this.initialArray"></portfolio-list-component>
     <div class="portfolio__footer">
       <load-more-button-component @load="loadMoreItems" :disabled="this.isLoadMoreButtonDisabled"></load-more-button-component>
       <collapse-button-component :state="this.isCollapseButtonDisabled" @collapse="collapsePortfolioList"></collapse-button-component>
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+  import {gsap} from 'gsap';
   import json from "../../../assets/content/portfolio.json";
   import FilterComponent from "../components/FilterComponent.vue";
   import TagListComponent from "../components/TagListComponent.vue";
@@ -75,6 +76,29 @@
         this.setLoadMoreButtonStatus();
         this.setCollapseButtonStatus();
 
+        setTimeout(() => {
+          this.hideLoader();
+        }, 1000);
+      },
+
+      hideLoader() {
+        const tl = gsap.timeline();
+
+        tl
+          .to('.loader', {
+            display: 'none',
+            duration: 0
+          })
+          .fromTo('body', {opacity: 0}, {
+            opacity: 1,
+            ease: 'linear',
+            duration: .5,
+            delay: 0.5
+          })
+          .to('.page-overlay', {
+            display: 'none',
+            duration: 0
+          }, "-=400")
       },
 
       setLoadMoreButtonStatus() {
