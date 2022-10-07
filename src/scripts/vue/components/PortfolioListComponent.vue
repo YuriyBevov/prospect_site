@@ -172,14 +172,11 @@
       },
 
       items: function() {
-        console.log(this.$props.items);
-
-        const videos = document.querySelectorAll('video');
-        console.log(videos);
+        /*const videos = document.querySelectorAll('video');
 
         videos.forEach(video => {
           video.play();
-        })
+        })*/
       }
     }
   }

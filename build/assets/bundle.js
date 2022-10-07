@@ -387,12 +387,10 @@ var swiper,
       this.fillSwiper();
     },
     items: function items() {
-      console.log(this.$props.items);
-      var videos = document.querySelectorAll('video');
-      console.log(videos);
-      videos.forEach(function (video) {
+      /*const videos = document.querySelectorAll('video');
+       videos.forEach(video => {
         video.play();
-      });
+      })*/
     }
   }
 });
@@ -1743,8 +1741,6 @@ var videos = document.querySelectorAll('video');
 
 if (videos) {
   videos.forEach(function (video) {
-    video.play();
-    alert(video);
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
