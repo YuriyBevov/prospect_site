@@ -16,8 +16,6 @@
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
-
-        <!--<img :src="`./assets/img/hero-logo.svg`" alt="Заглушка" width="787" height="589" class="visually-hidden"/>-->
       </a>
     </li>
 
@@ -55,10 +53,7 @@
         const modal = document.querySelector('#gallery-modal');
         new Modal(modal).show();
 
-        this.initSwiper();
-
-        swiper.slideTo(evt.currentTarget.dataset.id - 1);
-        thumbs.slideTo(evt.currentTarget.dataset.id - 1);
+        this.initSwiper(evt.currentTarget.dataset.id - 1);
       },
 
       fillSwiper() {
@@ -66,20 +61,10 @@
         const swiperThumbsNode = document.querySelector('.swiper-thumbs > .swiper-wrapper');
 
         let swiperMainLayout = '';
-        let swiperThubsLayout = '';
 
         this.galleryList.forEach(slide => {
           if(slide.type === 'image') {
             swiperMainLayout += `
-              <div class="swiper-slide
-                <picture>
-                  <source srcset="./assets/img/${slide.source}@1x.webp 1x, ./assets/img/${slide.source}@2x.webp 2x" type="image/webp" />
-                  <img src="./assets/img/${slide.source}@1x.jpg" srcset="./assets/img/${slide.source}@2x.jpg 2x" alt="item" width="787" height="589"/>
-                </picture>
-              </div>
-            `;
-
-            swiperThubsLayout += `
               <div class="swiper-slide
                 <picture>
                   <source srcset="./assets/img/${slide.source}@1x.webp 1x, ./assets/img/${slide.source}@2x.webp 2x" type="image/webp" />
@@ -92,16 +77,7 @@
           if(slide.type === 'video') {
             swiperMainLayout += `
               <div class="swiper-slide">
-                <video autoplay muted controls playsinline loop poster="./assets/img/hero-logo.svg" >
-                  <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
-                  <source src="./assets/video/${slide.source}.webm" type='video/webm'>
-                </video>
-              </div>
-            `;
-
-            swiperThubsLayout += `
-              <div class="swiper-slide">
-                <video muted loop poster="./assets/img/hero-logo.svg" playsinline>
+                <video muted playsinline loop poster="./assets/img/hero-logo.svg" >
                   <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
                   <source src="./assets/video/${slide.source}.webm" type='video/webm'>
                 </video>
@@ -110,11 +86,11 @@
           }
 
           swiperMainNode.innerHTML = swiperMainLayout;
-          swiperThumbsNode.innerHTML = swiperThubsLayout;
+          swiperThumbsNode.innerHTML = swiperMainLayout;
         });
       },
 
-      initSwiper() {
+      initSwiper(currentSlide) {
         swiper = new Swiper(".swiper-thumbs", {
           spaceBetween: 15,
           slidesPerView: 'auto',
@@ -136,6 +112,56 @@
             swiper: swiper,
           },
         });
+
+        swiper.slideTo(currentSlide);
+        thumbs.slideTo(currentSlide);
+
+        let mainVideo, thumbVideo = null;
+
+        setTimeout(() => {
+          mainVideo = document.querySelector('.swiper-main .swiper-slide-active > video');
+          thumbVideo = document.querySelector('.swiper-thumbs .swiper-slide-thumb-active > video');
+
+          if(mainVideo && thumbVideo) {
+            video('play');
+          }
+        }, 100);
+
+        thumbs.on('slideChangeTransitionEnd', function () {
+          if(mainVideo && thumbVideo) {
+            video('pause');
+          }
+
+          mainVideo = document.querySelector('.swiper-main .swiper-slide-active > video');
+          thumbVideo = document.querySelector('.swiper-thumbs .swiper-slide-thumb-active > video');
+
+          if(mainVideo && thumbVideo) {
+            video('play');
+          }
+        });
+
+        function video(state) {
+          if(state == 'play') {
+            if(mainVideo) {
+              mainVideo.play();
+            }
+
+            if(thumbVideo) {
+              thumbVideo.play();
+            }
+          }
+
+          if(state == 'pause') {
+            if(mainVideo) {
+              mainVideo.pause();
+            }
+
+            if(thumbVideo) {
+              thumbVideo.pause();
+            }
+          }
+        }
+
       },
     },
 
@@ -143,30 +169,6 @@
       initial: function() {
         this.galleryList = this.$props.initial;
         this.fillSwiper();
-      },
-
-      items: function () {
-        /*const videos = document.querySelectorAll('.portfolio__list-item video');
-        console.log(videos)
-        if(videos) {
-          videos.forEach(video => {
-            const observer = new IntersectionObserver(entries => {
-              entries.forEach( entry => {
-                if(entry.isIntersecting) {
-                  video.play('muted');
-                  console.log('play')
-                } else {
-                  if(video.currentTime > 0){
-                    video.pause();
-                    console.log('paused')
-                  }
-                }
-              });
-            });
-
-            observer.observe(video);
-          });
-        };*/
       }
     }
   }

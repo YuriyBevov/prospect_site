@@ -274,8 +274,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -297,31 +295,26 @@ var swiper,
       evt.preventDefault();
       var modal = document.querySelector('#gallery-modal');
       new _classes_Modal__WEBPACK_IMPORTED_MODULE_0__.Modal(modal).show();
-      this.initSwiper();
-      swiper.slideTo(evt.currentTarget.dataset.id - 1);
-      thumbs.slideTo(evt.currentTarget.dataset.id - 1);
+      this.initSwiper(evt.currentTarget.dataset.id - 1);
     },
     fillSwiper: function fillSwiper() {
       var swiperMainNode = document.querySelector('.swiper-main > .swiper-wrapper');
       var swiperThumbsNode = document.querySelector('.swiper-thumbs > .swiper-wrapper');
       var swiperMainLayout = '';
-      var swiperThubsLayout = '';
       this.galleryList.forEach(function (slide) {
         if (slide.type === 'image') {
           swiperMainLayout += "\n            <div class=\"swiper-slide\n              <picture>\n                <source srcset=\"./assets/img/".concat(slide.source, "@1x.webp 1x, ./assets/img/").concat(slide.source, "@2x.webp 2x\" type=\"image/webp\" />\n                <img src=\"./assets/img/").concat(slide.source, "@1x.jpg\" srcset=\"./assets/img/").concat(slide.source, "@2x.jpg 2x\" alt=\"item\" width=\"787\" height=\"589\"/>\n              </picture>\n            </div>\n          ");
-          swiperThubsLayout += "\n            <div class=\"swiper-slide\n              <picture>\n                <source srcset=\"./assets/img/".concat(slide.source, "@1x.webp 1x, ./assets/img/").concat(slide.source, "@2x.webp 2x\" type=\"image/webp\" />\n                <img src=\"./assets/img/").concat(slide.source, "@1x.jpg\" srcset=\"./assets/img/").concat(slide.source, "@2x.jpg 2x\" alt=\"item\" width=\"787\" height=\"589\"/>\n              </picture>\n            </div>\n          ");
         }
 
         if (slide.type === 'video') {
-          swiperMainLayout += "\n            <div class=\"swiper-slide\">\n              <video autoplay muted controls playsinline loop poster=\"./assets/img/hero-logo.svg\" >\n                <source src=\"./assets/video/".concat(slide.source, ".mp4\" type='video/mp4'>\n                <source src=\"./assets/video/").concat(slide.source, ".webm\" type='video/webm'>\n              </video>\n            </div>\n          ");
-          swiperThubsLayout += "\n            <div class=\"swiper-slide\">\n              <video muted loop poster=\"./assets/img/hero-logo.svg\" playsinline>\n                <source src=\"./assets/video/".concat(slide.source, ".mp4\" type='video/mp4'>\n                <source src=\"./assets/video/").concat(slide.source, ".webm\" type='video/webm'>\n              </video>\n            </div>\n          ");
+          swiperMainLayout += "\n            <div class=\"swiper-slide\">\n              <video muted playsinline loop poster=\"./assets/img/hero-logo.svg\" >\n                <source src=\"./assets/video/".concat(slide.source, ".mp4\" type='video/mp4'>\n                <source src=\"./assets/video/").concat(slide.source, ".webm\" type='video/webm'>\n              </video>\n            </div>\n          ");
         }
 
         swiperMainNode.innerHTML = swiperMainLayout;
-        swiperThumbsNode.innerHTML = swiperThubsLayout;
+        swiperThumbsNode.innerHTML = swiperMainLayout;
       });
     },
-    initSwiper: function initSwiper() {
+    initSwiper: function initSwiper(currentSlide) {
       swiper = new swiper__WEBPACK_IMPORTED_MODULE_1__["default"](".swiper-thumbs", {
         spaceBetween: 15,
         slidesPerView: 'auto',
@@ -340,34 +333,58 @@ var swiper,
           swiper: swiper
         }
       });
+      swiper.slideTo(currentSlide);
+      thumbs.slideTo(currentSlide);
+      var mainVideo,
+          thumbVideo = null;
+      setTimeout(function () {
+        mainVideo = document.querySelector('.swiper-main .swiper-slide-active > video');
+        thumbVideo = document.querySelector('.swiper-thumbs .swiper-slide-thumb-active > video');
+
+        if (mainVideo && thumbVideo) {
+          video('play');
+        }
+      }, 100);
+      thumbs.on('slideChangeTransitionEnd', function () {
+        if (mainVideo && thumbVideo) {
+          video('pause');
+        }
+
+        mainVideo = document.querySelector('.swiper-main .swiper-slide-active > video');
+        thumbVideo = document.querySelector('.swiper-thumbs .swiper-slide-thumb-active > video');
+
+        if (mainVideo && thumbVideo) {
+          video('play');
+        }
+      });
+
+      function video(state) {
+        if (state == 'play') {
+          if (mainVideo) {
+            mainVideo.play();
+          }
+
+          if (thumbVideo) {
+            thumbVideo.play();
+          }
+        }
+
+        if (state == 'pause') {
+          if (mainVideo) {
+            mainVideo.pause();
+          }
+
+          if (thumbVideo) {
+            thumbVideo.pause();
+          }
+        }
+      }
     }
   },
   watch: {
     initial: function initial() {
       this.galleryList = this.$props.initial;
       this.fillSwiper();
-    },
-    items: function items() {
-      /*const videos = document.querySelectorAll('.portfolio__list-item video');
-      console.log(videos)
-      if(videos) {
-        videos.forEach(video => {
-          const observer = new IntersectionObserver(entries => {
-            entries.forEach( entry => {
-              if(entry.isIntersecting) {
-                video.play('muted');
-                console.log('play')
-              } else {
-                if(video.currentTime > 0){
-                  video.pause();
-                  console.log('paused')
-                }
-              }
-            });
-          });
-           observer.observe(video);
-        });
-      };*/
     }
   }
 });
