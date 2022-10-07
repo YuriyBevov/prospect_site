@@ -4,17 +4,18 @@
       v-for="(item, index) in items"
       :key="index"
     >
-      <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'image'" :data-id="item.id" aria-label="Посмотреть">
+      <a href="#" @click="showGalleryModal" v-if="item.type === 'image'" :data-id="item.id" aria-label="Посмотреть">
         <picture>
           <source :srcset="`./assets/img/${item.source}@1x.webp 1x, ./assets/img/${item.source}@2x.webp 2x`" type="image/webp" />
           <img :src="`./assets/img/${item.source}@1x.jpg`" :srcset="`./assets/img/${item.source}@2x.jpg 2x`" :alt= item.description width="787" height="589"/>
         </picture>
       </a>
 
-      <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
-        <video autoplay muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
+      <a href="#" @click="showGalleryModal" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
+        <video autoplay="autoplay" muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
-          <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
+
+          <!--<source :src="`./assets/video/${item.source}.webm`" type='video/webm'>-->
         </video>
       </a>
     </li>
@@ -79,7 +80,6 @@
               <div class="swiper-slide">
                 <video muted playsinline loop poster="./assets/img/hero-logo.svg" >
                   <source src="./assets/video/${slide.source}.mp4" type='video/mp4'>
-                  <source src="./assets/video/${slide.source}.webm" type='video/webm'>
                 </video>
               </div>
             `;
@@ -169,14 +169,6 @@
       initial: function() {
         this.galleryList = this.$props.initial;
         this.fillSwiper();
-      },
-
-      items: function() {
-        /*const videos = document.querySelectorAll('video');
-
-        videos.forEach(video => {
-          video.play();
-        })*/
       }
     }
   }

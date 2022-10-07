@@ -274,6 +274,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -307,7 +308,7 @@ var swiper,
         }
 
         if (slide.type === 'video') {
-          swiperMainLayout += "\n            <div class=\"swiper-slide\">\n              <video muted playsinline loop poster=\"./assets/img/hero-logo.svg\" >\n                <source src=\"./assets/video/".concat(slide.source, ".mp4\" type='video/mp4'>\n                <source src=\"./assets/video/").concat(slide.source, ".webm\" type='video/webm'>\n              </video>\n            </div>\n          ");
+          swiperMainLayout += "\n            <div class=\"swiper-slide\">\n              <video muted playsinline loop poster=\"./assets/img/hero-logo.svg\" >\n                <source src=\"./assets/video/".concat(slide.source, ".mp4\" type='video/mp4'>\n              </video>\n            </div>\n          ");
         }
 
         swiperMainNode.innerHTML = swiperMainLayout;
@@ -385,12 +386,6 @@ var swiper,
     initial: function initial() {
       this.galleryList = this.$props.initial;
       this.fillSwiper();
-    },
-    items: function items() {
-      /*const videos = document.querySelectorAll('video');
-       videos.forEach(video => {
-        video.play();
-      })*/
     }
   }
 });
@@ -17746,7 +17741,6 @@ var render = function () {
                 {
                   attrs: {
                     href: "#",
-                    "data-modal-anchor": "gallery",
                     "data-id": item.id,
                     "aria-label": "Посмотреть",
                   },
@@ -17786,7 +17780,6 @@ var render = function () {
                 {
                   attrs: {
                     href: "#",
-                    "data-modal-anchor": "gallery",
                     "data-id": item.id,
                     "aria-label": "Посмотреть",
                   },
@@ -17798,7 +17791,7 @@ var render = function () {
                     {
                       staticClass: "portfolio-video",
                       attrs: {
-                        autoplay: "",
+                        autoplay: "autoplay",
                         muted: "",
                         loop: "",
                         playsinline: "",
@@ -17811,13 +17804,6 @@ var render = function () {
                         attrs: {
                           src: "./assets/video/" + item.source + ".mp4",
                           type: "video/mp4",
-                        },
-                      }),
-                      _vm._v(" "),
-                      _c("source", {
-                        attrs: {
-                          src: "./assets/video/" + item.source + ".webm",
-                          type: "video/webm",
                         },
                       }),
                     ]
