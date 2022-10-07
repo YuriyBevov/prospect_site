@@ -385,6 +385,14 @@ var swiper,
     initial: function initial() {
       this.galleryList = this.$props.initial;
       this.fillSwiper();
+    },
+    items: function items() {
+      console.log(this.$props.items);
+      var videos = document.querySelectorAll('video');
+      console.log(videos);
+      videos.forEach(function (video) {
+        video.play();
+      });
     }
   }
 });
@@ -548,6 +556,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
   },
   methods: {
     init: function init() {
+      var _this = this;
+
       var tags = [];
       this.initialArray.forEach(function (item) {
         tags = [].concat(_toConsumableArray(tags), _toConsumableArray(item.tags));
@@ -556,28 +566,28 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.checked = this.tags;
       this.count += this.STEP;
       this.fillPortfolioItems();
+      setTimeout(function () {
+        _this.hideLoader();
+      }, 1500);
     },
     fillPortfolioItems: function fillPortfolioItems() {
-      var _this = this;
+      var _this2 = this;
 
       this.items = [];
       var currentCount = 0;
       this.initialArray.forEach(function (item) {
         var isExist = item.tags.filter(function (it) {
-          return _this.checked.indexOf(it) !== -1;
+          return _this2.checked.indexOf(it) !== -1;
         });
 
-        if (currentCount < _this.count && isExist.length) {
-          _this.items.push(item);
+        if (currentCount < _this2.count && isExist.length) {
+          _this2.items.push(item);
 
           currentCount++;
         }
       });
       this.setLoadMoreButtonStatus();
       this.setCollapseButtonStatus();
-      setTimeout(function () {
-        _this.hideLoader();
-      }, 1000);
     },
     hideLoader: function hideLoader() {
       var tl = gsap__WEBPACK_IMPORTED_MODULE_6__.gsap.timeline();
@@ -1730,19 +1740,18 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (() => {
 
 var videos = document.querySelectorAll('video');
-console.log(videos);
 
 if (videos) {
   videos.forEach(function (video) {
+    video.play();
+    alert(video);
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           video.play('muted');
-          console.log('play');
         } else {
           if (video.currentTime > 0) {
             video.pause();
-            console.log('paused');
           }
         }
       });
@@ -17791,6 +17800,7 @@ var render = function () {
                   _c(
                     "video",
                     {
+                      staticClass: "portfolio-video",
                       attrs: {
                         autoplay: "",
                         muted: "",

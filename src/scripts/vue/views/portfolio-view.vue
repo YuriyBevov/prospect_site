@@ -58,6 +58,10 @@
         this.count += this.STEP;
 
         this.fillPortfolioItems();
+
+        setTimeout(() => {
+          this.hideLoader();
+        }, 1500);
       },
 
       fillPortfolioItems() {
@@ -75,10 +79,6 @@
 
         this.setLoadMoreButtonStatus();
         this.setCollapseButtonStatus();
-
-        setTimeout(() => {
-          this.hideLoader();
-        }, 1000);
       },
 
       hideLoader() {

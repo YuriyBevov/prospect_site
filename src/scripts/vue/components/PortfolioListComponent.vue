@@ -12,7 +12,7 @@
       </a>
 
       <a href="#" @click="showGalleryModal" data-modal-anchor="gallery" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
-        <video autoplay muted loop playsinline :poster="`./assets/img/hero-logo.svg`">
+        <video autoplay muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
@@ -169,6 +169,17 @@
       initial: function() {
         this.galleryList = this.$props.initial;
         this.fillSwiper();
+      },
+
+      items: function() {
+        console.log(this.$props.items);
+
+        const videos = document.querySelectorAll('video');
+        console.log(videos);
+
+        videos.forEach(video => {
+          video.play();
+        })
       }
     }
   }
