@@ -10,8 +10,8 @@ function setCssProperty(name, value) {
 
 function setVieportHeight() {
   let windowWidth = window.innerWidth;
-  console.log(windowWidth)
   let vh = window.innerHeight * 0.01;
+
   setCssProperty('--vh', `${vh}px`);
   ScrollTrigger.refresh();
 

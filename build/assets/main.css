@@ -5970,6 +5970,7 @@ main {
   min-height: 844px;
   max-height: 1080px;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   background-color: var(--primary);
   overflow: hidden;
   will-change: auto;

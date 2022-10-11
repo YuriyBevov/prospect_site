@@ -1777,7 +1777,6 @@ function setCssProperty(name, value) {
 
 function setVieportHeight() {
   var windowWidth = window.innerWidth;
-  console.log(windowWidth);
   var vh = window.innerHeight * 0.01;
   setCssProperty('--vh', "".concat(vh, "px"));
   gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
