@@ -1,4 +1,4 @@
-/*import {gsap} from 'gsap';
+import {gsap} from 'gsap';
 import {ScrollTrigger} from 'gsap/ScrollTrigger';
 import {root} from "../utils/nodesHelper";
 
@@ -9,15 +9,20 @@ function setCssProperty(name, value) {
 }
 
 function setVieportHeight() {
+  let windowWidth = window.innerWidth;
+  console.log(windowWidth)
   let vh = window.innerHeight * 0.01;
   setCssProperty('--vh', `${vh}px`);
   ScrollTrigger.refresh();
 
   window.addEventListener('resize', () => {
-    vh = window.innerHeight * 0.01;
-    setCssProperty('--vh', `${vh}px`);
-    ScrollTrigger.refresh();
+    if(windowWidth !== window.width) {
+      windowWidth = window.innerWidth;
+      vh = window.innerHeight * 0.01;
+      setCssProperty('--vh', `${vh}px`);
+      ScrollTrigger.refresh();
+    }
   });
 }
 
-setVieportHeight();*/
+setVieportHeight();

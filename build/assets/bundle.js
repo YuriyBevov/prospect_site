@@ -1759,31 +1759,39 @@ if (videos) {
 /*!*****************************************!*\
   !*** ./src/scripts/modules/viewport.js ***!
   \*****************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-/*import {gsap} from 'gsap';
-import {ScrollTrigger} from 'gsap/ScrollTrigger';
-import {root} from "../utils/nodesHelper";
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
+/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
+/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
 
-gsap.registerPlugin(ScrollTrigger);
+
+
+gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger);
 
 function setCssProperty(name, value) {
-  root.style.setProperty(name, value);
+  _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.root.style.setProperty(name, value);
 }
 
 function setVieportHeight() {
-  let vh = window.innerHeight * 0.01;
-  setCssProperty('--vh', `${vh}px`);
-  ScrollTrigger.refresh();
-
-  window.addEventListener('resize', () => {
-    vh = window.innerHeight * 0.01;
-    setCssProperty('--vh', `${vh}px`);
-    ScrollTrigger.refresh();
+  var windowWidth = window.innerWidth;
+  console.log(windowWidth);
+  var vh = window.innerHeight * 0.01;
+  setCssProperty('--vh', "".concat(vh, "px"));
+  gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
+  window.addEventListener('resize', function () {
+    if (windowWidth !== window.width) {
+      windowWidth = window.innerWidth;
+      vh = window.innerHeight * 0.01;
+      setCssProperty('--vh', "".concat(vh, "px"));
+      gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
+    }
   });
 }
 
-setVieportHeight();*/
+setVieportHeight();
 
 /***/ }),
 
@@ -39630,7 +39638,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
 /* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
 /* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
-/* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_modules_viewport__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
 /* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
 /* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_7__);
