@@ -6,7 +6,7 @@ import "./modules/header";
 import "./modules/navbar";
 import "./modules/viewport";
 import "./modules/parallax-title";
-import "./modules/video";
+//import "./modules/video";
 import "./modules/accordeon";
 import "./modules/yandexMap";
 import "./modules/select";

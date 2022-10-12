@@ -1726,35 +1726,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/scripts/modules/video.js":
-/*!**************************************!*\
-  !*** ./src/scripts/modules/video.js ***!
-  \**************************************/
-/***/ (() => {
-
-var videos = document.querySelectorAll('video');
-
-if (videos) {
-  videos.forEach(function (video) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          video.play('muted');
-        } else {
-          if (video.currentTime > 0) {
-            video.pause();
-          }
-        }
-      });
-    });
-    observer.observe(video);
-  });
-}
-
-;
-
-/***/ }),
-
 /***/ "./src/scripts/modules/viewport.js":
 /*!*****************************************!*\
   !*** ./src/scripts/modules/viewport.js ***!
@@ -39638,14 +39609,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
 /* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
 /* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/video */ "./src/scripts/modules/video.js");
-/* harmony import */ var _modules_video__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_video__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
-/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
-/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/form */ "./src/scripts/modules/form.js");
+/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
+/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/form */ "./src/scripts/modules/form.js");
 //import "./modules/loader";
 
 
@@ -39653,7 +39622,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+ //import "./modules/video";
 
 
 

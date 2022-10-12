@@ -6,9 +6,11 @@ if(videos) {
       entries.forEach( entry => {
         if(entry.isIntersecting) {
           video.play('muted');
+          console.log('played');
         } else {
           if(video.currentTime > 0){
             video.pause();
+            console.log('paused');
           }
         }
       });

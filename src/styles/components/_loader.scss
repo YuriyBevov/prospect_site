@@ -1,40 +1,49 @@
-.loader, .loader:before, .loader:after {
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  animation-fill-mode: both;
-  animation: bubblesFadeInOut 1.8s infinite ease-in-out;
-}
-
-.loader {
+.loader-wrapper {
   position: fixed;
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
 
-  color: var(--primary);
-  font-size: 7px;
-  text-indent: -9999em;
-  animation-delay: -0.16s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   z-index: 102;
+
+  width: 50px;
+  height: 10px;
 }
 
-.loader:before,
-.loader:after {
-  content: '';
-  position: absolute;
-  top: 0;
-}
-.loader:before {
-  left: -3.5em;
-  animation-delay: -0.32s;
-}
-.loader:after {
-  left: 3.5em;
+.loader {
+  width: 12px;
+  height: 12px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  opacity: 0;
+  animation: bubblesFadeInOut 1.5s linear infinite forwards;
+
+  &--middle {
+    animation-delay: .4s;
+  }
+
+  &--right {
+    animation-delay: .6s;
+  }
 }
 
 @keyframes bubblesFadeInOut {
-  0%, 80%, 100% { box-shadow: 0 2em 0 -1em }
-  40% { box-shadow: 0 2em 0 0 }
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  55% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+  }
 }
