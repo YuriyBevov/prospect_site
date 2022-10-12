@@ -1726,45 +1726,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./src/scripts/modules/viewport.js":
-/*!*****************************************!*\
-  !*** ./src/scripts/modules/viewport.js ***!
-  \*****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var gsap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! gsap */ "./node_modules/gsap/index.js");
-/* harmony import */ var gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gsap/ScrollTrigger */ "./node_modules/gsap/ScrollTrigger.js");
-/* harmony import */ var _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/nodesHelper */ "./src/scripts/utils/nodesHelper.js");
-
-
-
-gsap__WEBPACK_IMPORTED_MODULE_1__.gsap.registerPlugin(gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger);
-
-function setCssProperty(name, value) {
-  _utils_nodesHelper__WEBPACK_IMPORTED_MODULE_0__.root.style.setProperty(name, value);
-}
-
-function setVieportHeight() {
-  var windowWidth = window.innerWidth;
-  var vh = window.innerHeight * 0.01;
-  setCssProperty('--vh', "".concat(vh, "px"));
-  gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
-  window.addEventListener('resize', function () {
-    if (windowWidth !== window.width) {
-      windowWidth = window.innerWidth;
-      vh = window.innerHeight * 0.01;
-      setCssProperty('--vh', "".concat(vh, "px"));
-      gsap_ScrollTrigger__WEBPACK_IMPORTED_MODULE_2__.ScrollTrigger.refresh();
-    }
-  });
-}
-
-setVieportHeight();
-
-/***/ }),
-
 /***/ "./src/scripts/modules/yandexMap.js":
 /*!******************************************!*\
   !*** ./src/scripts/modules/yandexMap.js ***!
@@ -39607,20 +39568,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_anchor_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/anchor-link */ "./src/scripts/modules/anchor-link.js");
 /* harmony import */ var _modules_header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/header */ "./src/scripts/modules/header.js");
 /* harmony import */ var _modules_navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/navbar */ "./src/scripts/modules/navbar.js");
-/* harmony import */ var _modules_viewport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/viewport */ "./src/scripts/modules/viewport.js");
-/* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
-/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
-/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
-/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
-/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/form */ "./src/scripts/modules/form.js");
+/* harmony import */ var _modules_parallax_title__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/parallax-title */ "./src/scripts/modules/parallax-title.js");
+/* harmony import */ var _modules_accordeon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/accordeon */ "./src/scripts/modules/accordeon.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/yandexMap */ "./src/scripts/modules/yandexMap.js");
+/* harmony import */ var _modules_yandexMap__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_modules_yandexMap__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _modules_select__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/select */ "./src/scripts/modules/select.js");
+/* harmony import */ var _modules_form_mask__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/form-mask */ "./src/scripts/modules/form-mask.js");
+/* harmony import */ var _modules_form__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/form */ "./src/scripts/modules/form.js");
 //import "./modules/loader";
 
 
 
 
-
+ //import "./modules/viewport";
 
  //import "./modules/video";
 
