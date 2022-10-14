@@ -123,9 +123,6 @@
       checked: function() {
         this.checkedList = this.$props.checked;
 
-        /*this.tagList.length === this.checkedList.length ?
-        this.isAllBtnChecked = true : this.isAllBtnChecked = false;*/
-
         if(this.tagList.length === this.checkedList.length) {
           this.isAllBtnChecked = true;
           this.isFilterCounterActive = false;

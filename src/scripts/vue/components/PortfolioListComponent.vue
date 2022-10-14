@@ -14,8 +14,7 @@
       <a href="#" @click="showGalleryModal" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
         <video autoplay="autoplay" muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
-
-          <!--<source :src="`./assets/video/${item.source}.webm`" type='video/webm'>-->
+          <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
       </a>
     </li>
@@ -104,8 +103,8 @@
 
           centeredSlides: true,
           navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+            nextEl: ".gallery-swiper-button-next",
+            prevEl: ".gallery-swiper-button-prev",
           },
 
           thumbs: {

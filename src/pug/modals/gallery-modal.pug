@@ -5,7 +5,12 @@
   .swiper.gallery-swiper
     .swiper.swiper-main
       .swiper-wrapper
-        p main
+
+      .swiper-button-prev.gallery-swiper-button-prev
+        svg(width="16" height="16")
+          use(xlink:href="./assets/sprite.svg#icon-swiper-arrow")
+      .swiper-button-next.gallery-swiper-button-next
+        svg(width="16" height="16")
+          use(xlink:href="./assets/sprite.svg#icon-swiper-arrow")
     .swiper.swiper-thumbs(thumbsSlider="")
       .swiper-wrapper
-        p thumb
