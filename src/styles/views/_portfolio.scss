@@ -10,7 +10,7 @@
   }
 
   &__header {
-    display: grid;
+    /*display: grid;
     grid-template-columns: 100px 1fr;
     grid-column-gap: 40px;
     align-items: center;
@@ -18,7 +18,7 @@
 
     @include m-b-mobile-lg-down {
       grid-column-gap: 15px;
-    }
+    }*/
   }
 
   &__list {

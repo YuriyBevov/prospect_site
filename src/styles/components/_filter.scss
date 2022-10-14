@@ -1,12 +1,13 @@
 .filter {
   position: relative;
+  margin-bottom: 40px;
 
   &-opener {
     @extend .button-default;
     @extend .flex-wrap;
     align-items: center;
 
-    min-height: 30px;
+    min-height: 40px;
 
     span {
       font-weight: 600;
@@ -18,7 +19,7 @@
 
     @extend .hover-opacity-transition;
 
-    svg {
+    /*svg {
       transition: transform var(--main-transition);
     }
 
@@ -26,7 +27,31 @@
       svg {
         transform: rotate(180deg);
       }
+    }*/
+
+    position: relative;
+
+    small {
+      @extend .flex-centered-content;
+      position: absolute;
+      top: -5px;
+      right: -20px;
+
+      width: 24px;
+      height: 24px;
+
+      line-height: 1;
+
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: var(--white);
     }
+
+    /*&.active {
+      small {
+        display: block;
+      }
+    }*/
   }
 
   &-container {

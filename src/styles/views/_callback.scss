@@ -84,10 +84,10 @@
 
       span {
         font-weight: 700;
-        font-size: 168px;
+        font-size: 212px;
 
-        @include m-b-desktop-lg-up {
-          font-size: 214px;
+        @include m-b-down(1800px) {
+          font-size: 168px;
         }
 
         @include m-b-down(1600px) {

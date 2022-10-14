@@ -1,16 +1,15 @@
 <template>
   <div class="filter">
-
     <button
       type="button"
       class="filter-opener"
-      :class="isOpenerActive ? 'active' : null"
       @click.stop="openFilter"
     >
-      <span>Фильтр:</span>
-      <svg width="14" height="7">
-        <use :xlink:href="`./assets/sprite.svg#icon-arrow-down`"></use>
+      <span>Фильтры</span>
+      <svg width="24" height="24">
+        <use :xlink:href="`./assets/sprite.svg#icon-filter`"></use>
       </svg>
+      <small v-if="isFilterCounterActive">{{this.checkedList.length}}</small>
     </button>
 
     <div class="filter-container" v-show="isOpenerActive">
@@ -59,7 +58,8 @@
         isOpenerActive: false,
         checkedList: [],
         tagList: [],
-        isAllBtnChecked: true
+        isAllBtnChecked: true,
+        isFilterCounterActive: false
       }
     },
 
@@ -76,7 +76,6 @@
       },
 
       selectAll() {
-        console.log(this.isAllBtnChecked)
         !this.isAllBtnChecked ?
         this.checkedList = this.tagList :
         this.checkedList = [];
@@ -124,8 +123,16 @@
       checked: function() {
         this.checkedList = this.$props.checked;
 
-        this.tagList.length === this.checkedList.length ?
-        this.isAllBtnChecked = true : this.isAllBtnChecked = false;
+        /*this.tagList.length === this.checkedList.length ?
+        this.isAllBtnChecked = true : this.isAllBtnChecked = false;*/
+
+        if(this.tagList.length === this.checkedList.length) {
+          this.isAllBtnChecked = true;
+          this.isFilterCounterActive = false;
+        } else {
+          this.isAllBtnChecked = false;
+          this.isFilterCounterActive = true;
+        }
       }
     }
   }
