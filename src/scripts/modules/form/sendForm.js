@@ -8,7 +8,6 @@ export function sendForm(form) {
   const errorModal = document.getElementById('error-modal');
 
   function loaderFadeOut() {
-    console.log('fadeout')
     return gsap.to('.loader', {
       opacity: 0,
       duration: 1,

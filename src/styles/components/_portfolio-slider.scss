@@ -13,8 +13,6 @@
 
   background-color: gray;
 
-  z-index: 102;
-
   &__header {
     @extend .flex-wrap;
     outline: 1px solid red;

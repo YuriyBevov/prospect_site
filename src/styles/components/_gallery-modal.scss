@@ -9,7 +9,6 @@
 
   .modal__close {
     top: 50px;
-    z-index: 3;
     background-color: rgba(0,0,0,.5);
   }
 
@@ -93,11 +92,14 @@
         max-height: 60px;
       }
 
+      border: 2px solid transparent;
+      transition: border var(--main-transition);
       background-color: var(--dark);
     }
 
     .swiper-slide-thumb-active {
       opacity: 1;
+      border: 2px solid var(--primary);
     }
   }
 

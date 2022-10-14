@@ -1,4 +1,4 @@
-.custom-select-container {
+/*.custom-select-container {
   position: relative;
 }
 
@@ -59,7 +59,7 @@
 
   top: calc(100% + 10px);
   left: 0;
-  z-index: 1;
+
   width: 100px;
   box-shadow: 0px 10px 20px rgba(42, 52, 79, 0.1);
 
@@ -74,7 +74,6 @@
   height: fit-content;
   max-height: 150px;
   overflow-y: auto;
-  z-index: 101;
 }
 
 .custom-select-option {
@@ -110,4 +109,4 @@
 
 .custom-select-optgroup > .custom-select-option {
   padding-left: 20px;
-}
+}*/

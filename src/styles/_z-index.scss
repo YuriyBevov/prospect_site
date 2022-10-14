@@ -13,5 +13,69 @@
 
   &__action {
     z-index: 4;
+
+    .contact-helper::before {
+      z-index: -1;
+    }
   }
+
+  iframe {
+    z-index: -1;
+  }
+}
+
+.accordeon {
+  &__header {
+    z-index: 3;
+  }
+}
+
+.burger {
+  z-index: 10;
+}
+
+.filter-container {
+  z-index: 101;
+}
+
+.modal {
+  z-index: 102;
+}
+
+.modal-overlay {
+  z-index: 101;
+}
+
+.gallery-modal {
+  .modal__close {
+    z-index: 3;
+  }
+}
+
+.portfolio-slider {
+  z-index: 102;
+}
+.section-title--dublicated {
+  span {
+    z-index: -1;
+  }
+}
+
+.callback__side svg {
+  z-index: 2;
+}
+
+.features__list-item {
+  picture {
+    z-index: -1;
+  }
+}
+
+.map {
+  z-index: 3;
+}
+
+section,
+footer {
+  z-index: 10;
 }
