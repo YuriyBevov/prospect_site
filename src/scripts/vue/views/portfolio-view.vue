@@ -1,9 +1,6 @@
 <template>
   <div style="position: relative;">
-    <!--<div class="portfolio__header">-->
-      <filter-component :tags="this.tags" :checked="this.checked" @tags="updateCheckedList"></filter-component>
-      <!--<tag-list-component :tags="this.checked" @remove="removeTag"></tag-list-component>-->
-    <!--</div>-->
+    <filter-component :tags="this.tags" :checked="this.checked" @tags="updateCheckedList"></filter-component>
     <portfolio-list-component :items="this.items" :initial="this.initialArray"></portfolio-list-component>
     <div class="portfolio__footer">
       <load-more-button-component @load="loadMoreItems" :disabled="this.isLoadMoreButtonDisabled"></load-more-button-component>
@@ -16,7 +13,6 @@
   import {gsap} from 'gsap';
   import json from "../../../assets/content/portfolio.json";
   import FilterComponent from "../components/FilterComponent.vue";
-  //import TagListComponent from "../components/TagListComponent.vue";
   import PortfolioListComponent from "../components/PortfolioListComponent.vue";
   import LoadMoreButtonComponent from "../components/LoadMoreButtonComponent.vue";
   import CollapseButtonComponent from "../components/CollapseButtonComponent.vue";
@@ -24,7 +20,6 @@
   export default {
     components: {
       'filter-component': FilterComponent,
-      //'tag-list-component': TagListComponent,
       'portfolio-list-component': PortfolioListComponent,
       'load-more-button-component': LoadMoreButtonComponent,
       'collapse-button-component': CollapseButtonComponent,

@@ -19,16 +19,6 @@
 
     @extend .hover-opacity-transition;
 
-    /*svg {
-      transition: transform var(--main-transition);
-    }
-
-    &.active {
-      svg {
-        transform: rotate(180deg);
-      }
-    }*/
-
     position: relative;
 
     small {
@@ -46,12 +36,6 @@
       background-color: var(--primary);
       color: var(--white);
     }
-
-    /*&.active {
-      small {
-        display: block;
-      }
-    }*/
   }
 
   &-container {
