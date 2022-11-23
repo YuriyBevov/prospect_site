@@ -51,8 +51,8 @@ const PATHS = {
   },
 
   video: {
-    src: `${SOURCE_PATH}assets/video/**/*.{mp4, webm}`,
-    watchSrc: `${SOURCE_PATH}assets/video/**/*.{mp4, webm}`,
+    src: `${SOURCE_PATH}assets/video/**/*.{mp4,webm}`,
+    watchSrc: `${SOURCE_PATH}assets/video/**/*.{mp4,webm}`,
     dest: `${BUILD_PATH}assets/video/`
   },
 
