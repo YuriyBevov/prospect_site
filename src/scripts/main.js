@@ -1,7 +1,7 @@
 import "./vue/main.js";
 import "./modules/hero-arrow-down";
 import "./modules/anchor-link";
-import "./modules/header";
+//import "./modules/header";
 import "./modules/navbar";
 import "./modules/parallax-title";
 import "./modules/accordeon";
