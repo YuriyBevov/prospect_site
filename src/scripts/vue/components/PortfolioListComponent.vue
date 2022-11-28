@@ -12,7 +12,7 @@
       </a>
 
       <a href="#" @click="showGalleryModal" v-if="item.type === 'video'" :data-id="item.id" aria-label="Посмотреть">
-        <video muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
+        <video autoplay muted loop playsinline :poster="`./assets/img/hero-logo.svg`" class="portfolio-video">
           <source :src="`./assets/video/${item.source}.mp4`" type='video/mp4'>
           <source :src="`./assets/video/${item.source}.webm`" type='video/webm'>
         </video>
