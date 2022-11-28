@@ -23,9 +23,7 @@ if(textElems) {
       .fromTo(el,{ x: '100vw', opacity: 0 }, {
         x: '-100vw',
         opacity: 1,
-        duration: 3,
-        delay: 0.3,
-        ease: 'linear'
+        ease: 'power0.easeNone'
       });
   }
 
