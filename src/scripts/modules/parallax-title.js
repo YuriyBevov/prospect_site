@@ -23,7 +23,7 @@ if(textElems) {
       .fromTo(el,{ x: '100vw', opacity: 0 }, {
         x: '-100vw',
         opacity: 1,
-        ease: 'power0.easeNone'
+        ease: 'linear'
       });
   }
 
